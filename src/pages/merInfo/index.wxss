@@ -1,0 +1,40 @@
+.basic-info .mer-images .mer-images-guid .grid-item {
+  margin: 0;
+  padding: 0;
+}
+
+.basic-info .mer-images .mer-images-guid .grid-item .item-images-block {
+  width: 30%;
+  height: 222rpx;
+  margin-top: 10rpx;
+  padding-bottom: 50rpx;
+  position: relative;
+  display: inline-flex;
+  margin-left: 20rpx;
+}
+
+.basic-info .mer-images .mer-images-guid .grid-item .item-images-block .item-images {
+  width: 100%;
+  height: 220rpx;
+}
+
+.basic-info .mer-images .mer-images-guid .grid-item .item-images-block .close {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 100%;
+}
+
+.basic-info .mer-images .mer-images-guid .grid-item .item-images-block .add {
+  position: absolute;
+  top: 50%;
+  left: 35%;
+}
+
+.basic-info .mer-images .mer-images-guid .grid-item .item-images-block-add {
+  background-color: #fff;
+}
+
+.basic-info .mer-images .mer-images-guid .grid-item .item-images-block-add:active {
+  background-color: #f2f3f5;
+}

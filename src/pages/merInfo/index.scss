@@ -1,0 +1,49 @@
+.basic-info {
+  .mer-images {
+    .mer-images-guid{
+        .grid-item{
+            .item-images-block{
+                .item-images {
+                    width: 100%;
+                    height: 220rpx; 
+                    //margin-top: 50rpx;
+                }
+                .close{
+                    position: absolute;
+                    right: 0px;
+                    bottom: 0px;
+                    width: 100%;  
+                    // float: right;
+                    // display: inline-block;
+                }
+                .add{
+                    // width: 100%;
+                    // height: 100%;
+                    position: absolute;
+                    top: 50%; 
+                    left:35%;
+                    // overflow: auto;
+                }
+                width: 30%;
+                height: 222rpx;
+                margin-top: 10rpx;
+                padding-bottom: 50rpx;
+                position: relative;
+                display: inline-flex;
+                margin-left: 20rpx
+            } 
+            .item-images-block-add{
+                background-color:#fff;
+            }
+            .item-images-block-add:active{
+                background-color:#f2f3f5
+            }
+            margin:0;
+            padding: 0;
+        }
+    }
+  }
+}
+
+ 
+    

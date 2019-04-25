@@ -1,12 +1,14 @@
 {
   "pages": [
+
+    "pages/merInfo/index",
     "pages/index/index",
     "pages/logs/logs"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "Merchant",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"

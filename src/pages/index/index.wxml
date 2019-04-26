@@ -1,4 +1,4 @@
 <!--index.wxml-->
 <view class="main">
-  <van-cell title="商铺信息设置" is-link />
+  <van-cell title="商铺信息设置" is-link url="/pages/merInfo/index"/>
 </view>

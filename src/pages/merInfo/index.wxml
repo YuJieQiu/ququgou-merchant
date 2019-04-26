@@ -34,21 +34,128 @@
                 </i-grid>
             </view>
             <!-- 店铺图片 E -->
-           <van-field value="{{ message }}" label="店铺名称" type="textarea" placeholder="请输入店铺名称" autosize border="{{ false }}" />
-           
-           <picker mode="region" bindchange="onChangeRegion" class="address-region-block" value="{{region}}" custom-item="{{customItem}}">
-            <view class="address-region-value">
-                <block wx:if="{{region.length>0}}" >
-                {{region[0]}}，{{region[1]}}，{{region[2]}}
-                </block>
-                <block wx:else>
-                    请选择 
-                </block> 
+            <van-field value="{{ message }}" label="店铺名称" type="textarea" placeholder="请输入店铺名称" autosize border="{{ false }}" />
+            <van-cell
+                title="地区"
+                title-width="70px"
+                icon="location-o"  
+                on
+                is-link
+            > 
+            <view class="address-region">
+                <picker mode="region" bindchange="onChangeRegion" class="address-region-block" value="{{region}}" custom-item="{{customItem}}">
+                <view class="address-region-value">
+                    <block wx:if="{{region.length>0}}" >
+                    {{region[0]}}，{{region[1]}}，{{region[2]}}
+                    </block>
+                    <block wx:else>
+                        请选择 
+                    </block> 
+                </view>
+                </picker>
             </view>
-            </picker>
+
+            </van-cell>
            <van-cell title="地址选择" icon="location-o" is-link bind:click="onAddressClick"/>
            <van-field value="{{ message }}" label="详细地址" type="textarea" placeholder="请输入店铺详细地址" autosize border="{{ false }}" />
 
+         <van-field
+            value="{{ phone }}"
+            label="联系电话"
+            placeholder="请输入手机号" 
+            border="{{ false }}"
+        />
+         
+            <van-cell title="营业时间"   title-width="70px">
+                <view class="open-time"> 
+                    <picker
+                        mode="time"
+                        value="{{businessStartTime}}"
+                        
+                        bindchange="onChangeStartTime"
+                        class="open-time-picker"
+                    >
+                        <view class="open-time-value">
+                         {{businessStartTime}}
+                        </view>
+                    </picker> <block>--</block>
+                    <picker
+                        mode="time"
+                        value="{{businessEndTime}}"
+                        
+                        bindchange="onChangeEndTime"
+                        class="open-time-picker"
+                    >
+                        <view class="open-time-value">
+                            {{businessEndTime}}
+                        </view>
+                    </picker> 
+                </view>
+            </van-cell>
+
+        <view class="tag-info">
+            <van-cell title="标签" is-link value="选择标签(可选)" bind:click="onClickSelectTag"/>
+            <view class="popup-tag-list">
+                 <block wx:for="{{tabList}}">
+                    <van-tag custom-class="custom-van-tag"  color="#f2826a" round>{{item}}</van-tag>
+                </block>
+            </view>
+        </view>
+      
+       <van-button custom-class="but-save" size="large" type="danger">保存</van-button>
         </van-cell-group>
     </view>
+
+
+ 
+<!--标签选择 S--> 
+<van-popup
+  show="{{ tabData.show }}"
+  position="right"
+  overlay="{{ true }}"
+  z-index="999"
+ custom-class="popup-tag"
+  bind:close="onClose"
+>
+    <view class="popup-tag-main">
+        <view class="tag-top-bottom">
+            <view class="popup-tag-close" bindtap="onClickPopupTagClose">取消 </view>
+            <view class="popup-tag-ok" bindtap="onClickPopupTagOk"> 确认</view>
+        </view>
+        
+        <van-search value="{{ tabData.tabNewStr }}"  placeholder="添加店铺的标签" bind:search="onTagSearch" />
+
+        <view class="popup-tag-new" style="{{tabData.hideNew?'display:none;':'display:inline'}}">
+            <view class="popup-tag-text">创建新标签</view>
+            <view class="popup-tag-list"> 
+                <van-button bind:click="onClickTag"  plain round   custom-class="custom-button-tag" type="danger">{{tabData.tabNewStr}}</van-button>
+                <!-- <van-tag bind:click="onClickTag" custom-class="custom-van-tag"  color="#f2826a" plain>{{tabData.tabNewStr}}</van-tag> -->
+            </view>
+        </view>
+       
+       <view class="popup-tag-select" style="{{tabData.hideSelect?'display:none;':'display:inline'}}">
+           <view class="popup-tag-text">已选标签</view> 
+            <view class="popup-tag-list">
+                <block wx:for="{{tabData.tagList}}">
+                    <van-tag data-value="{{item}}" bindtap="onClickDeleteTag" custom-class="custom-van-tag"  color="#f2826a" round>{{item}}</van-tag>
+                </block>
+            </view>
+        </view>
+
+        <view class="popup-tag-hot" style="{{tabData.hideTot?'display:none;':'display:inline'}}">
+            <view class="popup-tag-text">热门标签</view> 
+            <view class="popup-tag-list">
+                 <block wx:for="{{tabData.tagHotList}}">
+                    <van-tag data-value="{{item}}" bindtap="onClickHotTag" custom-class="custom-van-tag"  color="#f2826a" round>{{item}}</van-tag>
+                </block>
+            </view>
+        </view>
+        
+    </view>
+
+
+</van-popup>
+<!--标签选择 E-->
+ 
+
 </view>

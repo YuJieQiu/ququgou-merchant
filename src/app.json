@@ -1,8 +1,9 @@
 {
-  "pages": [
+  "pages": [  
 
-    "pages/merInfo/index",
     "pages/index/index",
+    "pages/merInfo/index",
+    "pages/productManage/index",
     "pages/logs/logs"
   ],
   "window": {
@@ -10,6 +11,27 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Merchant",
     "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {  
+    "van-collapse": "../../components/vant-weapp/dist/collapse/index",
+    "van-collapse-item": "../../components/vant-weapp/dist/collapse-item/index",
+    "van-cell": "../../components/vant-weapp/dist/cell/index",
+    "van-cell-group": "../../components/vant-weapp/dist/cell-group/index",
+    "van-row": "../../components/vant-weapp/dist/row/index",
+    "van-col": "../../components/vant-weapp/dist/col/index",
+    "van-icon": "../../components/vant-weapp/dist/icon/index",
+    "van-button": "../../components/vant-weapp/dist/button/index",
+    "van-field": "../../components/vant-weapp/dist/field/index",
+    "van-panel": "../../components/vant-weapp/dist/panel/index",
+    "van-dialog": "../../components/vant-weapp/dist/dialog/index",
+    "van-search": "../../components/vant-weapp/dist/search/index",
+    "van-popup": "../../components/vant-weapp/dist/popup/index",
+    "van-tag": "../../components/vant-weapp/dist/tag/index",
+    "i-grid": "../../components/iview-weapp/dist/grid/index",
+    "i-grid-item": "../../components/iview-weapp/dist/grid-item/index",
+    "i-grid-icon": "../../components/iview-weapp/dist/grid-icon/index",
+    "i-grid-label": "../../components/iview-weapp/dist/grid-label/index",
+    "van-datetime-picker": "../../components/vant-weapp/dist/datetime-picker/index" 
   },
   "sitemapLocation": "sitemap.json"
 }

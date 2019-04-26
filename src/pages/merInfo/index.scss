@@ -1,4 +1,4 @@
-.basic-info {
+.basic-info { 
   .mer-images {
     .mer-images-guid{
         .grid-item{
@@ -43,6 +43,123 @@
         }
     }
   }
+
+  .address-region{
+    display: inline-block;
+    text-align:left;
+    width: 1000%;
+    .address-region-value{
+        display: inline-block;
+        color:#333;
+        
+      }
+    .address-region-block{
+        width: 100%; 
+    } 
+  }
+    .open-time{
+        display: inline-block;
+        text-align:left;
+        width: 100%;
+        position: relative;
+        .open-time-picker{
+            width: 135rpx;
+            display: inline-block;
+            vertical-align: middle;  
+            text-align: center;
+            .open-time-value{
+                display: inline-block;
+                color:#333;
+            }
+        } 
+    }
+    .but-save{
+        margin-top: 50rpx;
+    }
+    z-index: 50;
+}
+
+ .display_none{
+    display: none;
+}
+
+  .display_none{
+    visibility:hidden
+}
+
+.datetime-picker{
+    position: sticky;
+    top: 0px;
+}
+
+.tag-info{
+    .custom-van-tag{
+        margin-left: 20rpx;
+        margin-top:20rpx;
+        font-size: 30rpx;
+    }
+}
+
+.popup-tag{  
+    width: 100%;
+    height: 100%;
+    .popup-tag-main{
+        width: 100%;
+        height: 100%;
+       
+        .tag-top-bottom{
+            width: 100%;
+            position: relative;
+            height: 80rpx;
+            line-height: 80rpx;
+            .popup-tag-close{
+                padding-left: 30rpx;
+                padding-right: 30rpx;
+                position: absolute;
+                display: inline-block;
+                left: 0;
+                color: #1989fa;
+                font-size: 14px;
+            }
+            .popup-tag-ok{
+                padding-left: 30rpx;
+                padding-right: 30rpx;
+                position: absolute;
+                display: inline-block;
+                right:  0;
+                color: #1989fa;
+                font-size: 14px;
+            }
+        }
+        .popup-tag-new{
+            
+        }
+        .popup-tag-select{
+
+        }
+        .popup-tag-hot{
+
+        }
+        .popup-tag-list{
+            margin-top: 20rpx;
+            width: 100%
+        }
+        .custom-button-tag{
+            margin-left: 20rpx; 
+        }
+        .custom-van-tag{
+            margin-left: 20rpx;
+            margin-top:20rpx;
+            font-size: 30rpx;
+        }
+    }
+    .popup-tag-text{
+        margin: 0;
+        font-weight: 400;
+        font-size: 30rpx;
+        color: rgba(69,90,100,.6);
+        padding: 35rpx 15rpx 15rpx;
+    }
 }
 
  

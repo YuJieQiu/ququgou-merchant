@@ -34,13 +34,13 @@ export const transition = function (showDefaultValue) {
         },
         attached() {
             if (this.data.show) {
-                this.show();
+                this.enter();
             }
         },
         methods: {
             observeShow(value) {
                 if (value) {
-                    this.show();
+                    this.enter();
                 }
                 else {
                     this.leave();
@@ -51,39 +51,57 @@ export const transition = function (showDefaultValue) {
                     classNames: getClassNames(name)
                 });
             },
-            show() {
+            enter() {
                 const { classNames, duration } = this.data;
                 const currentDuration = isObj(duration) ? duration.leave : duration;
+                this.status = 'enter';
                 Promise.resolve()
                     .then(nextTick)
-                    .then(() => this.set({
-                    inited: true,
-                    display: true,
-                    classes: classNames.enter,
-                    currentDuration
-                }))
+                    .then(() => {
+                    this.checkStatus('enter');
+                    this.set({
+                        inited: true,
+                        display: true,
+                        classes: classNames.enter,
+                        currentDuration
+                    });
+                })
                     .then(nextTick)
-                    .then(() => this.set({
-                    classes: classNames['enter-to']
-                }));
+                    .then(() => {
+                    this.checkStatus('enter');
+                    this.set({
+                        classes: classNames['enter-to']
+                    });
+                })
+                    .catch(() => { });
             },
             leave() {
                 const { classNames, duration } = this.data;
                 const currentDuration = isObj(duration) ? duration.leave : duration;
-                if (+currentDuration === 0) {
-                    this.onTransitionEnd();
-                    return;
-                }
+                this.status = 'leave';
                 Promise.resolve()
                     .then(nextTick)
-                    .then(() => this.set({
-                    classes: classNames.leave,
-                    currentDuration
-                }))
+                    .then(() => {
+                    this.checkStatus('leave');
+                    this.set({
+                        classes: classNames.leave,
+                        currentDuration
+                    });
+                })
+                    .then(() => setTimeout(() => this.onTransitionEnd(), currentDuration))
                     .then(nextTick)
-                    .then(() => this.set({
-                    classes: classNames['leave-to']
-                }));
+                    .then(() => {
+                    this.checkStatus('leave');
+                    this.set({
+                        classes: classNames['leave-to']
+                    });
+                })
+                    .catch(() => { });
+            },
+            checkStatus(status) {
+                if (status !== this.status) {
+                    throw new Error(`incongruent status: ${status}`);
+                }
             },
             onTransitionEnd() {
                 if (!this.data.show) {

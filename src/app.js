@@ -4,7 +4,6 @@ App({
         //判断机型(适配iphoneX)
         wx.getSystemInfo({
             success: (res) => {
-                console.log(res.model);
                 if (res.model.search('iPhone X') != -1) {
                     this.globalData.isIPX = true
                 }
@@ -18,8 +17,8 @@ App({
                     // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
                     wx.getUserInfo({
                         success: res => {
-                            let userInfo = res.userInfo; 
-                            wx.setStorageSync('userInfo', JSON.stringify(userInfo)); 
+                            let userInfo = res.userInfo;
+                            wx.setStorageSync('userInfo', JSON.stringify(userInfo));
                             this.login(userInfo);
                         }
                     });

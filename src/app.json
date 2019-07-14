@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/home/index",
+    "pages/profile/index",
     "pages/index/index",
     "pages/merInfo/index",
     "pages/productAdd/index",
@@ -13,6 +15,26 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Merchant",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#8b9099",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "iconPath": "assets/images/tab/home.png",
+        "selectedIconPath": "assets/images/tab/homeCur.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "iconPath": "assets/images/tab/avatar.png",
+        "selectedIconPath": "assets/images/tab/avatarCur.png",
+        "text": "个人"
+      }
+    ]
   },
   "usingComponents": {
     "van-collapse": "../../components/vant-weapp/dist/collapse/index",

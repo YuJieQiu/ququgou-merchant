@@ -1,9 +1,13 @@
 {
-  "pages": [  
-
+  "pages": [
+    "pages/home/index",
+    "pages/profile/index",
     "pages/index/index",
     "pages/merInfo/index",
+    "pages/productAdd/index",
     "pages/productManage/index",
+    "pages/webView/index",
+    "pages/authorize/index",
     "pages/logs/logs"
   ],
   "window": {
@@ -12,7 +16,27 @@
     "navigationBarTitleText": "Merchant",
     "navigationBarTextStyle": "black"
   },
-  "usingComponents": {  
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#8b9099",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "iconPath": "assets/images/tab/home.png",
+        "selectedIconPath": "assets/images/tab/homeCur.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "iconPath": "assets/images/tab/avatar.png",
+        "selectedIconPath": "assets/images/tab/avatarCur.png",
+        "text": "个人"
+      }
+    ]
+  },
+  "usingComponents": {
     "van-collapse": "../../components/vant-weapp/dist/collapse/index",
     "van-collapse-item": "../../components/vant-weapp/dist/collapse-item/index",
     "van-cell": "../../components/vant-weapp/dist/cell/index",
@@ -24,14 +48,20 @@
     "van-field": "../../components/vant-weapp/dist/field/index",
     "van-panel": "../../components/vant-weapp/dist/panel/index",
     "van-dialog": "../../components/vant-weapp/dist/dialog/index",
+    "van-nav-bar": "../../components/vant-weapp/dist/nav-bar/index",
     "van-search": "../../components/vant-weapp/dist/search/index",
     "van-popup": "../../components/vant-weapp/dist/popup/index",
     "van-tag": "../../components/vant-weapp/dist/tag/index",
+    "van-radio": "../../components/vant-weapp/dist/radio/index",
+    "van-radio-group": "../../components/vant-weapp/dist/radio-group/index",
     "i-grid": "../../components/iview-weapp/dist/grid/index",
+    "van-tree-select": "../../components/vant-weapp/dist/tree-select/index",
     "i-grid-item": "../../components/iview-weapp/dist/grid-item/index",
     "i-grid-icon": "../../components/iview-weapp/dist/grid-icon/index",
     "i-grid-label": "../../components/iview-weapp/dist/grid-label/index",
-    "van-datetime-picker": "../../components/vant-weapp/dist/datetime-picker/index" 
+    "i-drawer": "../../components/iview-weapp/dist/drawer/index",
+    "i-swipeout": "../../components/iview-weapp/dist/swipeout/index",
+    "van-datetime-picker": "../../components/vant-weapp/dist/datetime-picker/index"
   },
   "sitemapLocation": "sitemap.json"
 }

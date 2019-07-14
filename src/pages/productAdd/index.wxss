@@ -1,0 +1,155 @@
+.basic-info .basic-info-images .basic-info-images-guid .grid-item {
+  margin: 0;
+  padding: 0;
+}
+
+.basic-info .basic-info-images .basic-info-images-guid .grid-item .item-images-block {
+  width: 30%;
+  height: 222rpx;
+  margin-top: 10rpx;
+  padding-bottom: 50rpx;
+  position: relative;
+  display: inline-flex;
+  margin-left: 20rpx;
+}
+
+.basic-info .basic-info-images .basic-info-images-guid .grid-item .item-images-block .item-images {
+  width: 100%;
+  height: 220rpx;
+}
+
+.basic-info .basic-info-images .basic-info-images-guid .grid-item .item-images-block .close {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 100%;
+}
+
+.basic-info .basic-info-images .basic-info-images-guid .grid-item .item-images-block .add {
+  position: absolute;
+  top: 50%;
+  left: 35%;
+}
+
+.basic-info .basic-info-images .basic-info-images-guid .grid-item .item-images-block-add {
+  background-color: #fff;
+}
+
+.basic-info .basic-info-images .basic-info-images-guid .grid-item .item-images-block-add:active {
+  background-color: #f2f3f5;
+}
+
+.c-popup-view {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  background-color: #1989fa;
+  overflow: hidden;
+}
+
+.demo-container {
+  height: 100%;
+  width: 100%;
+}
+
+.demo-container-view {
+  width: 100%;
+}
+
+.modal {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.test-modal {
+  position: absolute;
+}
+
+.popup-tag {
+  width: 100%;
+  height: 100%;
+}
+
+.popup-tag .popup-tag-main {
+  width: 100%;
+  height: 100%;
+}
+
+.popup-tag .popup-tag-main .tag-top-bottom {
+  width: 100%;
+  position: relative;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.popup-tag .popup-tag-main .tag-top-bottom .popup-tag-close {
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  color: #1989fa;
+  font-size: 14px;
+}
+
+.popup-tag .popup-tag-main .tag-top-bottom .popup-tag-ok {
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  position: absolute;
+  display: inline-block;
+  right: 0;
+  color: #1989fa;
+  font-size: 14px;
+}
+
+.popup-tag .popup-tag-main .popup-tag-list {
+  margin-top: 20rpx;
+  width: 100%;
+}
+
+.popup-tag .popup-tag-main .custom-button-tag {
+  margin-left: 20rpx;
+}
+
+.popup-tag .popup-tag-main .custom-van-tag {
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  font-size: 30rpx;
+}
+
+.popup-tag .popup-tag-text {
+  margin: 0;
+  font-weight: 400;
+  font-size: 30rpx;
+  color: rgba(69, 90, 100, 0.6);
+  padding: 35rpx 15rpx 15rpx;
+}
+
+.test-radio {
+  display: inline-block;
+  height: 50rpx;
+  margin-left: 100rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
+
+.p-attribute .p-attribute-add {
+  width: 80%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.p-attribute .p-attribute-delete {
+  width: 15%;
+  display: inline-block;
+  vertical-align: middle;
+}

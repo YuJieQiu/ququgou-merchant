@@ -1,0 +1,9 @@
+<!-- index.wxml -->
+<view class="main">
+  <view class="header">
+    <view class="name">{{name}}</view>
+    <view class="avatar">
+      <i-avatar src="{{avatar}}" size="large" shape="square"></i-avatar>
+    </view>
+  </view>
+</view>

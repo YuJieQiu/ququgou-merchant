@@ -9,12 +9,12 @@ Page({
   onChange(event) {
     this.setData({
       activeNames: event.detail
-    });
+    })
   },
-  onLoad: function () {
-     
+  onLoad: function() {
+    app.httpGet('initAuth').then(res => {
+      console.log(res)
+    })
   },
-  getUserInfo: function(e) {
-    
-  }
+  getUserInfo: function(e) {}
 })

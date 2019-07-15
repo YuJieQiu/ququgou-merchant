@@ -1,0 +1,123 @@
+Page .list .listItem {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+Page .list .questionItem {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+
+Page {
+  padding-bottom: 1rpx;
+}
+Page switch {
+  transform: scale(0.7);
+  -webkit-transform: scale(0.7);
+  transform-origin: 100%;
+  -webkit-transform-origin: 100%;
+  vertical-align: middle;
+  margin-left: 20rpx;
+}
+Page textarea {
+  width: 100%;
+  height: 200rpx;
+}
+Page .taskPic {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 10rpx;
+  font-size: 0;
+  display: inline-block;
+  margin-right: 40rpx;
+  margin-bottom: 10rpx;
+  margin-top: 10rpx;
+  vertical-align: middle;
+}
+Page .taskPic > image {
+  width: 100%;
+  height: 100%;
+}
+Page .taskPic .delete {
+  position: absolute;
+  right: -20rpx;
+  top: -20rpx;
+  width: 60rpx;
+  height: 60rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+Page .taskPic .delete image {
+  width: 40rpx;
+  height: 40rpx;
+}
+Page .title {
+  font-weight: bold;
+}
+Page .title2 {
+  padding: 0 20rpx;
+  color: #666666;
+}
+Page .list {
+  background: #ffffff;
+  margin: 20rpx 0;
+  border-top: 1rpx solid #d1d3d4;
+  border-bottom: 1rpx solid #d1d3d4;
+}
+Page .list .questionItem, Page .list .listItem {
+  position: relative;
+  padding: 20rpx 30rpx;
+}
+Page .list .questionItem:not(:last-child):before, Page .list .listItem:not(:last-child):before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 30rpx;
+  right: 0;
+  border-bottom: 1rpx solid #d1d3d4;
+}
+Page .list .questionItem:after, Page .list .listItem:after {
+  content: "";
+  height: 64rpx;
+}
+Page .list .questionItem .hd, Page .list .listItem .hd {
+  margin-right: 30rpx;
+}
+Page .list .questionItem .bd, Page .list .listItem .bd {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+Page .list .questionItem .questionHd, Page .list .listItem .questionHd {
+  color: #1ec8a2;
+  margin-right: 30rpx;
+  padding-top: 10rpx;
+}
+Page .list .questionItem .questionBd, Page .list .listItem .questionBd {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  padding-top: 10rpx;
+}
+Page .list .questionItem .type, Page .list .listItem .type {
+  border: 1rpx solid #999999;
+  color: #999999;
+  margin-right: 20rpx;
+  width: 160rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  display: inline-block;
+  float: left;
+  border-radius: 8rpx;
+}
+Page .list .questionItem .type.cur, Page .list .listItem .type.cur {
+  border: 1rpx solid #1ec8a2;
+  color: #1ec8a2;
+}

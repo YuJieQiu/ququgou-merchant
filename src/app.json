@@ -8,8 +8,16 @@
     "pages/productManage/index",
     "pages/webView/index",
     "pages/authorize/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/dotAdd/index",
+    "pages/dotAdd/search",
+    "pages/dotAdd/select"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
@@ -61,6 +69,7 @@
     "i-grid-label": "../../components/iview-weapp/dist/grid-label/index",
     "i-drawer": "../../components/iview-weapp/dist/drawer/index",
     "i-swipeout": "../../components/iview-weapp/dist/swipeout/index",
+    "i-toast": "../../components/iview-weapp/dist/toast/index",
     "van-datetime-picker": "../../components/vant-weapp/dist/datetime-picker/index"
   },
   "sitemapLocation": "sitemap.json"

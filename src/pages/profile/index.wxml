@@ -1,9 +1,12 @@
 <!-- index.wxml -->
 <view class="main">
-  <view class="header">
-    <view class="name">{{name}}</view>
-    <view class="avatar">
-      <i-avatar src="{{avatar}}" size="large" shape="square"></i-avatar>
+  <!-- header S -->
+  <view class="shader ">
+    <view class="havatar">
+      <i-avatar src="{{avatar}}" size="large" shape="circle" i-class="havatar-avatar"></i-avatar>
+    </view>
+    <view class="hnamer">
+      <text class="text-df">{{name}}</text>
     </view>
   </view>
 </view>

@@ -1,0 +1,72 @@
+<view class="list">
+    <view class="listItem">
+        <view class="bd" wx:if="{{type === 'center'}}">
+            <input value="{{dotData.name}}" bindinput="nameInput" placeholder="请输入点位名称"/>
+        </view>
+        <view class="bd" wx:else>
+            {{dotData.name}}
+        </view>
+    </view>
+    <view class="listItem">
+        <view class="bd" wx:if="{{type === 'center'}}">
+            <input value="{{dotData.location_name}}" bindinput="addressInput" placeholder="请输入点位地址信息"/>
+        </view>
+        <view class="bd" wx:else>
+            {{dotData.location_name}}
+        </view>
+    </view>
+    <view class="listItem">
+        <view class="hd">纬度:</view>
+        <view class="bd">
+            {{dotData.latitude}}
+        </view>
+    </view>
+    <view class="listItem">
+        <view class="hd">经度:</view>
+        <view class="bd">
+            {{dotData.longitude}}
+        </view>
+    </view>
+    <view class="listItem">
+        <view class="bd">
+            <view wx:for="{{tabList}}" wx:key="{{index}}" bindtap="chooseTab"
+                  class="type {{ index == tabCur ? 'cur' : '' }}" data-index="{{index}}">
+                {{item}}
+            </view>
+        </view>
+    </view>
+    <view class="questionItem" wx:if="{{tabCur === 0}}" bindtap="questionSelect">
+        <view class="questionHd">
+            选择问答题
+        </view>
+        <view class="questionBd">
+            {{question.name}}
+        </view>
+    </view>
+</view>
+<view class="title2">
+    地点图片信息上传:
+</view>
+<view class="list">
+    <view class="listItem">
+        <view class="bd">
+            <view wx:for="{{eventPics}}" wx:key="{{index}}" class="taskPic">
+                <view class="delete" bindtap="picDel" data-index="{{index}}">
+                    <image src="/assets/images/taskAdd/reduce.png"></image>
+                </view>
+                <image src="{{item.url}}"></image>
+            </view>
+            <view wx:if="{{eventPics.length < 5}}" class="app-upload" bindtap="chooseImage"></view>
+        </view>
+    </view>
+</view>
+
+<view class="list">
+    <view class="listItem">
+        <view class="bd"><textarea name="description" value="{{description}}" bindinput="descriptionInput" placeholder="请输入该点任务详细规则"/></view>
+    </view>
+</view>
+
+<view class="app-btn" bindtap="save">
+    完成
+</view>

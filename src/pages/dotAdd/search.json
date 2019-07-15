@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "任务点搜索",
+  "usingComponents": {
+    "EmptyList": "../../components/emptyList/index"
+  }
+}

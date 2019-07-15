@@ -2,4 +2,9 @@
 <view class="main">
   <van-cell title="商铺信息设置" is-link url="/pages/merInfo/index" />
   <van-cell title="商品添加" is-link url="/pages/productAdd/index" />
+  <i-grid>
+    <i-grid-item>InfoManage</i-grid-item>
+    <i-grid-item>ProductManage</i-grid-item>
+  </i-grid>
+  <!-- <i-icon type="activity" size="28" color="#80848f" /> -->
 </view>

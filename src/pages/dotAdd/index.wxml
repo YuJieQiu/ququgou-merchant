@@ -1,0 +1,18 @@
+<view class="search" bindtap="bindInput">
+  <input value="{{keyword}}" placeholder="搜索" />
+</view>
+<view class="map-wrapper {{isIphoneX ? 'isX' : ''}}">
+  <map id="map" class="map" bindregionchange="regionChange" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" show-location="true" markers="{{markers}}" bindmarkertap="makerTap" subkey="{{mapKey}}">
+    <!-- <cover-view class="flag" bindtap="chooseCenter">
+    <cover-image  src="/assets/images/flag.png"></cover-image>
+    <cover-view>自定义点位</cover-view>
+  </cover-view> -->
+  </map>
+</view>
+<view class="tip {{isIphoneX ? 'isX' : ''}}">
+  <view class="bd">
+    <view class="info1">{{title}}</view>
+    <view class="info2">{{address}}</view>
+  </view>
+  <view class="btn" bindtap="chooseDot">选择该点</view>
+</view>

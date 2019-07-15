@@ -1,0 +1,12 @@
+<view class="search">
+    <input bindinput="bindInput" placeholder="搜索" focus="true"/>
+</view>
+<view class="list">
+    <view class="listItem" wx:for="{{listData}}" wx:key="{{item.id}}" bindtap="bindSearch" data-index="{{index}}">
+        <view class="bd">
+            <view class="info1">{{item.title}}</view>
+            <view class="info2">{{item.address}}</view>
+        </view>
+    </view>
+    <EmptyList requesting="{{requesting}}" end="{{true}}" listData="{{listData}}" emptyText="啥都没找到～"></EmptyList>
+</view>

@@ -1,0 +1,117 @@
+@import "../../assets/css/variables.scss";
+
+Page {
+  padding-bottom: 1rpx;
+  switch {
+    transform: scale(.7);
+    -webkit-transform: scale(.7);
+    transform-origin: 100%;
+    -webkit-transform-origin: 100%;
+    vertical-align: middle;
+    margin-left: 20rpx;
+  }
+  textarea {
+    width: 100%;
+    height: 200rpx;
+  }
+  .taskPic {
+    position: relative;
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 10rpx;
+    font-size: 0;
+    display: inline-block;
+    margin-right: 40rpx;
+    margin-bottom: 10rpx;
+    margin-top: 10rpx;
+    vertical-align: middle;
+    & > image {
+      width: 100%;
+      height: 100%;
+    }
+    .delete {
+      position: absolute;
+      right: -20rpx;
+      top: -20rpx;
+      width: 60rpx;
+      height: 60rpx;
+      padding: 10rpx;
+      box-sizing: border-box;
+      image {
+        width: 40rpx;
+        height: 40rpx;
+      }
+    }
+  }
+  .title {
+    font-weight: bold;
+  }
+  .title2 {
+    padding: 0 20rpx;
+    color: $mainBlack2;
+  }
+  .list {
+    background: #ffffff;
+    margin: 20rpx 0;
+    border-top: 1rpx solid $line-color;
+    border-bottom: 1rpx solid $line-color;
+    %base-item {
+      position: relative;
+      padding: 20rpx 30rpx;
+      &:not(:last-child) {
+        &:before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 30rpx;
+          right: 0;
+          border-bottom: 1rpx solid $line-color;
+        }
+      }
+      &:after {
+        content: "";
+        height: 64rpx;
+      }
+      .hd {
+        margin-right: 30rpx;
+      }
+      .bd {
+        @include flex-item;
+      }
+      .questionHd {
+        color: $mainColor;
+        margin-right: 30rpx;
+        padding-top: 10rpx;
+      }
+      .questionBd {
+        @include flex-item;
+        padding-top: 10rpx;
+      }
+      .type {
+        border: 1rpx solid $mainBlack3;
+        color: $mainBlack3;
+        margin-right: 20rpx;
+        width: 160rpx;
+        height: 64rpx;
+        line-height: 64rpx;
+        text-align: center;
+        display: inline-block;
+        float: left;
+        border-radius: 8rpx;
+        &.cur {
+          border: 1rpx solid $mainColor;
+          color: $mainColor;
+        }
+      }
+    }
+    .questionItem {
+      @extend %flex;
+      @extend %base-item;
+    }
+    .listItem {
+      @extend %flex-center;
+      @extend %base-item;
+    }
+  }
+}
+

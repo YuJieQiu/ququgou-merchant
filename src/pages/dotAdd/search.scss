@@ -1,0 +1,54 @@
+@import "../../assets/css/variables.scss";
+Page {
+  background: #ffffff;
+
+  padding-top: 100rpx;;
+  .search {
+    position: fixed;
+    padding: 20rpx;
+    background: #ffffff;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    z-index: 1;
+    border-bottom: 1rpx solid $line-color;
+    input {
+      width: 100%;
+      border: 1rpx solid #c3c3c3;
+      height: 60rpx;
+      border-radius: 8rpx;
+      padding: 0 16rpx;
+      box-sizing: border-box;
+    }
+  }
+
+  .list {
+    background: #ffffff;
+    .listItem {
+      @extend %flex-center;
+      position: relative;
+      padding: 20rpx 30rpx;
+      border-bottom: 1rpx solid $line-color;
+      &:after {
+        content: "";
+        height: 64rpx;
+      }
+      .bd {
+        @include flex-item;
+        .info1 {
+          @include line(1);
+          height: 40rpx;
+          margin-bottom: 10rpx;
+        }
+        .info2 {
+          @include line(1);
+          height: 34rpx;
+          font-size: 24rpx;
+          color: $mainBlack3;
+        }
+      }
+    }
+  }
+
+}

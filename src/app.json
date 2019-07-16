@@ -11,7 +11,8 @@
     "pages/logs/logs",
     "pages/dotAdd/index",
     "pages/dotAdd/search",
-    "pages/dotAdd/select"
+    "pages/dotAdd/select",
+    "pages/editor/editor"
   ],
   "permission": {
     "scope.userLocation": {

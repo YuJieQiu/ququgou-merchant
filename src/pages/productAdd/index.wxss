@@ -1,3 +1,7 @@
+.basic-info .basic-info-images {
+  margin-bottom: 30rpx;
+}
+
 .basic-info .basic-info-images .basic-info-images-guid .grid-item {
   margin: 0;
   padding: 0;
@@ -37,6 +41,17 @@
 
 .basic-info .basic-info-images .basic-info-images-guid .grid-item .item-images-block-add:active {
   background-color: #f2f3f5;
+}
+
+.basic-info .t-richtext {
+  min-height: 500rpx;
+  background-color: #fff;
+}
+
+.save-but {
+  width: 95%;
+  text-align: content;
+  margin: 15rpx;
 }
 
 .c-popup-view {
@@ -152,4 +167,15 @@
   width: 15%;
   display: inline-block;
   vertical-align: middle;
+}
+
+.content-show-rich-text {
+  word-break: break-all;
+}
+
+.att-view {
+  width: 100%;
+  background: #f7f7f7;
+  display: flex;
+  justify-content: flex-end;
 }

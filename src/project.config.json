@@ -41,7 +41,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -54,6 +54,28 @@
 					"id": -1,
 					"name": "infoManage",
 					"pathName": "pages/merInfo/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "product",
+					"pathName": "pages/productManage/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "product Add",
+					"pathName": "pages/productAdd/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "editor",
+					"pathName": "pages/editor/editor",
+					"query": "",
 					"scene": null
 				}
 			]

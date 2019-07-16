@@ -60,9 +60,6 @@ Page({
   chooseDot() {
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2]
-    //console.log(pages)
-    //console.log(prevPage)
-    //console.log(this.data.dotData)
 
     prevPage.addressSelect(this.data.dotData)
     //选择按钮点击事件

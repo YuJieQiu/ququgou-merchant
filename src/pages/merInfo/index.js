@@ -352,16 +352,32 @@ Page({
       console.log(res)
     })
   },
-  onLoad: function() {
+  getMerInfo() {
     app
       .httpGet('get/mer/info', { id: '6de79d7d7f764e3981b35d8b9a36fcc3' })
       .then(res => {
+        let data = res.data
         console.log(res.data)
+
+        //label处理S
+        let label = data.label
+        let arrayLabel = []
+        if (label != null) {
+          const mapLabel = new Map(Object.entries(label))
+          for (var [key, value] of mapLabel) {
+            arrayLabel.push({ id: key, text: value })
+          }
+        }
+        //label处理 E
         this.setData({
-          merInfo: res.data
+          merInfo: data,
+          selectTabList: arrayLabel
         })
       })
+  },
 
+  onLoad: function() {
+    this.getMerInfo()
     this.getTagList()
 
     // wx.request({

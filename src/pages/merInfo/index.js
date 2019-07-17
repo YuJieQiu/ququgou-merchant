@@ -104,55 +104,6 @@ Page({
     wx.navigateTo({
       url: '/pages/dotAdd/index'
     })
-    // 腾讯地图接口调用
-    // qqmapsdk.search({
-    //   keyword: '酒店',
-    //   success: function(res) {
-    //     console.log(res)
-    //   },
-    //   fail: function(res) {
-    //     console.log(res)
-    //   },
-    //   complete: function(res) {
-    //     console.log(res)
-    //   }
-    // })
-    // wx.getLocation({
-    //   type: 'gcj02', // 返回可以用于wx.openLocation的经纬度
-    //   success(res) {
-    //     console.log(res)
-    //     const latitude = res.latitude
-    //     const longitude = res.longitude
-    //     const speed = res.speed
-    //     const accuracy = res.accuracy
-
-    //     qqmapsdk.reverseGeocoder({
-    //       location: {
-    //         latitude: latitude,
-    //         longitude: longitude
-    //       },
-    //       success: function(res) {
-    //         let province = res.result.ad_info.province
-    //         let city = res.result.ad_info.city
-    //         console.log(JSON.stringify(res))
-    //         console.log(JSON.stringify(city))
-    //         console.log(JSON.stringify(province))
-    //       },
-    //       fail: function(res) {
-    //         console.log(res)
-    //       },
-    //       complete: function(res) {
-    //         // console.log(res);
-    //       }
-    //     })
-
-    // wx.openLocation({
-    //   latitude,
-    //   longitude,
-    //   scale: 18
-    // })
-    //   }
-    // })
   },
   onClose(event) {
     if (event.detail === 'confirm') {
@@ -281,7 +232,6 @@ Page({
     this.setData({
       'tabData.show': true
     })
-    //'tabData.tagList': this.data.tabList
   },
   onInput(event) {
     this.setData({

@@ -2,49 +2,49 @@ const app = getApp()
 
 Page({
   data: {
+    value5: '',
     readOnly: false,
     productInfo: {
-      brand_id: 0,
-      category_ids: [],
+      brandId: 0,
+      categoryIds: [],
       name: '',
-      type_id: 0,
+      typeId: 0,
       status: 0,
-      content: '<h1>123212113adsf</h1>',
-      content_remark: '',
+      content: '',
+      contentRemark: '',
       description: '',
       keywords: '',
-      tags: {
-        tag_id: 0,
-        name: ''
-      },
-      original_price: '', //原始价格 (下划线价格) 展示使用
-      min_price: '',
-      max_price: '',
-      current_price: '',
-      sales: 0,
-      product_type: 0,
-      width: '',
-      height: '',
-      depth: '',
-      weight: '',
+      tags: [],
+      originalPrice: null, //原始价格 (下划线价格) 展示使用
+      minPrice: null,
+      maxPrice: null,
+      currentPrice: 0,
+      sales: null,
+      productType: 0,
+      width: null,
+      height: null,
+      depth: null,
+      weight: null,
       resources: [],
       sku: [
         {
-          attribute_value_ids: [],
+          attributeValueIds: [],
           name: '',
           code: '',
-          bar_code: '',
-          original_price: 0,
+          barCode: '',
+          originalPrice: 0,
           price: 0,
           stock: 0,
-          low_stock: 0,
+          lowStock: 0,
           sort: 0,
-          resource_id: 0,
+          resourceId: 0,
           width: 0,
           height: 0,
           depth: 0,
           weight: 0,
-          attribute_info: {}
+          attributeInfo: {},
+          attributeValue: '',
+          images: { url: '' } //展示
         }
       ],
       property: []
@@ -228,7 +228,8 @@ Page({
     })
   },
   //图片上传
-  merImageUpload() {
+  onImageUpload(e) {
+    const callback = e.currentTarget.dataset.callback
     const that = this
     let token = wx.getStorageSync('token')
     wx.chooseImage({
@@ -245,11 +246,12 @@ Page({
           formData: {},
           success(res) {
             const data = JSON.parse(res.data).data
-            var resources = that.data.productInfo.resources
-            resources.push(...data)
-            that.setData({
-              'productInfo.resources': resources
-            })
+            if (callback === 'merImagesLoad') {
+              that.merImagesLoad(data)
+            } else if (callback === 'skuImagesLoad') {
+              const index = e.currentTarget.dataset.index
+              that.skuImagesLoad(data, index)
+            }
           },
           fail(err) {
             $Toast({
@@ -261,20 +263,174 @@ Page({
       }
     })
   },
+  merImagesLoad: function(data) {
+    const that = this
+    var resources = that.data.productInfo.resources
+    resources.push(...data)
+    that.setData({
+      'productInfo.resources': resources
+    })
+  },
+  skuImagesLoad: function(data, index) {
+    const that = this
+    var sku = that.data.productInfo.sku
+    sku[index].resourceId = data[0].id
+    sku[index].images = data[0]
+    that.setData({
+      'productInfo.sku': sku
+    })
+  },
+  skuImagesDelete(event) {
+    const index = event.currentTarget.dataset.index
+    const that = this
+    var sku = that.data.productInfo.sku
+    sku[index].resourceId = 0
+    sku[index].images = {}
+    that.setData({
+      'productInfo.sku': sku
+    })
+  },
   saveContent(data) {
     console.log(data)
     this.setData({
       'productInfo.content': data
     })
   },
+  onClickAttAdd() {
+    if (this.data.singleSku) {
+      this.setData({
+        singleSku: false,
+        'productInfo.sku': []
+      })
+    }
+    let skus = this.data.productInfo.sku
+
+    skus.push({ id: skus.length })
+    this.setData({
+      'productInfo.sku': skus
+    })
+    console.log(this.data.productInfo.sku)
+  },
+  handleCancel2(event) {
+    const that = this
+    const id = event.currentTarget.dataset.id
+    var sku = this.data.productInfo.sku
+    sku.splice(sku.findIndex(item => item.id === id), 1)
+    that.setData({
+      'productInfo.sku': sku
+    })
+    if (sku.length === 0) {
+      this.setData({
+        singleSku: true,
+        'productInfo.sku': [{ id: 0 }]
+      })
+    }
+    console.log(this.data.productInfo.sku)
+  },
   onChangeProInfoName(e) {
     this.setData({
-      'productInfo.name': e.detail
+      'productInfo.name': e.detail,
+      'productInfo.currentPrice': 1
     })
   },
   onChangeProInfoDesc(e) {
     this.setData({
       'productInfo.description': e.detail
+    })
+  },
+  onChangeProInfoWidth(e) {
+    this.setData({
+      'productInfo.width': e.detail
+    })
+  },
+  onChangeProInfoHeight(e) {
+    this.setData({
+      'productInfo.height': e.detail
+    })
+  },
+  onChangeProInfoDepth(e) {
+    this.setData({
+      'productInfo.depth': e.detail
+    })
+  },
+  onChangeProInfoWeight(e) {
+    this.setData({
+      'productInfo.weight': e.detail
+    })
+  },
+  onChangeProInfoOriginalPrice(e) {
+    this.setData({
+      'productInfo.originalPrice': e.detail
+    })
+  },
+  onChangeProInfoMinPrice(e) {
+    this.setData({
+      'productInfo.minPrice': e.detail
+    })
+  },
+  onChangeProInfoMaxPrice(e) {
+    this.setData({
+      'productInfo.maxPrice': e.detail
+    })
+  },
+
+  onChangeProInfoCurrentPrice(e) {
+    this.setData({
+      'productInfo.currentPrice': e.detail
+    })
+  },
+
+  onBlurProInfoCurrentPrice(e) {
+    let number = parseFloat(e.detail.value).toFixed(2)
+    if (number == 'NaN') {
+      number = 0
+    }
+    e.detail.value = number
+    //console.log(number)
+    this.setData({
+      'productInfo.currentPrice': number
+    })
+    //console.log(parseFloat(number))
+    // if (Number.parseFloat(number) != 'NaN') {
+    //   console.log(parseFloat(number).toFixed(2))
+    // }
+    // this.setData({
+    //   'productInfo.currentPrice': number
+    // })
+    // let number = parseFloat(e.detail.value).toFixed(2)
+    // console.log(number)
+    //console.log(this.data.productInfo.currentPrice)
+  },
+  onChangeMuchSkuAtt(e) {
+    const index = e.currentTarget.dataset.index
+    var sku = this.data.productInfo.sku
+    sku[index].attributeValue = e.detail
+    this.setData({
+      'productInfo.sku': sku
+    })
+  },
+  onChangeMuchSkuPrice(e) {
+    const index = e.currentTarget.dataset.index
+    var sku = this.data.productInfo.sku
+    sku[index].price = e.detail
+    this.setData({
+      'productInfo.sku': sku
+    })
+  },
+  onChangeMuchSkuSort(e) {
+    const index = e.currentTarget.dataset.index
+    var sku = this.data.productInfo.sku
+    sku[index].sort = e.detail
+    this.setData({
+      'productInfo.sku': sku
+    })
+  },
+  //保存信息
+  saveSubmit() {
+    var that = this
+    app.httpPost('product/create', that.data.productInfo).then(res => {
+      let data = res.data
+      console.log(res)
     })
   },
   onLoad: function() {

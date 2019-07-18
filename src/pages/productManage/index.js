@@ -42,7 +42,7 @@ Page({
   //
   updateProductStatus() {},
   onClickProduct(e) {
-    let guid = e.currentTarget.dataset.id
+    let id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/productEdit/index?id=' + id
     })

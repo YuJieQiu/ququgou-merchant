@@ -434,7 +434,18 @@ Page({
       'productInfo.sku': sku
     })
   },
-  getProductInfo() {},
+  getProductInfo() {
+    console.log('getProductInfo')
+    const that = this
+    app
+      .httpGet('product/get', {
+        productId: that.data.id
+      })
+      .then(res => {
+        const data = res.data
+        console.log(data)
+      })
+  },
   //保存信息
   saveSubmit() {
     var that = this
@@ -451,6 +462,7 @@ Page({
         id: options.id,
         saveType: 1
       })
+      this.getProductInfo()
     }
 
     // wx.showToast({
@@ -458,6 +470,5 @@ Page({
     //   icon: 'success',
     //   duration: 2000000
     // })
-  },
-  getUserInfo: function(e) {}
+  }
 })

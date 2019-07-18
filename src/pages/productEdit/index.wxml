@@ -93,7 +93,7 @@
             <i-panel title="商品详情" hide-border="{{true}}">
                 <van-cell title="详情编辑" is-link link-type="navigateTo" url="/pages/editor/editor?content" />
                 <view class="t-richtext">
-                    <rich-text style=" word-break: break-all;" nodes="{{productInfo.content}}"></rich-text>
+                    <rich-text style=" word-break: break-all;" nodes="{{productInfo.content.content}}"></rich-text>
                 </view>
             </i-panel>
             <!-- 商品详情 E -->

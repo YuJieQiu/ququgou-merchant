@@ -2,18 +2,20 @@ const app = getApp()
 
 Page({
   data: {
-    id: '',
     readOnly: false,
     productInfo: {
+      id: 0,
       brandId: 0,
       categoryIds: [],
       name: '',
       typeId: 0,
       status: 0,
-      content: '',
-      contentRemark: '',
+      content: {
+        content: '',
+        contentRemark: ''
+      },
       description: '',
-      keywords: '',
+      keywords: [],
       tags: [],
       originalPrice: null, //原始价格 (下划线价格) 展示使用
       minPrice: null,
@@ -275,7 +277,8 @@ Page({
       type: 0,
       cover: resources.length == 0 ? true : false,
       position: resources.length + 1,
-      url: data.url
+      url: data.url,
+      resource: []
     })
     that.setData({
       'productInfo.resources': resources
@@ -302,7 +305,7 @@ Page({
   },
   saveContent(data) {
     this.setData({
-      'productInfo.content': data
+      'productInfo.content.content': data
     })
   },
   onClickAttAdd() {
@@ -439,7 +442,7 @@ Page({
     const that = this
     app
       .httpGet('product/get', {
-        productId: that.data.id
+        productId: that.data.productInfo.id
       })
       .then(res => {
         const data = res.data
@@ -459,7 +462,7 @@ Page({
     console.log(options)
     if (options.id != '') {
       this.setData({
-        id: options.id,
+        'productInfo.id': options.id,
         saveType: 1
       })
       this.getProductInfo()

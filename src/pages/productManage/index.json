@@ -1,5 +1,8 @@
 {
-    "usingComponents": {  
-      
-    }
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "van-tab": "../../components/vant-weapp/dist/tab/index",
+    "van-tabs": "../../components/vant-weapp/dist/tabs/index",
+    "van-card": "../../components/vant-weapp/dist/card/index"
+  }
 }

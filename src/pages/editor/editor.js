@@ -134,14 +134,11 @@ Page({
       success: function(res) {
         let pages = getCurrentPages()
         let prevPage = pages[pages.length - 2]
-
-        console.log(res)
-
         prevPage.saveContent(res.html)
 
         //选择按钮点击事件
         wx.navigateBack({
-          delta: 2
+          delta: 1
         })
       }
     })

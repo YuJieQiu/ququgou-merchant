@@ -7,7 +7,7 @@
                     <i-grid-item i-class="grid-item">
                         <view class="item-images-block" wx:for="{{productInfo.resources}}">
                             <image class="item-images" mode="scaleToFill" src="{{item.url}}" />
-                            <van-button size="mini" square type="danger" custom-class="close" data-id="{{item.id}}" bindtap="deleteImage">
+                            <van-button size="mini" square type="danger" custom-class="close" data-id="{{item.resourceId}}" bindtap="deleteImage">
                                 删除
                             </van-button>
                         </view>
@@ -29,7 +29,7 @@
             <!-- 商品描述 -->
             <van-field value="{{ productInfo.description }}" label="商品描述" required type="textarea" placeholder="请输入商品描述" autosize border="{{ false }}" bind:input="onChangeProInfoDesc" />
             <!-- 当前销售价 -->
-            <van-field value="{{productInfo.currentPrice}}" type="digit" bind:input="onChangeProInfoCurrentPrice" bind:blur="onBlurProInfoCurrentPrice" label="当前销售价" placeholder="销售价" />
+            <van-field value="{{productInfo.currentPrice}}" type="digit" required bind:input="onChangeProInfoCurrentPrice" label="当前销售价" placeholder="销售价" />
             <!-- 商品标签 -->
             <!-- <van-field value="{{ product.tags }}" label="商品标签" type="textarea" placeholder="商品标签(可选)" autosize border="{{ false }}" /> -->
             <!-- 商品宽 W、高 H、深度 D、重量 -->
@@ -44,9 +44,9 @@
             <!-- 商品 规格 添加 S -->
             <i-panel title="规格信息" hide-border="{{true}}">
                 <view>
-                    <view class="single-sku" wx:if="{{singleSku}}">
+                    <view class="single-sku" wx:if="{{productInfo.isSingle}}">
                         <van-field value="{{ productInfo.sku[0].price }}" type="digit" label="价格" bind:input="onChangeMuchSkuPrice" data-index="{{0}}" placeholder="请输入价格(单位元)" />
-                        <van-field value="{{ productInfo.sku[0].sort }}" type="digit" label="库存" bind:input="onChangeMuchSkuSort" data-index="{{0}}" placeholder="请输入库存(最低 1)" />
+                        <van-field value="{{ productInfo.sku[0].sort }}" type="number" label="库存" bind:input="onChangeMuchSkuSort" data-index="{{0}}" placeholder="请输入库存(最低 1)" />
                     </view>
                     <view class="much-sku" wx:else>
                         <block wx:for="{{productInfo.sku}}">
@@ -54,9 +54,9 @@
                                 <view slot="content" operate-width="83">
                                     <view slot="title">
                                         <view class="p-attribute">
-                                            <van-field value="{{ item.attributeValue }}" bind:input="onChangeMuchSkuAtt" data-index="{{index}}" label="规格" placeholder="请输入规格名称(如:1斤...)" />
+                                            <van-field value="{{ item.singleAttributeValue }}" bind:input="onChangeMuchSkuAtt" data-index="{{index}}" label="规格" placeholder="请输入规格名称(如:1斤...)" />
                                             <van-field value="{{ item.price }}" type="digit" bind:input="onChangeMuchSkuPrice" data-index="{{index}}" label="价格" placeholder="请输入价格(单位元)" />
-                                            <van-field value="{{ item.sort }}" type="digit" bind:input="onChangeMuchSkuSort" data-index="{{index}}" label="库存" placeholder="请输入库存(最低 1)" />
+                                            <van-field value="{{ item.sort }}" type="number" bind:input="onChangeMuchSkuSort" data-index="{{index}}" label="库存" placeholder="请输入库存(最低 1)" />
                                             <view class="sku-image-row">
                                                 <view class="sku-upload-image">
                                                     <view class="v-block" wx:if="{{item.resourceId>0}}">
@@ -71,7 +71,7 @@
                                                         </view>
                                                     </view>
                                                 </view>
-                                                <view class="hint-text" wx:if="{{!singleSku}}">
+                                                <view class="hint-text" wx:if="{{!productInfo.isSingle}}">
                                                     (左滑删除)
                                                 </view>
                                             </view>
@@ -99,7 +99,9 @@
             <!-- 商品详情 E -->
         </van-cell-group>
     </view>
-    <van-button type="default" custom-class="save-but" bind:click="saveSubmit">保存</van-button>
+    <van-button type="default" custom-class="save-but" bind:click="saveSubmit">
+        {{saveType==1?'更新':"保存" }}
+    </van-button>
 </view>
 <!-- 小程序最新的富文本编辑器 发布了.... -->
 <!-- <editor id="editor" class="ql-container" placeholder="{{'提示信息'}}" showImgSize showImgToolbar showImgResize bindstatuschange="onStatusChange" read-only="{{readOnly}}" bindready="onEditorReady"></editor> -->

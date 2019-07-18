@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "i-panel": "../../components/iview-weapp/dist/panel/index",
-    "i-input": "../../components/iview-weapp/dist/input/index"
-  }
-}

@@ -4,7 +4,7 @@
     "pages/profile/index",
     "pages/index/index",
     "pages/merInfo/index",
-    "pages/productAdd/index",
+    "pages/productEdit/index",
     "pages/productManage/index",
     "pages/webView/index",
     "pages/authorize/index",

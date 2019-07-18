@@ -1,3 +1,17 @@
 <view class="main">
-    产品管理
+    <!-- <van-tabs>
+        <van-tab title="全部商品">全部商品</van-tab>
+    </van-tabs> -->
+    <view class="product-list">
+        <van-card wx:for="{{list}}" wx:for-item="product" wx:key="{{product.guid}}" thumb-mode="aspectFill" num="" tag="{{status===0?'下架':'上架'}}" origin-price="{{product.originalPrice}}" centered="{{false}}" currency="¥" price="{{product.currentPrice}}" desc="{{}}" title="{{product.name}}" thumb="{{product.images[0].url}}" data-guid="{{product.guid}}" data-id="{{product.id}}" bindtap="onClickProduct">
+            <view slot="bottom">
+                <view class="create-time">添加 {{product.createdTime}}</view>
+            </view>
+            <view slot="footer">
+                <van-button size="mini">上架</van-button>
+                <van-button size="mini">下架</van-button>
+                <!-- <van-button size="mini" round type="danger">xxx</van-button> -->
+            </view>
+        </van-card>
+    </view>
 </view>

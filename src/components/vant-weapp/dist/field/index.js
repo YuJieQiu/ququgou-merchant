@@ -103,7 +103,7 @@ VantComponent({
             showClear
           },
           () => {
-            this.emitChange(this.data.value)
+            this.emitChange(value)
           }
         )
       }

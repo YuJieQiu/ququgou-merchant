@@ -2,7 +2,7 @@ const app = getApp()
 
 Page({
   data: {
-    value5: '',
+    id: '',
     readOnly: false,
     productInfo: {
       brandId: 0,
@@ -18,7 +18,7 @@ Page({
       originalPrice: null, //原始价格 (下划线价格) 展示使用
       minPrice: null,
       maxPrice: null,
-      currentPrice: 0,
+      currentPrice: null,
       sales: null,
       productType: 0,
       width: null,
@@ -28,26 +28,30 @@ Page({
       resources: [],
       sku: [
         {
+          id: 0,
           attributeValueIds: [],
           name: '',
           code: '',
           barCode: '',
-          originalPrice: 0,
-          price: 0,
-          stock: 0,
-          lowStock: 0,
-          sort: 0,
+          originalPrice: null,
+          price: null,
+          stock: null,
+          lowStock: null,
+          sort: null,
           resourceId: 0,
-          width: 0,
-          height: 0,
-          depth: 0,
-          weight: 0,
+          width: null,
+          height: null,
+          depth: null,
+          weight: null,
           attributeInfo: {},
           attributeValue: '',
+          singleAttributeValue: '',
+          isSingleAttribute: false, //单规格
           images: { url: '' } //展示
         }
       ],
-      property: []
+      property: [],
+      isSingle: true //是否单品
     },
     items: [
       {
@@ -160,7 +164,6 @@ Page({
     popupData: {
       show: false
     },
-    singleSku: true,
     mainShow: true,
     actions: [
       {
@@ -172,7 +175,8 @@ Page({
       }
     ],
     richText: '',
-    modalControl: false
+    modalControl: false,
+    saveType: 0 //0新增 1更新
   },
   showModal: function(e) {
     this.setData({
@@ -245,7 +249,7 @@ Page({
           },
           formData: {},
           success(res) {
-            const data = JSON.parse(res.data).data
+            const data = JSON.parse(res.data).data[0]
             if (callback === 'merImagesLoad') {
               that.merImagesLoad(data)
             } else if (callback === 'skuImagesLoad') {
@@ -266,7 +270,13 @@ Page({
   merImagesLoad: function(data) {
     const that = this
     var resources = that.data.productInfo.resources
-    resources.push(...data)
+    resources.push({
+      resourceId: data.id,
+      type: 0,
+      cover: resources.length == 0 ? true : false,
+      position: resources.length + 1,
+      url: data.url
+    })
     that.setData({
       'productInfo.resources': resources
     })
@@ -274,8 +284,8 @@ Page({
   skuImagesLoad: function(data, index) {
     const that = this
     var sku = that.data.productInfo.sku
-    sku[index].resourceId = data[0].id
-    sku[index].images = data[0]
+    sku[index].resourceId = data.id
+    sku[index].images = data
     that.setData({
       'productInfo.sku': sku
     })
@@ -291,25 +301,32 @@ Page({
     })
   },
   saveContent(data) {
-    console.log(data)
     this.setData({
       'productInfo.content': data
     })
   },
   onClickAttAdd() {
-    if (this.data.singleSku) {
+    var skus = this.data.productInfo.sku
+    if (this.data.productInfo.isSingle) {
+      skus[0].isSingleAttribute = true
       this.setData({
-        singleSku: false,
-        'productInfo.sku': []
+        'productInfo.isSingle': false,
+        'productInfo.sku': skus
       })
+      return
     }
-    let skus = this.data.productInfo.sku
 
-    skus.push({ id: skus.length })
+    skus.push({
+      id: skus.length,
+      isSingleAttribute: true,
+      sort: null,
+      price: null,
+      singleAttributeValue: '',
+      isSingleAttribute: true
+    })
     this.setData({
       'productInfo.sku': skus
     })
-    console.log(this.data.productInfo.sku)
   },
   handleCancel2(event) {
     const that = this
@@ -321,7 +338,7 @@ Page({
     })
     if (sku.length === 0) {
       this.setData({
-        singleSku: true,
+        'productInfo.isSingle': true,
         'productInfo.sku': [{ id: 0 }]
       })
     }
@@ -329,8 +346,7 @@ Page({
   },
   onChangeProInfoName(e) {
     this.setData({
-      'productInfo.name': e.detail,
-      'productInfo.currentPrice': 1
+      'productInfo.name': e.detail
     })
   },
   onChangeProInfoDesc(e) {
@@ -340,71 +356,63 @@ Page({
   },
   onChangeProInfoWidth(e) {
     this.setData({
-      'productInfo.width': e.detail
+      'productInfo.width': parseFloat(e.detail)
     })
   },
   onChangeProInfoHeight(e) {
     this.setData({
-      'productInfo.height': e.detail
+      'productInfo.height': parseFloat(e.detail)
     })
   },
   onChangeProInfoDepth(e) {
     this.setData({
-      'productInfo.depth': e.detail
+      'productInfo.depth': parseFloat(e.detail)
     })
   },
   onChangeProInfoWeight(e) {
     this.setData({
-      'productInfo.weight': e.detail
+      'productInfo.weight': parseFloat(e.detail)
     })
   },
   onChangeProInfoOriginalPrice(e) {
     this.setData({
-      'productInfo.originalPrice': e.detail
+      'productInfo.originalPrice': parseFloat(e.detail)
     })
   },
   onChangeProInfoMinPrice(e) {
     this.setData({
-      'productInfo.minPrice': e.detail
+      'productInfo.minPrice': parseFloat(e.detail)
     })
   },
   onChangeProInfoMaxPrice(e) {
     this.setData({
-      'productInfo.maxPrice': e.detail
+      'productInfo.maxPrice': parseFloat(e.detail)
     })
   },
-
   onChangeProInfoCurrentPrice(e) {
-    this.setData({
-      'productInfo.currentPrice': e.detail
-    })
-  },
+    let value = e.detail
+    const rule = /^(([1-9][0-9]*)|(([0]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/
 
-  onBlurProInfoCurrentPrice(e) {
-    let number = parseFloat(e.detail.value).toFixed(2)
-    if (number == 'NaN') {
-      number = 0
+    if (
+      value.indexOf('.') != -1 &&
+      value.indexOf('.') != 0 &&
+      value.indexOf('.') != value.length - 1
+    ) {
+      if (!rule.test(value)) {
+        value = parseFloat(e.detail).toFixed(2)
+      }
     }
-    e.detail.value = number
-    //console.log(number)
+    if (value == 'NaN') {
+      value = 0
+    }
     this.setData({
-      'productInfo.currentPrice': number
+      'productInfo.currentPrice': parseFloat(value)
     })
-    //console.log(parseFloat(number))
-    // if (Number.parseFloat(number) != 'NaN') {
-    //   console.log(parseFloat(number).toFixed(2))
-    // }
-    // this.setData({
-    //   'productInfo.currentPrice': number
-    // })
-    // let number = parseFloat(e.detail.value).toFixed(2)
-    // console.log(number)
-    //console.log(this.data.productInfo.currentPrice)
   },
   onChangeMuchSkuAtt(e) {
     const index = e.currentTarget.dataset.index
     var sku = this.data.productInfo.sku
-    sku[index].attributeValue = e.detail
+    sku[index].singleAttributeValue = e.detail
     this.setData({
       'productInfo.sku': sku
     })
@@ -412,7 +420,7 @@ Page({
   onChangeMuchSkuPrice(e) {
     const index = e.currentTarget.dataset.index
     var sku = this.data.productInfo.sku
-    sku[index].price = e.detail
+    sku[index].price = parseFloat(e.detail)
     this.setData({
       'productInfo.sku': sku
     })
@@ -420,11 +428,13 @@ Page({
   onChangeMuchSkuSort(e) {
     const index = e.currentTarget.dataset.index
     var sku = this.data.productInfo.sku
-    sku[index].sort = e.detail
+    sku[index].sort = parseInt(e.detail)
+
     this.setData({
       'productInfo.sku': sku
     })
   },
+  getProductInfo() {},
   //保存信息
   saveSubmit() {
     var that = this
@@ -433,7 +443,16 @@ Page({
       console.log(res)
     })
   },
-  onLoad: function() {
+  onLoad: function(options) {
+    this.data.id = options.id
+    console.log(options)
+    if (options.id != '') {
+      this.setData({
+        id: options.id,
+        saveType: 1
+      })
+    }
+
     // wx.showToast({
     //   title: '成功',
     //   icon: 'success',

@@ -66,8 +66,8 @@
 				},
 				{
 					"id": 3,
-					"name": "product Add",
-					"pathName": "pages/productAdd/index",
+					"name": "product Edit",
+					"pathName": "pages/productEdit/index",
 					"query": "",
 					"scene": null
 				},
@@ -75,6 +75,13 @@
 					"id": -1,
 					"name": "editor",
 					"pathName": "pages/editor/editor",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "productManage",
+					"pathName": "pages/productManage/index",
 					"query": "",
 					"scene": null
 				}

@@ -31,7 +31,7 @@ Page({
       sku: [
         {
           id: 0,
-          attributeValueIds: [],
+          attribute_values: [],
           name: '',
           code: '',
           barCode: '',
@@ -48,8 +48,16 @@ Page({
           attributeInfo: {},
           attributeValue: '',
           singleAttributeValue: '',
-          isSingleAttribute: false, //单规格
-          images: { url: '' } //展示
+          isSingleAttribute: true, //单规格
+          images: { url: '' }, //展示
+          attributeValues: [
+            {
+              aid: 0,
+              att_name: '规格',
+              vid: 0,
+              v_name: '规格1'
+            }
+          ]
         }
       ],
       property: [],
@@ -277,8 +285,7 @@ Page({
       type: 0,
       cover: resources.length == 0 ? true : false,
       position: resources.length + 1,
-      url: data.url,
-      resource: []
+      resource: data
     })
     that.setData({
       'productInfo.resources': resources
@@ -446,6 +453,9 @@ Page({
       })
       .then(res => {
         const data = res.data
+        this.setData({
+          productInfo: data
+        })
         console.log(data)
       })
   },

@@ -6,7 +6,7 @@
                 <i-grid i-class="basic-info-images-guid">
                     <i-grid-item i-class="grid-item">
                         <view class="item-images-block" wx:for="{{productInfo.resources}}">
-                            <image class="item-images" mode="scaleToFill" src="{{item.url}}" />
+                            <image class="item-images" mode="scaleToFill" src="{{item.resource.url}}" />
                             <van-button size="mini" square type="danger" custom-class="close" data-id="{{item.resourceId}}" bindtap="deleteImage">
                                 删除
                             </van-button>

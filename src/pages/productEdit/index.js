@@ -6,7 +6,7 @@ Page({
     productInfo: {
       id: 0,
       brandId: 0,
-      categoryIds: [],
+      categoryIds: [0],
       name: '',
       typeId: 0,
       status: 0,
@@ -45,19 +45,10 @@ Page({
           height: null,
           depth: null,
           weight: null,
-          attributeInfo: {},
           attributeValue: '',
-          singleAttributeValue: '',
           isSingleAttribute: true, //单规格
           images: { url: '' }, //展示
-          attributeValues: [
-            {
-              aid: 0,
-              att_name: '规格',
-              vid: 0,
-              v_name: '规格1'
-            }
-          ]
+          attributeInfo: []
         }
       ],
       property: [],
@@ -329,9 +320,16 @@ Page({
     skus.push({
       id: skus.length,
       isSingleAttribute: true,
-      sort: null,
+      stock: null,
       price: null,
-      singleAttributeValue: '',
+      attributeInfo: [
+        {
+          aid: 0,
+          attName: '规格',
+          vid: 0,
+          valueName: ''
+        }
+      ],
       isSingleAttribute: true
     })
     this.setData({
@@ -422,7 +420,15 @@ Page({
   onChangeMuchSkuAtt(e) {
     const index = e.currentTarget.dataset.index
     var sku = this.data.productInfo.sku
-    sku[index].singleAttributeValue = e.detail
+    sku[index].attributeInfo = [
+      {
+        aid: 0,
+        attName: '规格',
+        vid: 0,
+        valueName: e.detail
+      }
+    ]
+    //sku[index].singleAttributeValue = e.detail
     this.setData({
       'productInfo.sku': sku
     })
@@ -435,10 +441,10 @@ Page({
       'productInfo.sku': sku
     })
   },
-  onChangeMuchSkuSort(e) {
+  onChangeMuchSkuStock(e) {
     const index = e.currentTarget.dataset.index
     var sku = this.data.productInfo.sku
-    sku[index].sort = parseInt(e.detail)
+    sku[index].stock = parseInt(e.detail)
 
     this.setData({
       'productInfo.sku': sku
@@ -462,7 +468,11 @@ Page({
   //保存信息
   saveSubmit() {
     var that = this
-    app.httpPost('product/create', that.data.productInfo).then(res => {
+    let url = 'product/create'
+    if (this.data.saveType == 1) {
+      url = 'product/update'
+    }
+    app.httpPost(url, that.data.productInfo).then(res => {
       let data = res.data
       console.log(res)
     })
@@ -470,7 +480,7 @@ Page({
   onLoad: function(options) {
     this.data.id = options.id
     console.log(options)
-    if (options.id != '') {
+    if (typeof options.id !== 'undefined' && options.id > 0) {
       this.setData({
         'productInfo.id': options.id,
         saveType: 1

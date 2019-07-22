@@ -46,7 +46,7 @@
                 <view>
                     <view class="single-sku" wx:if="{{productInfo.isSingle}}">
                         <van-field value="{{ productInfo.sku[0].price }}" type="digit" label="价格" bind:input="onChangeMuchSkuPrice" data-index="{{0}}" placeholder="请输入价格(单位元)" />
-                        <van-field value="{{ productInfo.sku[0].sort }}" type="number" label="库存" bind:input="onChangeMuchSkuSort" data-index="{{0}}" placeholder="请输入库存(最低 1)" />
+                        <van-field value="{{ productInfo.sku[0].stock }}" type="number" label="库存" bind:input="onChangeMuchSkuStock" data-index="{{0}}" placeholder="请输入库存(最低 1)" />
                     </view>
                     <view class="much-sku" wx:else>
                         <block wx:for="{{productInfo.sku}}">
@@ -54,9 +54,9 @@
                                 <view slot="content" operate-width="83">
                                     <view slot="title">
                                         <view class="p-attribute">
-                                            <van-field value="{{ item.singleAttributeValue }}" bind:input="onChangeMuchSkuAtt" data-index="{{index}}" label="规格" placeholder="请输入规格名称(如:1斤...)" />
+                                            <van-field value="{{ item.attributeInfo[0].valueName }}" bind:input="onChangeMuchSkuAtt" data-index="{{index}}" label="{{item.attributeInfo[0].attName}}" placeholder="请输入规格名称(如:1斤...)" />
                                             <van-field value="{{ item.price }}" type="digit" bind:input="onChangeMuchSkuPrice" data-index="{{index}}" label="价格" placeholder="请输入价格(单位元)" />
-                                            <van-field value="{{ item.sort }}" type="number" bind:input="onChangeMuchSkuSort" data-index="{{index}}" label="库存" placeholder="请输入库存(最低 1)" />
+                                            <van-field value="{{ item.stock }}" type="number" bind:input="onChangeMuchSkuStock" data-index="{{index}}" label="库存" placeholder="请输入库存(最低 1)" />
                                             <view class="sku-image-row">
                                                 <view class="sku-upload-image">
                                                     <view class="v-block" wx:if="{{item.resourceId>0}}">

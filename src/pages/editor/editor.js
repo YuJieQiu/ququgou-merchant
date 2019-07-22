@@ -146,7 +146,7 @@ Page({
   onLoad: function() {
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2]
-    let html = prevPage.data.productInfo.content
+    let html = prevPage.data.productInfo.content.content
     this.setData({ 'initContent.html': html })
   }
 })

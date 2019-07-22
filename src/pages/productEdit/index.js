@@ -308,8 +308,17 @@ Page({
   },
   onClickAttAdd() {
     var skus = this.data.productInfo.sku
+
     if (this.data.productInfo.isSingle) {
       skus[0].isSingleAttribute = true
+      skus[0].attributeInfo = [
+        {
+          aid: 0,
+          attName: '规格',
+          vid: 0,
+          valueName: ''
+        }
+      ]
       this.setData({
         'productInfo.isSingle': false,
         'productInfo.sku': skus

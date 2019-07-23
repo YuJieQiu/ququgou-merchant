@@ -41,7 +41,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -82,6 +82,13 @@
 					"id": -1,
 					"name": "productManage",
 					"pathName": "pages/productManage/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "order",
+					"pathName": "pages/orderManage/index",
 					"query": "",
 					"scene": null
 				}

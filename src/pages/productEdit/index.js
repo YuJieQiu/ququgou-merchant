@@ -361,6 +361,24 @@ Page({
     }
     console.log(this.data.productInfo.sku)
   },
+  setValueParseFloat: function(value) {
+    let v = value
+    const rule = /^(([1-9][0-9]*)|(([0]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/
+
+    if (rule.test(v)) {
+      v = parseFloat(value)
+    } else {
+      if (
+        value.indexOf('.') != -1 &&
+        value.indexOf('.') != 0 &&
+        value.indexOf('.') != value.length - 1
+      ) {
+        v = parseFloat(value).toFixed(2)
+      } else {
+      }
+    }
+    return v
+  },
   onChangeProInfoName(e) {
     this.setData({
       'productInfo.name': e.detail
@@ -373,57 +391,46 @@ Page({
   },
   onChangeProInfoWidth(e) {
     this.setData({
-      'productInfo.width': parseFloat(e.detail)
+      'productInfo.width': e.detail
     })
   },
   onChangeProInfoHeight(e) {
     this.setData({
-      'productInfo.height': parseFloat(e.detail)
+      'productInfo.height': e.detail
     })
   },
   onChangeProInfoDepth(e) {
     this.setData({
-      'productInfo.depth': parseFloat(e.detail)
+      'productInfo.depth': e.detail
     })
   },
   onChangeProInfoWeight(e) {
     this.setData({
-      'productInfo.weight': parseFloat(e.detail)
+      'productInfo.weight': e.detail
     })
   },
   onChangeProInfoOriginalPrice(e) {
+    const that = this
     this.setData({
-      'productInfo.originalPrice': parseFloat(e.detail)
+      'productInfo.originalPrice': parseFloat(that.setValueParseFloat(e.detail))
     })
   },
   onChangeProInfoMinPrice(e) {
+    const that = this
     this.setData({
-      'productInfo.minPrice': parseFloat(e.detail)
+      'productInfo.minPrice': that.setValueParseFloat(e.detail)
     })
   },
   onChangeProInfoMaxPrice(e) {
+    const that = this
     this.setData({
-      'productInfo.maxPrice': parseFloat(e.detail)
+      'productInfo.maxPrice': that.setValueParseFloat(e.detail)
     })
   },
   onChangeProInfoCurrentPrice(e) {
-    let value = e.detail
-    const rule = /^(([1-9][0-9]*)|(([0]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/
-
-    if (
-      value.indexOf('.') != -1 &&
-      value.indexOf('.') != 0 &&
-      value.indexOf('.') != value.length - 1
-    ) {
-      if (!rule.test(value)) {
-        value = parseFloat(e.detail).toFixed(2)
-      }
-    }
-    if (value == 'NaN') {
-      value = 0
-    }
+    const that = this
     this.setData({
-      'productInfo.currentPrice': parseFloat(value)
+      'productInfo.currentPrice': that.setValueParseFloat(e.detail)
     })
   },
   onChangeMuchSkuAtt(e) {
@@ -484,6 +491,9 @@ Page({
     app.httpPost(url, that.data.productInfo).then(res => {
       let data = res.data
       console.log(res)
+      wx.navigateTo({
+        url: '/pages/productManage/index'
+      })
     })
   },
   onLoad: function(options) {

@@ -28,6 +28,8 @@ Page({
       depth: null,
       weight: null,
       resources: [],
+      active: true,
+      status: 1,
       sku: [
         {
           id: 0,

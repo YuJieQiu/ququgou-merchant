@@ -47,7 +47,8 @@ App({
   mapKey: 'DLVBZ-EMGWW-NEBRY-OZHQA-ZZNKZ-BFFIJ',
   baseUrl1: 'http://118.25.17.249:7080/',
   //baseUrl:  'http://118.25.17.249:8888/api/v1/',
-  baseUrl: 'http://127.0.0.1:7080/api/v1/',
+  //baseUrl: 'http://127.0.0.1:7080/api/v1/',
+  baseUrl: 'http://148.70.176.93/merchant/api/v1/',
   httpBase: function(method, url, data, loading) {
     let _this = this
     let requestUrl = this.baseUrl + url

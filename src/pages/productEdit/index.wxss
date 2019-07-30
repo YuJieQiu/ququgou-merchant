@@ -49,6 +49,10 @@
   background-color: #fff;
 }
 
+.basic-info .t-richtext .rich-text {
+  word-break: break-all;
+}
+
 .save-but {
   width: 95%;
   text-align: content;
@@ -234,4 +238,8 @@
   height: 130rpx;
   line-height: 130rpx;
   display: inherit-block;
+}
+
+.ql-container {
+  height: 100%;
 }

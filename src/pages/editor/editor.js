@@ -98,7 +98,8 @@ Page({
                 id: data.id,
                 role: 'god'
               },
-              width: '364',
+              //width: '364',
+              //extClass: 'editor-img',
               success: function() {}
             })
           },

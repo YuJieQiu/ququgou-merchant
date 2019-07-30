@@ -47,6 +47,9 @@
   .t-richtext {
     min-height: 500rpx;
     background-color: #fff;
+    .rich-text {
+      word-break: break-all;
+    }
   }
 }
 
@@ -242,4 +245,8 @@
       display: inherit-block;
     }
   }
+}
+
+.ql-container {
+  height: 100%;
 }

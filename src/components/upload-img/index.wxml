@@ -1,0 +1,27 @@
+<view class="custom-main">
+	<view class="basic-info-images">
+		<i-grid i-class="basic-info-images-guid">
+			<i-grid-item i-class="grid-item">
+				<view class="item-images-block" wx:for="{{maxLength}}">
+					<image class="item-images" mode="scaleToFill" src="http://qiniu.media.q.dfocuspace.cn/static/images/8b3cadeada09481cbd060fd07dd20ca7.jpg" />
+					<van-button
+					 size="mini"
+					 square
+					 type="danger"
+					 custom-class="close"
+					 data-id="1"
+					 bindtap="deleteImage"
+					>
+						删除
+					</van-button>
+				</view>
+				<view class="item-images-block item-images-block-add" bindtap="merImageUpload">
+					<view class="add">
+						<van-icon name="plus" size="50rpx" />
+					</view>
+				</view>
+			</i-grid-item>
+		</i-grid>
+	</view>
+</view>
+

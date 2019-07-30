@@ -1,0 +1,54 @@
+.main {
+  display: inline;
+}
+
+.basic-info-images {
+  margin-bottom: 30rpx;
+}
+
+.basic-info-images .basic-info-images-guid .grid-item {
+  margin: 0;
+  padding: 0;
+}
+
+.basic-info-images .basic-info-images-guid .grid-item .item-images-block {
+  width: 30%;
+  height: 277rpx;
+  margin-top: 10rpx;
+  position: relative;
+  display: inline-flex;
+  margin-left: 20rpx;
+}
+
+.basic-info-images .basic-info-images-guid .grid-item .item-images-block .item-images {
+  width: 100%;
+  height: 222rpx;
+}
+
+.basic-info-images .basic-info-images-guid .grid-item .item-images-block .close {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 50rpx;
+  margin-top: 5rpx;
+}
+
+.basic-info-images .basic-info-images-guid .grid-item .item-images-block .add {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 50rpx;
+  width: 50rpx;
+  margin: auto;
+}
+
+.basic-info-images .basic-info-images-guid .grid-item .item-images-block-add {
+  background-color: #fff;
+}
+
+.basic-info-images .basic-info-images-guid .grid-item .item-images-block-add:active {
+  background-color: #f2f3f5;
+}

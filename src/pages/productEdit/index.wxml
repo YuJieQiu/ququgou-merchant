@@ -4,7 +4,7 @@
 			<!-- 产品图片 S -->
 			<view class="basic-info-images">
 				<block wx:for="{{productInfo.resources}}">
-					<i-grid i-class="basic-info-images-guid" wx:if="{{}}">
+					<i-grid i-class="basic-info-images-guid">
 						<i-grid-item i-class="grid-item" wx:for="{{productInfo.resources}}">
 							<image class="item-images" mode="scaleToFill" src="{{item.resource.url}}" />
 							<van-button
@@ -230,9 +230,7 @@
 														</view>
 													</view>
 												</view>
-												<view class="hint-text" wx:if="{{!productInfo.isSingle}}">
-													(左滑删除)
-												</view>
+												<view class="hint-text" wx:if="{{!productInfo.isSingle}}">(左滑删除)</view>
 											</view>
 										</view>
 									</view>

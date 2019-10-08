@@ -13,7 +13,8 @@
     "pages/dotAdd/search",
     "pages/dotAdd/select",
     "pages/editor/editor",
-    "pages/orderManage/index"
+    "pages/orderManage/index",
+    "pages/orderDetail/index"
   ],
   "permission": {
     "scope.userLocation": {
@@ -22,8 +23,8 @@
   },
   "window": {
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Merchant",
+    "navigationBarBackgroundColor": "#fd9802",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -47,32 +48,25 @@
     ]
   },
   "usingComponents": {
-    "van-collapse": "../../components/vant-weapp/dist/collapse/index",
-    "van-collapse-item": "../../components/vant-weapp/dist/collapse-item/index",
-    "van-cell": "../../components/vant-weapp/dist/cell/index",
-    "van-cell-group": "../../components/vant-weapp/dist/cell-group/index",
-    "van-row": "../../components/vant-weapp/dist/row/index",
-    "van-col": "../../components/vant-weapp/dist/col/index",
-    "van-icon": "../../components/vant-weapp/dist/icon/index",
-    "van-button": "../../components/vant-weapp/dist/button/index",
-    "van-field": "../../components/vant-weapp/dist/field/index",
-    "van-panel": "../../components/vant-weapp/dist/panel/index",
-    "van-dialog": "../../components/vant-weapp/dist/dialog/index",
-    "van-nav-bar": "../../components/vant-weapp/dist/nav-bar/index",
-    "van-search": "../../components/vant-weapp/dist/search/index",
-    "van-popup": "../../components/vant-weapp/dist/popup/index",
-    "van-tag": "../../components/vant-weapp/dist/tag/index",
-    "van-radio": "../../components/vant-weapp/dist/radio/index",
-    "van-radio-group": "../../components/vant-weapp/dist/radio-group/index",
-    "i-grid": "../../components/iview-weapp/dist/grid/index",
-    "van-tree-select": "../../components/vant-weapp/dist/tree-select/index",
-    "i-grid-item": "../../components/iview-weapp/dist/grid-item/index",
-    "i-grid-icon": "../../components/iview-weapp/dist/grid-icon/index",
-    "i-grid-label": "../../components/iview-weapp/dist/grid-label/index",
-    "i-drawer": "../../components/iview-weapp/dist/drawer/index",
-    "i-swipeout": "../../components/iview-weapp/dist/swipeout/index",
-    "i-toast": "../../components/iview-weapp/dist/toast/index",
-    "van-datetime-picker": "../../components/vant-weapp/dist/datetime-picker/index"
+    "van-grid": "components/vant-weapp/dist/grid/index",
+    "van-grid-item": "components/vant-weapp/dist/grid-item/index",
+    "van-dialog": "components/vant-weapp/dist/dialog/index",
+    "van-tab": "components/vant-weapp/dist/tab/index",
+    "van-tabs": "components/vant-weapp/dist/tabs/index",
+    "van-collapse": "components/vant-weapp/dist/collapse/index",
+    "van-collapse-item": "components/vant-weapp/dist/collapse-item/index",
+    "van-cell": "components/vant-weapp/dist/cell/index",
+    "van-cell-group": "components/vant-weapp/dist/cell-group/index",
+    "i-icon": "components/iview-weapp/dist/icon/index",
+    "van-row": "components/vant-weapp/dist/row/index",
+    "van-col": "components/vant-weapp/dist/col/index",
+    "van-card": "components/vant-weapp/dist/card/index",
+    "van-button": "components/vant-weapp/dist/button/index",
+    "van-icon": "components/vant-weapp/dist/icon/index",
+    "van-submit-bar": "components/vant-weapp/dist/submit-bar/index",
+    "van-field": "components/vant-weapp/dist/field/index",
+    "van-toast": "components/vant-weapp/dist/toast/index",
+    "van-panel": "components/vant-weapp/dist/panel/index"
   },
   "sitemapLocation": "sitemap.json"
 }

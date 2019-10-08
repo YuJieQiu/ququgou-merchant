@@ -1,9 +1,34 @@
 <!-- index.wxml -->
 <view class="main">
-  <van-cell title="商铺信息设置" is-link url="/pages/merInfo/index" />
-  <van-cell title="商品添加" is-link url="/pages/productEdit/index" />
-  <van-cell title="商品管理" is-link url="/pages/productManage/index" />
-  <van-cell title="订单管理" is-link url="/pages/orderManage/index" />
+  <view class="grid-content">
+    <van-grid column-num="2">
+      <van-grid-item icon="todo-list-o" text="待处理订单" info="{{homeData.orderWaitCount}}" is-link url="/pages/orderManage/index?active=1" />
+      <van-grid-item icon="orders-o" text="全部订单" dot="{{false}}" is-link url="{{'/pages/orderManage/index'}}" />
+    </van-grid>
+  </view>
+  <view class="grid-content">
+    <van-grid column-num="2">
+      <van-grid-item icon="goods-collect-o" text="商品管理" dot="{{true}}" is-link url="/pages/productManage/index" />
+      <van-grid-item icon="add-o" text="商品添加" is-link url="/pages/productEdit/index" />
+    </van-grid>
+  </view>
+  <view class="grid-content">
+    <van-cell url="/pages/merInfo/index">
+      <view slot="title">
+        <view class="view-inline-block view-margin-left-5 ">
+          <van-icon name="shop-o" />
+        </view>
+        <view class="view-inline-block view-margin-left-5 vertical-align-top">商铺信息</view>
+        <view class="view-inline-block view-margin-left-5 vertical-align-top">
+          <!-- <van-tag type="danger">标签</van-tag> -->
+        </view>
+      </view>
+      <van-icon slot="right-icon" name="setting-o" class="" />
+    </van-cell>
+    <!-- <van-cell title="商品添加" is-link url="/pages/productEdit/index" />
+    <van-cell title="商品管理" is-link url="/pages/productManage/index" />
+    <van-cell title="订单管理" is-link url="/pages/orderManage/index" /> -->
+  </view>
   <!-- <i-grid>
     <i-grid-item>InfoManage</i-grid-item>
     <i-grid-item>ProductManage</i-grid-item>

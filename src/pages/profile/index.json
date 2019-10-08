@@ -1,4 +1,5 @@
 {
+  "navigationStyle": "custom",
   "usingComponents": {
     "i-avatar": "../../components/iview-weapp/dist/avatar/index"
   }

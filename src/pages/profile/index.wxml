@@ -1,12 +1,27 @@
-<!-- index.wxml -->
 <view class="main">
   <!-- header S -->
-  <view class="shader ">
+  <view class="shader">
     <view class="havatar">
-      <i-avatar src="{{avatar}}" size="large" shape="circle" i-class="havatar-avatar"></i-avatar>
+      <i-avatar src="{{avatar}}" size="large" shape="circle" i-class="havatar-avatar" />
     </view>
     <view class="hnamer">
       <text class="text-df">{{name}}</text>
+    </view>
+  </view>
+  <!-- 订单信息 S -->
+  <view class="order">
+    <!-- <van-cell title="我的订单" custom-class="order-cell" is-link url="/pages/orderList/index" border="{{true}}" /> -->
+    <view class="row-content">
+      <button class="row-but" open-type="contact">
+        <van-icon name="service-o" />
+        <view class="title">联系客服</view>
+      </button>
+    </view>
+    <view class="row-content">
+      <button class="row-but">
+        <van-icon name="manager-o" />
+        <view class="title">关于我们</view>
+      </button>
     </view>
   </view>
 </view>

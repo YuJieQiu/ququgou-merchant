@@ -8,11 +8,16 @@ Page({
     limit: 10, //默认每页10条
     all: true,
     status: 0,
-    pageEnd: false
+    pageEnd: false,
+    active: 0,
+    tabIndex: 0,
+    tabsList: [
+    ]
   },
 
-  onShow: function() {},
-  getOrderListInfo: function() {
+  onShow: function () { },
+  getOrderListInfo: function () {
+    const that = this
     let data = {
       page: this.data.page,
       limit: this.data.limit,
@@ -23,61 +28,50 @@ Page({
     app.httpGet('order/get/list', data).then(res => {
       wx.stopPullDownRefresh()
       if (res.data.length <= 0) {
-        this.setData({ pageEnd: true })
+        that.setData({ pageEnd: true })
         return
       }
 
-      let list = this.data.list
-      if (this.data.page > 1) {
+      let list = that.data.list
+      if (that.data.page > 1) {
         list.push(...res.data)
       } else {
         list = res.data
       }
 
-      this.setData({
+      that.setData({
         list: list
       })
-      console.log(list)
     })
   },
   onClickTab(e) {
     let data = e.detail
-
-    switch (data.index) {
+    switch (parseInt(data.name)) {
       case 0: //全部
         this.setData({ all: true, list: [], page: 1, pageEnd: false })
         break
-      case 1: //待付款
+      case 1://待处理
         this.setData({
           all: false,
-          status: 0,
+          status: "0001",
           list: [],
           page: 1,
           pageEnd: false
         })
         break
-      case 2: //待发货
+      case 2://已取消
         this.setData({
           all: false,
-          status: 1,
+          status: "-1000",
           list: [],
           page: 1,
           pageEnd: false
         })
         break
-      case 3: //待收货
+      case 3://已完成
         this.setData({
           all: false,
-          status: 3,
-          list: [],
-          page: 1,
-          pageEnd: false
-        })
-        break
-      case 4: //待评价
-        this.setData({
-          all: false,
-          status: 5,
+          status: "9990",
           list: [],
           page: 1,
           pageEnd: false
@@ -109,7 +103,46 @@ Page({
   onInputRemark(e) {
     this.setData({ remark: e.detail })
   },
+  //跳转到详情页面
+  onClickRedirectionDetail(e) {
+    let that = this
+    let no = e.currentTarget.dataset.no
+    wx.navigateTo({ url: '/pages/orderDetail/index?orderNo=' + no })
+  },
   onLoad(options) {
-    this.getOrderListInfo()
+    const that = this
+    const tab = [
+      {
+        title: "全部",
+        name: 0,
+        statusText: ""
+      },
+      {
+        title: "待处理",
+        name: 1,
+        statusText: "待处理"
+      },
+      {
+        title: "已取消",
+        name: 2,
+        statusText: "已取消"
+      },
+      {
+        title: "已完成",
+        name: 3,
+        statusText: "已完成"
+      }]
+
+    if (typeof (options.active) != "undefined") {
+      this.setData({ tabsList: tab, active: parseInt(options.active) })
+    } else {
+      this.setData({ tabsList: tab, active: 0 })
+    }
+
+    this.onClickTab({
+      detail: {
+        name: that.data.active
+      }
+    })
   }
 })

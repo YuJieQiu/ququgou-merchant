@@ -1,11 +1,19 @@
+const QQMapWX = require('utils/qqmap-wx-jssdk.min.js')
 //app.js
 App({
-  onLaunch: function() {
-    //判断机型(适配iphoneX)
+  onLaunch: function () {
+
     wx.getSystemInfo({
       success: res => {
-        if (res.model.search('iPhone X') != -1) {
-          this.globalData.isIPX = true
+        const that = this
+        //判断机型(适配iphoneX 以上刘海屏幕)
+        const screenList = new Array("iPhone X", "iPhone 11", "iPhone12")
+        const model = res.model
+        for (let index = 0; index < screenList.length; index++) {
+          if (model.search(screenList[index]) != -1) {
+            that.globalData.isIPX = true
+            break
+          }
         }
       }
     })
@@ -37,19 +45,62 @@ App({
           true
         ).then(res => {
           wx.setStorageSync('token', res.data)
-          wx.reLaunch({
-            url: '/pages/home/index'
+
+          //返回授权前页面
+          let arrPages = getCurrentPages()
+          arrPages[arrPages.length - 2].setData({
+            refresh: true
+          })
+          wx.navigateBack({
+            delta: arrPages.length - (arrPages.length - 1),
+            success: res => {
+            },
+            fail: function (res) { },
+            complete: function (res) { }
           })
         })
       }
     })
   },
   mapKey: 'DLVBZ-EMGWW-NEBRY-OZHQA-ZZNKZ-BFFIJ',
-  baseUrl1: 'http://118.25.17.249:7080/',
-  //baseUrl:  'http://118.25.17.249:8888/api/v1/',
-  //baseUrl: 'http://127.0.0.1:7080/api/v1/',
-  baseUrl: 'http://148.70.176.93/merchant/api/v1/',
-  httpBase: function(method, url, data, loading) {
+  baseUrl: 'http://127.0.0.1:7080/merchant/api/v1/',
+  //baseUrl: 'http://ququgo.club/merchant/api/v1/',
+  getLocationInfo: function () {//获取位置信息方法
+    let _this = this
+    const qqmapsdk = new QQMapWX({ key: _this.mapKey })
+    let location = {}
+
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        location.lat = res.latitude
+        location.lon = res.longitude
+        location.speed = res.speed
+        location.accuracy = res.accuracy
+
+        //通过腾讯地图接口获取详细信息
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: location.lat,
+            longitude: location.lon
+          },
+          success: function (res) {
+            location.city = res.result.ad_info.city
+            location.province = res.result.ad_info.province
+            location.info = res.result
+            _this.globalData.location = location
+
+            wx.setStorageSync('location', location)
+          },
+          fail: function (res) {
+          },
+          complete: function (res) {
+          }
+        })
+      }
+    })
+  },
+  httpBase: function (method, url, data, loading) {
     let _this = this
     let requestUrl = this.baseUrl + url
     let token = wx.getStorageSync('token')
@@ -68,7 +119,7 @@ App({
         method: method,
         url: requestUrl,
         data: data,
-        success: function(result) {
+        success: function (result) {
           if (loading) {
             wx.hideLoading()
           }
@@ -93,7 +144,7 @@ App({
             reject(res)
           }
         },
-        fail: function(res) {
+        fail: function (res) {
           reject(res)
           if (loading) {
             wx.hideLoading()
@@ -108,14 +159,23 @@ App({
 
     return new Promise(request)
   },
-  httpGet: function(url, data, loading) {
+  httpGet: function (url, data, loading) {
     return this.httpBase('GET', url, data, loading)
   },
-  httpPost: function(url, data, loading) {
+  httpPost: function (url, data, loading) {
     return this.httpBase('POST', url, data, loading)
   },
   globalData: {
     version: '1.0.0',
-    isIPX: false
+    isIPX: false,
+    location: {
+      lat: 0,
+      lon: 0,
+      speed: 0,
+      accuracy: 0,
+      province: '',
+      city: '',
+      info: {}
+    }//位置信息
   }
 })

@@ -1,0 +1,16 @@
+Page .grid-content {
+  margin-top: 20rpx;
+}
+
+Page .view-inline-block {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+Page .vertical-align-top {
+  vertical-align: top;
+}
+
+Page .view-margin-left-5 {
+  margin-left: 5rpx;
+}

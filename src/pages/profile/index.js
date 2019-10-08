@@ -1,21 +1,29 @@
-//index.js
-//获取应用实例
 const app = getApp()
+const { appValidate } = require('../../utils/util.js')
 
 Page({
   data: {
-    name: "zhangsan",
-    avatar: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJl50icAN1r7C1vjquqoRTgnRiaVH8tPpibE0f0l2LR8ZjePcwPLcNW4mNhuJArmG2pC6MrJyF50FrQA/132"
+    avatar: '',
+    name: ''
   },
-  onChange(event) {
+  onLoad() {
+    let userInfoStr = wx.getStorageSync('userInfo')
+    let userInfo = null
+    if (appValidate.isNullOrEmpty(userInfoStr)) {
+      wx.getUserInfo({
+        success: res => {
+          userInfo = res.userInfo
+          wx.setStorageSync('userInfo', JSON.stringify(userInfo))
+        }
+      })
+    } else {
+      userInfo = JSON.parse(userInfoStr)
+    }
+
     this.setData({
-      activeNames: event.detail
-    });
-  },
-  onLoad: function () {
-
-  },
-  getUserInfo: function (e) {
-
+      avatar: userInfo.avatarUrl,
+      name: userInfo.nickName
+    })
+    console.log(this.data.avatar)
   }
 })

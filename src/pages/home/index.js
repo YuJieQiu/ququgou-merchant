@@ -4,17 +4,23 @@ const app = getApp()
 
 Page({
   data: {
-    activeNames: ['1']
+    activeNames: ['1'],
+    homeData: {}
   },
   onChange(event) {
     this.setData({
       activeNames: event.detail
     })
   },
-  onLoad: function() {
-    app.httpGet('initAuth').then(res => {
-      console.log(res)
+  getHomeInfo() {
+    app.httpGet('get/home/info', {}).then(res => {
+      this.setData({
+        homeData: res.data
+      })
     })
   },
-  getUserInfo: function(e) {}
+  onLoad: function () {
+    this.getHomeInfo()
+  },
+  getUserInfo: function (e) { }
 })

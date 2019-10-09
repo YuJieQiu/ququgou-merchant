@@ -14,7 +14,8 @@
     "pages/dotAdd/select",
     "pages/editor/editor",
     "pages/orderManage/index",
-    "pages/orderDetail/index"
+    "pages/orderDetail/index",
+    "pages/categoryManage/index"
   ],
   "permission": {
     "scope.userLocation": {
@@ -66,7 +67,8 @@
     "van-submit-bar": "components/vant-weapp/dist/submit-bar/index",
     "van-field": "components/vant-weapp/dist/field/index",
     "van-toast": "components/vant-weapp/dist/toast/index",
-    "van-panel": "components/vant-weapp/dist/panel/index"
+    "van-panel": "components/vant-weapp/dist/panel/index",
+    "van-tree-select": "components/vant-weapp/dist/tree-select/index"
   },
   "sitemapLocation": "sitemap.json"
 }

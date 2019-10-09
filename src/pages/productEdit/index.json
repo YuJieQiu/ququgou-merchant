@@ -4,6 +4,7 @@
     "i-grid": "../../components/iview-weapp/dist/grid/index",
     "i-grid-item": "../../components/iview-weapp/dist/grid-item/index",
     "i-grid-icon": "../../components/iview-weapp/dist/grid-icon/index",
-    "i-grid-label": "../../components/iview-weapp/dist/grid-label/index"
+    "i-grid-label": "../../components/iview-weapp/dist/grid-label/index",
+    "i-swipeout": "../../components/iview-weapp/dist/swipeout/index"
   }
 }

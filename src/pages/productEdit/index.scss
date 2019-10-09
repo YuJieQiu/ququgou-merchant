@@ -2,7 +2,6 @@
   .basic-info-images {
     .basic-info-images-guid {
       margin-top: 30rpx;
-      background-color: #fff;
       border: 0;
       .grid-item {
         margin: 0;
@@ -173,6 +172,8 @@
   // }
   .t-richtext {
     min-height: 500rpx;
+    margin-left: 10rpx;
+    margin-right: 10rpx;
     background-color: #fff;
     .rich-text {
       word-break: break-all;
@@ -337,7 +338,7 @@
         height: 100%;
         display: flex;
         align-items: center;
-        justify-content: center; /*水平居中*/
+        justify-content: center; /*æ°´å¹³å±…ä¸­*/
         background-color: #fff;
       }
       .v-block {
@@ -376,4 +377,8 @@
 
 .ql-container {
   height: 100%;
+}
+
+.content-edit {
+  margin-top: 20rpx;
 }

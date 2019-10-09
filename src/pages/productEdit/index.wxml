@@ -76,26 +76,30 @@
 						</view>
 						<!-- 店铺图片 E -->
 						<!-- 商品类目选择 -->
-						<van-cell title="商品类目" is-link value="请选择" bind:input="onClickSelectCategory" />
-						<!-- 商品名称 -->
-						<van-field value="{{ productInfo.name }}" label="商品名称" required type="textarea" placeholder="请输入商品名称" autosize border="{{ false }}" bind:input="onChangeProInfoName" />
-						<!-- 商品关键字 -->
-						<!-- <van-field value="{{ product.keywords }}" label="商品关键字" type="textarea" placeholder="商品简称(可选)" autosize border="{{ false }}" /> -->
-						<!-- 商品描述 -->
-						<van-field value="{{ productInfo.description }}" label="商品描述" required type="textarea" placeholder="请输入商品描述" autosize border="{{ false }}" bind:input="onChangeProInfoDesc" />
-						<!-- 当前销售价 -->
-						<van-field value="{{productInfo.currentPrice}}" type="digit" required bind:input="onChangeProInfoCurrentPrice" label="当前销售价" placeholder="销售价" />
-						<!-- 商品标签 -->
-						<!-- <van-field value="{{ product.tags }}" label="商品标签" type="textarea" placeholder="商品标签(可选)" autosize border="{{ false }}" /> -->
-						<!-- 商品宽 W、高 H、深度 D、重量 -->
-						<van-field value="{{ productInfo.width }}" type="digit" bind:input="onChangeProInfoWidth" label="商品宽" placeholder="(可选)" />
-						<van-field value="{{ productInfo.height }}" type="digit" bind:input="onChangeProInfoHeight" label="商品高" placeholder="(可选)" />
-						<van-field value="{{ productInfo.depth }}" type="digit" bind:input="onChangeProInfoDepth" label="商品长" placeholder="(可选)" />
-						<van-field value="{{ productInfo.weight }}" type="digit" bind:input="onChangeProInfoWeight" label="商品重量" placeholder="(可选)" />
-						<!-- 商品 原始价格、最低价 -->
-						<van-field value="{{ productInfo.originalPrice }}" type="digit" bind:input="onChangeProInfoOriginalPrice" label="商品原始价" placeholder="(可选)" />
-						<van-field value="{{ productInfo.minPrice }}" type="digit" bind:input="onChangeProInfoMinPrice" label="商品最低价" placeholder="(可选)" />
-						<van-field value="{{ productInfo.maxPrice }}" type="digit" bind:input="onChangeProInfoMaxPrice" label="商品最高价" placeholder="(可选)" />
+						<van-cell title="商品类目" is-link value="{{categoryInfo.name==''?'请选择':categoryInfo.name}}" link-type="navigateTo" url="/pages/categoryManage/index" />
+						<i-panel title="基本信息" hide-border="{{true}}">
+								<!-- 商品名称 -->
+								<van-field value="{{ productInfo.name }}" label="商品名称" required type="textarea" placeholder="请输入商品名称" autosize border="{{ false }}" bind:input="onChangeProInfoName" />
+								<!-- 商品关键字 -->
+								<!-- <van-field value="{{ product.keywords }}" label="商品关键字" type="textarea" placeholder="商品简称(可选)" autosize border="{{ false }}" /> -->
+								<!-- 商品描述 -->
+								<van-field value="{{ productInfo.description }}" label="商品描述" required type="textarea" placeholder="请输入商品描述" autosize border="{{ false }}" bind:input="onChangeProInfoDesc" />
+								<!-- 当前销售价 -->
+								<van-field value="{{productInfo.currentPrice}}" type="digit" required bind:input="onChangeProInfoCurrentPrice" label="当前销售价" placeholder="销售价" />
+								<!-- 商品 原始价格、最低价 -->
+								<van-field value="{{ productInfo.originalPrice }}" type="digit" bind:input="onChangeProInfoOriginalPrice" label="商品原始价" placeholder="(可选)" />
+								<van-field value="{{ productInfo.minPrice }}" type="digit" bind:input="onChangeProInfoMinPrice" label="商品最低价" placeholder="(可选)" />
+								<van-field value="{{ productInfo.maxPrice }}" type="digit" bind:input="onChangeProInfoMaxPrice" label="商品最高价" placeholder="(可选)" />
+								<!-- 商品标签 -->
+								<!-- <van-field value="{{ product.tags }}" label="商品标签" type="textarea" placeholder="商品标签(可选)" autosize border="{{ false }}" /> -->
+						</i-panel>
+						<i-panel title="属性" hide-border="{{true}}">
+								<!-- 商品宽 W、高 H、深度 D、重量 -->
+								<van-field value="{{ productInfo.width }}" type="digit" bind:input="onChangeProInfoWidth" label="商品宽" placeholder="(可选)" />
+								<van-field value="{{ productInfo.height }}" type="digit" bind:input="onChangeProInfoHeight" label="商品高" placeholder="(可选)" />
+								<van-field value="{{ productInfo.depth }}" type="digit" bind:input="onChangeProInfoDepth" label="商品长" placeholder="(可选)" />
+								<van-field value="{{ productInfo.weight }}" type="digit" bind:input="onChangeProInfoWeight" label="商品重量" placeholder="(可选)" />
+						</i-panel>
 						<!-- 商品 规格 添加 S -->
 						<i-panel title="规格信息" hide-border="{{true}}">
 								<view>
@@ -126,7 +130,7 @@
 																												</view>
 																										</view>
 																								</view>
-																								<view class="hint-text" wx:if="{{!productInfo.isSingle}}">(左滑删除)</view>
+																								<view class="hint-text" wx:if="{{!productInfo.isSingle}}">左滑删除</view>
 																						</view>
 																				</view>
 																		</view>
@@ -135,7 +139,7 @@
 												</block>
 										</view>
 										<view class="att-view">
-												<van-button custom-class="but" bind:click="onClickAttAdd">添加</van-button>
+												<van-button custom-class="but" bind:click="onClickAttAdd">添加规格</van-button>
 										</view>
 								</view>
 						</i-panel>
@@ -143,12 +147,13 @@
 						<!-- 商品详情 S -->
 						<!-- <rich-text nodes="{{nodes}}" bindtap="tap"></rich-text> -->
 						<!-- <van-cell title="商品详情" is-link url="/pages/webView/index?url=http://127.0.0.1:7080/static/demo/" /> -->
-						<i-panel title="商品详情" hide-border="{{true}}">
-								<van-cell title="详情编辑" is-link link-type="navigateTo" url="/pages/editor/editor?content" />
+						<!-- <i-panel title="商品详情" hide-border="{{true}}"></i-panel> -->
+						<view class="content-edit">
+								<van-cell title="商品详情编辑" is-link link-type="navigateTo" url="/pages/editor/editor?content" />
 								<view class="t-richtext">
 										<rich-text class="ql-container" nodes="{{productInfo.content.content}}" />
 								</view>
-						</i-panel>
+						</view>
 						<!-- 商品详情 E -->
 				</van-cell-group>
 		</view>
@@ -159,24 +164,3 @@
 <!-- 小程序最新的富文本编辑器 发布了.... -->
 <!-- <editor id="editor" class="ql-container" placeholder="{{'提示信息'}}" showImgSize showImgToolbar showImgResize bindstatuschange="onStatusChange" read-only="{{readOnly}}" bindready="onEditorReady"></editor> -->
 <!-- <editor id="editor-container"placeholder="正文内容"></editor> -->
-<!-- 商品类目选择 弹出层 S -->
-<van-popup show="{{ popupData.show }}" position="right" overlay="{{ true }}" z-index="999" custom-class="popup-tag" bind:close="onClose">
-		<view class="popup-tag-main">
-				<view class="tag-top-bottom">
-						<!-- <van-nav-bar
-                title=""
-                left-text="返回"
-                right-text="确认"
-                left-arrow
-                bind:click-left="onClickPopupTagClose"
-                bind:click-right="onClickPopupTagOk"
-                /> -->
-						<view class="popup-tag-close" bindtap="onClickPopupTagClose">取消</view>
-						<view class="popup-tag-ok" bindtap="onClickPopupTagOk">确认</view>
-				</view>
-				<!-- 商品类目选择 S -->
-				<van-tree-select items="{{ items }}" main-active-index="{{ mainActiveIndex }}" active-id="{{ activeId }}" bind:click-nav="onClickNav" bind:click-item="onClickItem" />
-				<!-- 商品分类选择 E -->
-		</view>
-</van-popup>
-<!-- 商品分类选择 弹出层 E -->

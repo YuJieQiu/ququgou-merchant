@@ -3,6 +3,10 @@ const app = getApp()
 Page({
   data: {
     readOnly: false,
+    categoryInfo: {
+      id: 0,
+      name: ""
+    },
     productInfo: {
       id: 0,
       brandId: 0,
@@ -56,114 +60,6 @@ Page({
       property: [],
       isSingle: true //是否单品
     },
-    items: [
-      {
-        // 导航名称
-        text: '食品',
-        // 禁用选项
-        disabled: false,
-        // 该导航下所有的可选项
-        children: [
-          {
-            text: '食品',
-            id: 1,
-            disabled: false
-          },
-          {
-            text: '休闲零食',
-            id: 2
-          },
-          {
-            text: '进口食品',
-            id: 3
-          }
-        ]
-      },
-      {
-        text: '美妆护肤',
-        children: [
-          {
-            text: '美容护肤',
-            id: 1,
-            disabled: false
-          },
-          {
-            text: '彩妆/香水/美妆工具',
-            id: 2
-          },
-          {
-            text: '美发/护发/假发',
-            id: 3
-          }
-        ]
-      },
-      {
-        text: '服饰',
-        children: [
-          {
-            text: '服饰配件/皮带/帽子/围巾',
-            id: 1,
-            disabled: false
-          },
-          {
-            text: '服饰配件/皮带/帽子/围巾',
-            id: 2
-          },
-          {
-            text: '女装',
-            id: 3
-          },
-          {
-            text: '男装',
-            id: 4
-          },
-          {
-            text: '女士内衣/男士内衣/家居服',
-            id: 5
-          },
-          {
-            text: '运动户外',
-            id: 6
-          }
-        ]
-      },
-      {
-        text: '鞋类箱包',
-        children: []
-      },
-      {
-        text: '母婴',
-        children: []
-      },
-      {
-        text: '居家日用',
-        children: []
-      },
-      {
-        text: '珠宝配饰',
-        children: []
-      },
-      {
-        text: '3C数码',
-        children: []
-      },
-      {
-        text: '图书音像',
-        children: []
-      },
-      {
-        text: '餐饮美食',
-        children: []
-      },
-      {
-        text: '休闲娱乐',
-        children: []
-      },
-      {
-        text: '便民生活',
-        children: []
-      }
-    ],
     popupData: {
       show: false
     },
@@ -195,33 +91,6 @@ Page({
     this.setData({
       'test.radio': e.detail
     })
-  },
-  onClickNav({ detail = {} }) {
-    this.setData({
-      mainActiveIndex: detail.index || 0
-    })
-  },
-  onClickSelectCategory(e) {
-    this.setData({
-      'popupData.show': true,
-      mainShow: false
-    })
-  },
-  onClickItem({ detail = {} }) {
-    this.setData({
-      activeId: detail.id
-    })
-  },
-  onClickPopupTagClose() {
-    this.setData({
-      'popupData.show': false,
-      mainShow: true
-    })
-  },
-  onClickPopupTagOk() {
-    // this.setData({
-    //     'popupData.show': false
-    // })
   },
   //删除图片
   deleteImage(event) {
@@ -365,20 +234,36 @@ Page({
   },
   setValueParseFloat: function (value) {
     let v = value
-    const rule = /^(([1-9][0-9]*)|(([0]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/
 
-    if (rule.test(v)) {
-      v = parseFloat(value)
-    } else {
-      if (
-        value.indexOf('.') != -1 &&
-        value.indexOf('.') != 0 &&
-        value.indexOf('.') != value.length - 1
-      ) {
-        v = parseFloat(value).toFixed(2)
-      } else {
+    if (value.indexOf('.') != -1) {
+      if (value.substr(value.indexOf('.') + 1).length == 1) {
+        v = parseFloat(parseFloat(value).toFixed(1))
+      } else if (value.substr(value.indexOf('.') + 1).length > 1) {
+        v = parseFloat(parseFloat(value).toFixed(2))
       }
+    } else {
+      v = parseFloat(value)
     }
+
+    //[0]\.\d{1,2}|
+    //const rule = /^(([1-9][0-9]*)|(([1-9][0-9]*\.\d{1,2})))$/
+    // if (rule.test(v) && value[value.length - 1] != 0) {
+    //   v = parseFloat(value)
+    // } else {
+    //   console.log(value.substr(value.indexOf('.') + 1).length)
+    //   if (
+    //     value.indexOf('.') != -1 &&
+    //     value.indexOf('.') != 0 &&
+    //     value.indexOf('.') != value.length - 1
+    //   ) {
+    //     if (value.substr(value.indexOf('.') + 1).length < 2) {
+    //       v = parseFloat(value).toFixed(1)
+    //     } else if (value.substr(value.indexOf('.') + 1).length > 1) {
+    //       v = parseFloat(value).toFixed(2)
+    //     } 
+    //   } else {
+    //   }
+    // }
     return v
   },
   onChangeProInfoName(e) {
@@ -414,7 +299,7 @@ Page({
   onChangeProInfoOriginalPrice(e) {
     const that = this
     this.setData({
-      'productInfo.originalPrice': parseFloat(that.setValueParseFloat(e.detail))
+      'productInfo.originalPrice': that.setValueParseFloat(e.detail)
     })
   },
   onChangeProInfoMinPrice(e) {
@@ -454,7 +339,7 @@ Page({
   onChangeMuchSkuPrice(e) {
     const index = e.currentTarget.dataset.index
     var sku = this.data.productInfo.sku
-    sku[index].price = parseFloat(e.detail)
+    sku[index].price = this.setValueParseFloat(e.detail)
     this.setData({
       'productInfo.sku': sku
     })
@@ -486,6 +371,11 @@ Page({
   //保存信息
   saveSubmit() {
     var that = this
+
+    if (categoryInfo.id > 0) {
+      that.data.productId.categoryIds = [categoryInfo.id]
+    }
+
     let url = 'product/create'
     if (this.data.saveType == 1) {
       url = 'product/update'

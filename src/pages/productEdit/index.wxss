@@ -3,6 +3,12 @@
   margin-bottom: 30rpx;
 }
 
+.basic-info .basic-info-images .basic-info-images-guid {
+  margin-top: 30rpx;
+  /* background-color: #fff; */
+  border: 0;
+}
+
 .basic-info .basic-info-images .basic-info-images-guid .grid-item {
   margin: 0;
   padding: 0;

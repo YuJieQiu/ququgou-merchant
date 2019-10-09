@@ -181,12 +181,12 @@ Page({
     modalControl: false,
     saveType: 0 //0新增 1更新
   },
-  showModal: function(e) {
+  showModal: function (e) {
     this.setData({
       modalControl: true
     })
   },
-  hideModal: function(e) {
+  hideModal: function (e) {
     // this.setData({
     //     modalControl: false
     // })
@@ -213,7 +213,6 @@ Page({
     })
   },
   onClickPopupTagClose() {
-    console.log('99999')
     this.setData({
       'popupData.show': false,
       mainShow: true
@@ -229,7 +228,8 @@ Page({
     const that = this
     const id = event.currentTarget.dataset.id
     var resources = this.data.productInfo.resources
-    resources.splice(resources.findIndex(item => item.id === id), 1)
+
+    resources.splice(resources.findIndex(item => item.resourceId === id), 1)
     that.setData({
       'productInfo.resources': resources
     })
@@ -270,7 +270,7 @@ Page({
       }
     })
   },
-  merImagesLoad: function(data) {
+  merImagesLoad: function (data) {
     const that = this
     var resources = that.data.productInfo.resources
     resources.push({
@@ -284,7 +284,7 @@ Page({
       'productInfo.resources': resources
     })
   },
-  skuImagesLoad: function(data, index) {
+  skuImagesLoad: function (data, index) {
     const that = this
     var sku = that.data.productInfo.sku
     sku[index].resourceId = data.id
@@ -363,7 +363,7 @@ Page({
     }
     console.log(this.data.productInfo.sku)
   },
-  setValueParseFloat: function(value) {
+  setValueParseFloat: function (value) {
     let v = value
     const rule = /^(([1-9][0-9]*)|(([0]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/
 
@@ -498,9 +498,8 @@ Page({
       })
     })
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.data.id = options.id
-    console.log(options)
     if (typeof options.id !== 'undefined' && options.id > 0) {
       this.setData({
         'productInfo.id': options.id,

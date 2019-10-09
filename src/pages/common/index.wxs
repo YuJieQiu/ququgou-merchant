@@ -13,6 +13,14 @@ var filter = {
     var eachPrice = ((price * 100) / 100).toFixed(2)
     return eachPrice //(price *100 / 100).toFixed(2);
   },
+  arraySlice: function (arr, start, end) {
+    if (end != 0) {
+      return arr.slice(start, end)
+    } else {
+      return arr.slice(start)
+    }
+
+  },
   enum: {
     orderStatus: {
       WaitPay: 0, //待付款
@@ -33,5 +41,6 @@ module.exports = {
   numberToFixed: filter.numberToFixed,
   arrayExist: filter.arrayExist,
   priceStr: filter.priceStr,
-  orderStatus: filter.enum.orderStatus
+  orderStatus: filter.enum.orderStatus,
+  arraySlice: filter.arraySlice
 }

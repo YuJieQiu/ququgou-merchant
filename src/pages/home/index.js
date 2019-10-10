@@ -14,13 +14,21 @@ Page({
   },
   getHomeInfo() {
     app.httpGet('get/home/info', {}).then(res => {
+      wx.stopPullDownRefresh()
       this.setData({
         homeData: res.data
       })
     })
   },
-  onLoad: function () {
+  //上拉刷新
+  onPullDownRefresh() {
     this.getHomeInfo()
+  },
+  onShow() {
+    this.getHomeInfo()
+  },
+  onLoad: function () {
+    //this.getHomeInfo()
   },
   getUserInfo: function (e) { }
 })

@@ -1,7 +1,8 @@
 const app = getApp()
-
+import Toast from '../../components/vant-weapp/dist/toast/toast';
 Page({
   data: {
+    saveButtonLoading: false,
     readOnly: false,
     categoryInfo: {
       id: 0,
@@ -373,7 +374,7 @@ Page({
   //保存信息
   saveSubmit() {
     var that = this
-
+    that.setData({ 'saveButtonLoading': true })
     if (that.data.categoryInfo.id > 0) {
       this.setData({
         'productId.categoryIds': [that.data.categoryInfo.id]
@@ -386,10 +387,15 @@ Page({
     }
     app.httpPost(url, that.data.productInfo).then(res => {
       let data = res.data
-      console.log(res)
-      wx.navigateTo({
-        url: '/pages/productManage/index'
-      })
+      that.setData({ 'saveButtonLoading': true })
+      if (res.code == 200) {
+        wx.navigateTo({
+          url: '/pages/productManage/index'
+        })
+      } else {
+        Toast.fail('失败' + res.message);
+      }
+
     })
   },
   onLoad: function (options) {

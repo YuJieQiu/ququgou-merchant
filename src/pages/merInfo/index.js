@@ -1,12 +1,12 @@
 const app = getApp()
 const QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js')
 const qqmapsdk = new QQMapWX({ key: app.mapKey })
-const { $Toast } = require('../../components/iview-weapp/dist/base/index')
 const { strMapToObj } = require('../../utils/util.js')
+import Toast from '../../components/vant-weapp/dist/toast/toast';
 Page({
   data: {
     merInfo: {
-      id: 'd72fc8d4089344c28cd4c66acbeb307f',
+      id: '',
       name: '',
       description: '',
       address: {
@@ -37,26 +37,7 @@ Page({
     selectAddress: {},
     businessStartTime: '06:00',
     businessEndTime: '21:00',
-    show: true,
-    username: '',
-    password: '',
-    selectTabList: [],
-    tabData: {
-      tagList: [],
-      // tagHotList: [
-      //   '标签热门1',
-      //   '标签热门2',
-      //   '标签热门3',
-      //   '标签热门4',
-      //   '标签热门5',
-      //   '标签热门6'
-      // ],
-      tabNewStr: '',
-      hideSelect: false,
-      hideNew: true,
-      hideTot: false,
-      show: false
-    }
+    saveButtonLoading: false
   },
   onChangeStartTime(e) {
     this.setData({
@@ -77,7 +58,6 @@ Page({
     this.setData({
       'merInfo.name': e.detail
     })
-    console.log(this.data.merInfo.name)
   },
   onChangeMerInfoPhone(e) {
     this.setData({
@@ -85,7 +65,6 @@ Page({
     })
   },
   addressSelect(data) {
-    console.log(data)
     this.setData({
       'merInfo.address': {
         city: data.ad_info.city,
@@ -98,139 +77,10 @@ Page({
         remark: ''
       }
     })
-    console.log(this.data.merInfo.address)
   },
   onAddressClick() {
     wx.navigateTo({
       url: '/pages/dotAdd/index'
-    })
-  },
-  onClose(event) {
-    if (event.detail === 'confirm') {
-      // 异步关闭弹窗
-      setTimeout(() => {
-        this.setData({
-          show: false
-        })
-      }, 1000)
-    } else {
-      this.setData({
-        show: false
-      })
-    }
-  },
-  //获取标签列表
-  getTagList() {
-    var that = this
-    app.httpGet('label/get/list', {}).then(res => {
-      let data = res.data
-      console.log(res.data)
-      that.setData({
-        'tabData.tagList': data
-      })
-    })
-  },
-  //创建标签
-  onTagSearch(e) {
-    var that = this
-    if (e.detail == '') {
-      this.setData({
-        'tabData.tabNewStr': '',
-        'tabData.hideNew': true,
-        'tabData.hideSelect': false,
-        'tabData.hideTot': false
-      })
-    } else {
-      that.setData({
-        'tabData.tabNewStr': e.detail,
-        'tabData.hideNew': false,
-        'tabData.hideSelect': true,
-        'tabData.hideTot': true
-      })
-    }
-  },
-  onClickPopupTagClose() {
-    this.setData({
-      'tabData.show': false
-    })
-  },
-  //确定
-  onClickPopupTagOk() {
-    var that = this
-    let label = new Map() //this.data.merInfo.label
-    that.data.selectTabList
-    that.data.selectTabList.forEach(element => {
-      label.set(element.id, element.text)
-    })
-    console.log(this.data.merInfo.label)
-    this.setData({
-      'merInfo.label': strMapToObj(label),
-      'tabData.show': false,
-      selectTabList: []
-    })
-  },
-  //删除
-  onClickDeleteTag(e) {
-    let value = e.currentTarget.dataset.value
-    let id = e.currentTarget.dataset.id
-    let list = this.data.selectTabList
-    let newList = list.filter(item => item.id !== id)
-    this.setData({
-      selectTabList: newList
-    })
-  },
-  //选择
-  onClickHotTag(e) {
-    let text = e.currentTarget.dataset.text
-    let id = e.currentTarget.dataset.id
-    let list = this.data.selectTabList
-
-    console.log(list)
-    list.push({ id: id, text: text })
-    this.setData({
-      selectTabList: list
-    })
-  },
-  //创建
-  onClickCreateTag(e) {
-    console.log(e)
-    var that = this
-    let list = this.data.tabData.tagList
-    let selectList = this.data.selectTabList
-    //创建标签
-    app
-      .httpPost('label/create', {
-        text: that.data.tabData.tabNewStr,
-        sort: that.data.tabData.tagList.length + 1
-      })
-      .then(res => {
-        let data = res.data
-        console.log(res.data)
-        list.push({
-          id: data.id,
-          text: data.text
-        })
-        selectList.push({
-          id: data.id,
-          text: data.text
-        })
-
-        this.setData({
-          'tabData.tabNewStr': '',
-          'tabData.hideNew': true,
-          'tabData.hideSelect': false,
-          'tabData.hideTot': false,
-          'tabData.tagList': list,
-          selectTabList: selectList
-        })
-      })
-
-    //console.log(this.data.tabData)
-  },
-  //选择
-  onClickSelectTag() {
-    this.setData({
-      'tabData.show': true
     })
   },
   onInput(event) {
@@ -263,10 +113,7 @@ Page({
             })
           },
           fail(err) {
-            $Toast({
-              content: '上传失败' + err,
-              type: 'error'
-            })
+            Toast.fail('上传失败' + err);
           }
         })
       }
@@ -297,17 +144,23 @@ Page({
   //保存更新数据
   saveSubmit() {
     var that = this
+    that.setData({ 'saveButtonLoading': true })
     app.httpPost('mer/info/update', that.data.merInfo).then(res => {
-      let data = res.data
-      console.log(res)
+      if (res.code == 200) {
+        Toast.success('更新成功');
+        that.getMerInfo()
+      } else {
+        Toast.fail('更新失败' + res.message);
+      }
+      that.setData({ 'saveButtonLoading': false })
     })
+
   },
   getMerInfo() {
     app
-      .httpGet('get/mer/info', { id: '6de79d7d7f764e3981b35d8b9a36fcc3' })
+      .httpGet('get/mer/info', {})
       .then(res => {
         let data = res.data
-        console.log(res.data)
 
         //label处理S
         let label = data.label
@@ -326,24 +179,7 @@ Page({
       })
   },
 
-  onLoad: function() {
+  onLoad: function () {
     this.getMerInfo()
-    this.getTagList()
-
-    // wx.request({
-    //     url:"http://127.0.0.1:7080/api/v1/get/mer/info",
-    //     data:{id:"d72fc8d4089344c28cd4c66acbeb307f"},
-    //     header:{
-    //         "Content-Type":"application/json"
-    //     },
-    //     success:function(res){
-    //         console.log(res.data)
-    //     },
-    //     fail:function(err){
-    //         console.log(err)
-    //     }
-
-    // })
-  },
-  getUserInfo: function(e) {}
+  }
 })

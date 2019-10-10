@@ -1,220 +1,66 @@
 <view class="main">
-	<i-toast id="toast" />
-	<view class="basic-info">
-		<van-cell-group>
-			<!-- 店铺图片 S -->
-			<!-- <upload-img/> -->
-			<view class="basic-info-images">
-				<i-grid i-class="basic-info-images-guid">
-					<i-grid-item i-class="grid-item" wx:for="{{merInfo.resources}}">
-						<image class="item-images" mode="scaleToFill" src="{{item.url}}" />
-						<van-button
-						 size="mini"
-						 square
-						 type="danger"
-						 custom-class="close"
-						 data-id="{{item.id}}"
-						 bindtap="deleteImage"
-						>
-							删除
-						</van-button>
-					</i-grid-item>
-					<i-grid-item i-class="grid-item" wx:if="{{merInfo.resources.length<3}}">
-						<view class="grid-item-add" bindtap="merImageUpload">
-							<view class="add">
-								<van-icon name="plus" size="50rpx" />
-							</view>
+		<i-toast id="toast" />
+		<view class="basic-info">
+				<van-cell-group>
+						<!-- 店铺图片 S -->
+						<view class="basic-info-images">
+								<i-grid i-class="basic-info-images-guid">
+										<i-grid-item i-class="grid-item" wx:for="{{merInfo.resources}}">
+												<image class="item-images" mode="aspectFill" src="{{item.url}}" />
+												<van-button size="mini" square type="danger" custom-class="close" data-id="{{item.id}}" bindtap="deleteImage">
+														删除
+												</van-button>
+										</i-grid-item>
+										<i-grid-item i-class="grid-item" wx:if="{{merInfo.resources.length<3}}">
+												<view class="grid-item-add" bindtap="merImageUpload">
+														<view class="add">
+																<van-icon name="plus" size="50rpx" />
+														</view>
+												</view>
+										</i-grid-item>
+										<i-grid-item i-class="grid-item" wx:for="{{2-merInfo.resources.length}}">
+												<view class="grid-item-empty" />
+										</i-grid-item>
+								</i-grid>
 						</view>
-					</i-grid-item>
-					<i-grid-item i-class="grid-item" wx:for="{{2-merInfo.resources.length}}">
-						<view class="grid-item-empty" />
-					</i-grid-item>
-					<!-- <view class="item-images-block">
-							<image class="item-images" mode="scaleToFill" src="{{item.url}}" />
-							<van-button
-							 size="mini"
-							 square
-							 type="danger"
-							 custom-class="close"
-							 data-id="{{item.id}}"
-							 bindtap="deleteImage"
-							>
-								删除
-							</van-button>
-						</view> -->
-					<!-- <view wx:if="{{merInfo.resources.length<5}}" class="item-images-block item-images-block-add" bindtap="merImageUpload">
-							<view class="add">
-								<van-icon name="plus" size="50rpx" />
-							</view>
-						</view> -->
-				</i-grid>
-			</view>
-			<!-- 店铺图片 E -->
-			<van-field
-			 required="{{true}}"
-			 value="{{ merInfo.name }}"
-			 label="店铺名称"
-			 bind:input="onChangeMerInfoName"
-			 type="textarea"
-			 placeholder="请输入店铺名称"
-			 autosize
-			 border="{{ false }}"
-			/>
-			<van-cell
-			 required="{{true}}"
-			 title="地址选择"
-			 bind:click="onAddressClick"
-			 title-width="70px"
-			 icon="location-o"
-			 on
-			 is-link
-			>
-				<view class="address-region">
-					<view class="address-region-value">{{merInfo.address.city}}</view>
-					<view class="address-region-value">{{merInfo.address.region}}</view>
-					<view class="address-region-value">{{merInfo.address.town}}</view>
-					<!-- <picker mode="region" bindchange="onChangeRegion" class="address-region-block" value="{{region}}" custom-item="{{customItem}}">
-                        <view class="address-region-value">
-                            <block wx:if="{{region.length>0}}">
-                                {{region[0]}}，{{region[1]}}，{{region[2]}}
-                            </block>
-                            <block wx:else>请选择</block>
-                        </view>
-                    </picker> -->
-				</view>
-			</van-cell>
-			<!-- <van-cell title="地址选择" icon="location-o" is-link bind:click="onAddressClick" /> -->
-			<van-field
-			 value="{{merInfo.address.address}}"
-			 label="详细地址"
-			 type="textarea"
-			 placeholder="请输入店铺详细地址"
-			 bind:input="onChangeMerInfoAddress"
-			 required="{{true}}"
-			 autosize
-			 border="{{ false }}"
-			/>
-			<van-field
-			 value="{{ merInfo.phones }}"
-			 label="联系电话"
-			 placeholder="请输入手机号"
-			 bind:input="onChangeMerInfoPhone"
-			 border="{{ false }}"
-			 required="{{true}}"
-			 maxlength="{{11}}"
-			/>
-			<van-cell required="{{true}}" title="营业时间" title-width="70px">
-				<view class="open-time">
-					<picker
-					 mode="time"
-					 value="{{merInfo.businessTime.startTime}}"
-					 bindchange="onChangeStartTime"
-					 class="open-time-picker"
-					>
-						<view class="open-time-value">{{merInfo.businessTime.startTime}}</view>
-					</picker>
-					<block>--</block>
-					<picker
-					 mode="time"
-					 value="{{merInfo.businessTime.endTime}}"
-					 bindchange="onChangeEndTime"
-					 class="open-time-picker"
-					>
-						<view class="open-time-value">{{merInfo.businessTime.endTime}}</view>
-					</picker>
-				</view>
-			</van-cell>
-			<view class="tag-info">
-				<van-cell
-				 title="标签"
-				 is-link
-				 value="选择标签(可选)"
-				 bind:click="onClickSelectTag"
-				/>
-				<view class="popup-tag-list">
-					<block wx:for='{{merInfo.label}}' wx:for-index='key'>
-						<van-tag custom-class="custom-van-tag" color="#f2826a" round>
-							{{item}}
-						</van-tag>
-					</block>
-				</view>
-			</view>
-			<van-button
-			 custom-class="but-save"
-			 size="large"
-			 type="danger"
-			 bind:click="saveSubmit"
-			>
-				保存
-			</van-button>
-		</van-cell-group>
-	</view>
-	<!-- 标签选择 弹出层 S -->
-	<van-popup
-	 show="{{ tabData.show }}"
-	 position="right"
-	 overlay="{{ true }}"
-	 z-index="999"
-	 custom-class="popup-tag"
-	 bind:close="onClose"
-	>
-		<view class="popup-tag-main">
-			<view class="tag-top-bottom">
-				<view class="popup-tag-close" bindtap="onClickPopupTagClose">取消</view>
-				<view class="popup-tag-ok" bindtap="onClickPopupTagOk">确认</view>
-			</view>
-			<van-search value="{{ tabData.tabNewStr }}" placeholder="添加店铺的标签" bind:search="onTagSearch" />
-			<view class="popup-tag-new" style="{{tabData.hideNew?'display:none;':'display:inline'}}">
-				<view class="popup-tag-text">创建新标签</view>
-				<view class="popup-tag-list">
-					<van-button
-					 bind:click="onClickCreateTag"
-					 plain
-					 round
-					 custom-class="custom-button-tag"
-					 type="danger"
-					>
-						{{tabData.tabNewStr}}
-					</van-button>
-					<!-- <van-tag bind:click="onClickTag" custom-class="custom-van-tag"  color="#f2826a" plain>{{tabData.tabNewStr}}</van-tag> -->
-				</view>
-			</view>
-			<view class="popup-tag-select" style="{{tabData.hideSelect?'display:none;':'display:inline'}}">
-				<view class="popup-tag-text">已选标签</view>
-				<view class="popup-tag-list">
-					<block wx:for="{{selectTabList}}">
-						<van-tag
-						 data-text="{{item.text}}"
-						 data-id="{{item.id}}"
-						 bindtap="onClickDeleteTag"
-						 custom-class="custom-van-tag"
-						 color="#f2826a"
-						 round
-						>
-							{{item.text}}
-						</van-tag>
-					</block>
-				</view>
-			</view>
-			<view class="popup-tag-hot" style="{{tabData.hideTot?'display:none;':'display:inline'}}">
-				<view class="popup-tag-text">标签列表</view>
-				<view class="popup-tag-list">
-					<block wx:for="{{tabData.tagList}}">
-						<van-tag
-						 data-text="{{item.text}}"
-						 data-id="{{item.id}}"
-						 bindtap="onClickHotTag"
-						 custom-class="custom-van-tag"
-						 color="#f2826a"
-						 round
-						>
-							{{item.text}}
-						</van-tag>
-					</block>
-				</view>
-			</view>
+						<!-- 店铺图片 E -->
+						<i-panel title="基本信息" hide-border="{{true}}">
+								<van-field required="{{true}}" value="{{ merInfo.name }}" label="店铺名称" bind:input="onChangeMerInfoName" type="textarea" placeholder="请输入店铺名称" autosize border="{{ false }}" />
+								<van-cell required="{{true}}" title="地址选择" bind:click="onAddressClick" title-width="70px" icon="location-o" on is-link>
+										<view class="address-region">
+												<view class="address-region-value">{{merInfo.address.city}}</view>
+												<view class="address-region-value">{{merInfo.address.region}}</view>
+												<view class="address-region-value">{{merInfo.address.town}}</view>
+										</view>
+								</van-cell>
+								<van-field value="{{merInfo.address.address}}" label="详细地址" type="textarea" placeholder="请输入店铺详细地址" bind:input="onChangeMerInfoAddress" required="{{true}}" autosize border="{{ false }}" />
+								<van-field value="{{ merInfo.phones }}" label="联系电话" placeholder="请输入手机号" bind:input="onChangeMerInfoPhone" border="{{ false }}" required="{{true}}" maxlength="{{11}}" />
+								<van-cell required="{{true}}" title="营业时间" title-width="70px">
+										<view class="open-time">
+												<picker mode="time" value="{{merInfo.businessTime.startTime}}" bindchange="onChangeStartTime" class="open-time-picker">
+														<view class="open-time-value">{{merInfo.businessTime.startTime}}</view>
+												</picker>
+												<block>--</block>
+												<picker mode="time" value="{{merInfo.businessTime.endTime}}" bindchange="onChangeEndTime" class="open-time-picker">
+														<view class="open-time-value">{{merInfo.businessTime.endTime}}</view>
+												</picker>
+										</view>
+								</van-cell>
+						</i-panel>
+						<i-panel title="其它信息" hide-border="{{true}}">
+								<view class="tag-info">
+										<van-cell title="标签" is-link value="选择标签(可选)" is-link link-type="navigateTo" url="/pages/tagManage/index" />
+										<view class="popup-tag-list">
+												<block wx:for='{{merInfo.label}}' wx:for-index='key'>
+														<van-tag custom-class="custom-van-tag" round>{{item}}</van-tag>
+												</block>
+										</view>
+								</view>
+						</i-panel>
+						<van-button loading="{{saveButtonLoading}}" loading-text="处理中..." custom-class="but-save" size="large" type="danger" bind:click="saveSubmit">
+								保存
+						</van-button>
+				</van-cell-group>
 		</view>
-	</van-popup>
-	<!-- 标签选择 弹出层 E -->
+		<van-toast id="van-toast" />
 </view>
-

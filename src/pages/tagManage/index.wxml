@@ -1,0 +1,39 @@
+<view class="main">
+    <view class="popup-tag-main">
+        <view class="tag-top-bottom">
+            <view class="popup-tag-close" bindtap="onClickPopupTagClose">取消</view>
+            <view class="popup-tag-ok" bindtap="onClickPopupTagOk">确认</view>
+        </view>
+        <van-search value="{{ tabData.tabNewStr }}" placeholder="添加店铺的标签" bind:search="onTagSearch" />
+        <view class="popup-tag-new" style="{{tabData.hideNew?'display:none;':'display:inline'}}">
+            <view class="popup-tag-text">创建新标签</view>
+            <view class="popup-tag-list">
+                <van-button bind:click="onClickCreateTag" plain round custom-class="custom-button-tag" type="danger">
+                    {{tabData.tabNewStr}}
+                </van-button>
+                <!-- <van-tag bind:click="onClickTag" custom-class="custom-van-tag"  color="#f2826a" plain>{{tabData.tabNewStr}}</van-tag> -->
+            </view>
+        </view>
+        <view class="popup-tag-select" style="{{tabData.hideSelect?'display:none;':'display:inline'}}">
+            <view class="popup-tag-text">已选标签</view>
+            <view class="popup-tag-list">
+                <block wx:for="{{selectTabList}}">
+                    <van-tag data-text="{{item.text}}" data-id="{{item.id}}" bindtap="onClickDeleteTag" custom-class="custom-van-tag" round>
+                        {{item.text}}
+                    </van-tag>
+                </block>
+            </view>
+        </view>
+        <view class="popup-tag-hot" style="{{tabData.hideTot?'display:none;':'display:inline'}}">
+            <view class="popup-tag-text">标签列表</view>
+            <view class="popup-tag-list">
+                <block wx:for="{{tabData.tagList}}">
+                    <van-tag data-text="{{item.text}}" data-id="{{item.id}}" bindtap="onClickHotTag" custom-class="custom-van-tag" round>
+                        {{item.text}}
+                    </van-tag>
+                </block>
+            </view>
+        </view>
+    </view>
+    <van-toast id="van-toast" />
+</view>

@@ -20,7 +20,7 @@ Page({
     longitude: '', // 当前中心点经度
     scale: 18 // 地图缩放级别
   },
-  regionChange: function(e) {
+  regionChange: function (e) {
     let _this = this
     mapContext.getCenterLocation({
       success(res) {
@@ -33,7 +33,7 @@ Page({
       }
     })
   },
-  bindInput: function() {
+  bindInput: function () {
     // 搜索栏事件
     let url = './search'
     if (this.data.city) {
@@ -58,14 +58,14 @@ Page({
     }
   },
   chooseDot() {
-    let pages = getCurrentPages()
-    let prevPage = pages[pages.length - 2]
+    let arrPages = getCurrentPages()
+    let prevPage = arrPages[arrPages.length - 2]
 
     prevPage.addressSelect(this.data.dotData)
     //选择按钮点击事件
     if (this.data.dotData && this.data.dotData.id) {
       wx.navigateBack({
-        delta: 2
+        delta: arrPages.length - (arrPages.length - 1)
       })
     } else {
       wx.showToast({
@@ -74,7 +74,7 @@ Page({
       })
     }
   },
-  makerTap: function(e) {
+  makerTap: function (e) {
     // 地图上markers点击事件
     let id = e.markerId
     let dotData = (this.data.dotList || []).find(item => {
@@ -135,7 +135,7 @@ Page({
             longitude: response.longitude
           },
           get_poi: 1,
-          success: function(res) {
+          success: function (res) {
             if (res && res.status === 0) {
               if (res.result) {
                 if (res.result.pois && res.result.pois.length > 0) {
@@ -157,7 +157,7 @@ Page({
               })
             }
           },
-          fail: function(res) {
+          fail: function (res) {
             console.log(res)
           }
         })

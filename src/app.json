@@ -15,7 +15,8 @@
     "pages/editor/editor",
     "pages/orderManage/index",
     "pages/orderDetail/index",
-    "pages/categoryManage/index"
+    "pages/categoryManage/index",
+    "pages/tagManage/index"
   ],
   "permission": {
     "scope.userLocation": {
@@ -52,6 +53,7 @@
     "van-grid": "components/vant-weapp/dist/grid/index",
     "van-grid-item": "components/vant-weapp/dist/grid-item/index",
     "van-dialog": "components/vant-weapp/dist/dialog/index",
+    "van-tag": "components/vant-weapp/dist/tag/index",
     "van-tab": "components/vant-weapp/dist/tab/index",
     "van-tabs": "components/vant-weapp/dist/tabs/index",
     "van-collapse": "components/vant-weapp/dist/collapse/index",
@@ -70,7 +72,8 @@
     "van-panel": "components/vant-weapp/dist/panel/index",
     "van-tree-select": "components/vant-weapp/dist/tree-select/index",
     "van-tabbar": "components/vant-weapp/dist/tabbar/index",
-    "van-tabbar-item": "components/vant-weapp/dist/tabbar-item/index"
+    "van-tabbar-item": "components/vant-weapp/dist/tabbar-item/index",
+    "van-search": "components/vant-weapp/dist/search/index"
   },
   "sitemapLocation": "sitemap.json"
 }

@@ -157,9 +157,10 @@
 						<!-- 商品详情 E -->
 				</van-cell-group>
 		</view>
-		<van-button type="default" custom-class="save-but" bind:click="saveSubmit">
+		<van-button loading="{{saveButtonLoading}}" loading-text="处理中..." type="default" custom-class="save-but" bind:click="saveSubmit">
 				{{saveType==1?'更新':"保存" }}
 		</van-button>
+		<van-toast id="van-toast" />
 </view>
 <!-- 小程序最新的富文本编辑器 发布了.... -->
 <!-- <editor id="editor" class="ql-container" placeholder="{{'提示信息'}}" showImgSize showImgToolbar showImgResize bindstatuschange="onStatusChange" read-only="{{readOnly}}" bindready="onEditorReady"></editor> -->

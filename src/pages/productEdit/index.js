@@ -96,12 +96,14 @@ Page({
   deleteImage(event) {
     const that = this
     const id = event.currentTarget.dataset.id
-    var resources = this.data.productInfo.resources
-
-    resources.splice(resources.findIndex(item => item.resourceId === id), 1)
+    const index = event.currentTarget.dataset.index
+    var resources = that.data.productInfo.resources
+    resources.splice(index, 1)
+    console.log(index)
     that.setData({
       'productInfo.resources': resources
     })
+    return
   },
   //图片上传
   onImageUpload(e) {
@@ -372,8 +374,10 @@ Page({
   saveSubmit() {
     var that = this
 
-    if (categoryInfo.id > 0) {
-      that.data.productId.categoryIds = [categoryInfo.id]
+    if (that.data.categoryInfo.id > 0) {
+      this.setData({
+        'productId.categoryIds': [that.data.categoryInfo.id]
+      })
     }
 
     let url = 'product/create'

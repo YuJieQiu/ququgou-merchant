@@ -68,7 +68,9 @@
     "van-field": "components/vant-weapp/dist/field/index",
     "van-toast": "components/vant-weapp/dist/toast/index",
     "van-panel": "components/vant-weapp/dist/panel/index",
-    "van-tree-select": "components/vant-weapp/dist/tree-select/index"
+    "van-tree-select": "components/vant-weapp/dist/tree-select/index",
+    "van-tabbar": "components/vant-weapp/dist/tabbar/index",
+    "van-tabbar-item": "components/vant-weapp/dist/tabbar-item/index"
   },
   "sitemapLocation": "sitemap.json"
 }

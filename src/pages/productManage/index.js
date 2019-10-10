@@ -2,7 +2,7 @@ const app = getApp()
 
 Page({
   data: {
-    active: 1,
+    active: 0,
     list: [],
     page: 1, //默认第一页开始
     limit: 10, //默认每页10条
@@ -10,7 +10,7 @@ Page({
     status: 0,
     pageEnd: false
   },
-  getProductList: function() {
+  getProductList: function () {
     let data = {
       page: this.data.page,
       limit: this.data.limit,
@@ -39,8 +39,23 @@ Page({
       })
     })
   },
-  //
-  updateProductStatus() {},
+  //更新状态
+  updateProductStatus(e) {
+    const that = this
+    let id = e.currentTarget.dataset.id
+    let updateStatus = e.currentTarget.dataset.upstatus
+    let data = {
+      productId: id,
+      status: parseInt(updateStatus)
+    }
+
+    app.httpPost("product/update/status", data).then(res => {
+      let data = res.data
+      console.log(data)
+      that.setData({ page: 1, pageEnd: false, list: [] })
+      that.getProductList()
+    })
+  },
   onClickProduct(e) {
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
@@ -63,7 +78,19 @@ Page({
     //console.log('onReachBottom')
     // Do something when page reach bottom.
   },
-  onLoad: function() {
+  onChangeTabs(e) {
+    const name = e.detail.name
+    if (name == 1) {
+      this.setData({ status: 1 })
+    } else if (name == 2) {
+      this.setData({ status: -1 })
+    } else {
+      this.setData({ status: 0 })
+    }
+    this.setData({ page: 1, pageEnd: false, list: [] })
+    this.getProductList()
+  },
+  onLoad: function () {
     this.getProductList()
   }
 })

@@ -1,4 +1,18 @@
+.product-list .product-list-item {
+  margin: 20rpx;
+  border-radius: 5px;
+}
+
+.product-list .product-list-card {
+  background-color: #fff;
+}
+
 .product-list .create-time {
   color: #969799;
   font-size: 12px;
+}
+
+.order-list-item-footer .but-view {
+  display: flex;
+  flex-direction: row-reverse;
 }

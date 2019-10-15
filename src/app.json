@@ -16,7 +16,8 @@
     "pages/orderManage/index",
     "pages/orderDetail/index",
     "pages/categoryManage/index",
-    "pages/tagManage/index"
+    "pages/tagManage/index",
+    "pages/applyMerchant/index"
   ],
   "permission": {
     "scope.userLocation": {

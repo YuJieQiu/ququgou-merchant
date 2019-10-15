@@ -1,0 +1,51 @@
+<view class="container">
+    <view class="basic-info">
+        <van-panel title="申请信息" desc="" status="{{applyData.statusText!=''?applyData.statusText:''}}">
+            <van-cell-group>
+                <!-- 店铺图片 S -->
+                <view class="basic-info-images">
+                    <i-grid i-class="basic-info-images-guid">
+                        <i-grid-item i-class="grid-item" wx:for="{{applyData.resources}}">
+                            <image class="item-images" mode="aspectFill" src="{{item.url}}" />
+                            <van-button size="mini" square type="danger" custom-class="close" data-id="{{item.id}}" bindtap="deleteImage">
+                                删除
+                            </van-button>
+                        </i-grid-item>
+                        <i-grid-item i-class="grid-item" wx:if="{{applyData.resources.length<3}}">
+                            <view class="grid-item-add" wx:if="{{applyData.id==0}}" bindtap="merImageUpload">
+                                <view class="add">
+                                    <van-icon name="plus" size="50rpx" />
+                                </view>
+                            </view>
+                        </i-grid-item>
+                        <i-grid-item i-class="grid-item" wx:for="{{2-applyData.resources.length}}">
+                            <view class="grid-item-empty" />
+                        </i-grid-item>
+                    </i-grid>
+                </view>
+            </van-cell-group>
+            <van-field required="{{true}}" value="{{ applyData.name }}" disabled="{{applyData.id!=0}}" label="名称" bind:input="onChangeMerInfoName" type="textarea" placeholder="请输入名称" autosize border="{{ false }}" />
+            <van-cell required="{{true}}" title="地址选择" bind:click="{{applyData.id==0?'onAddressClick':''}}" title-width="70px" icon="location-o" on is-link>
+                <view class="address-region">
+                    <view class="address-region-value">{{applyData.city}}</view>
+                    <view class="address-region-value">{{applyData.region}}</view>
+                    <view class="address-region-value">{{applyData.town}}</view>
+                </view>
+            </van-cell>
+            <van-field value="{{applyData.address}}" label="详细地址" type="textarea" placeholder="请输入详细地址" bind:input="onChangeMerInfoAddress" required="{{true}}" autosize border="{{ false }}" />
+            <van-field value="{{ applyData.phone }}" label="联系电话" placeholder="请输入手机号" bind:input="onChangeMerInfoPhone" border="{{ false }}" required="{{true}}" maxlength="{{11}}" />
+            <van-field value="{{applyData.remark}}" label="备注信息" type="textarea" placeholder="请输入详细地址" bind:input="onChangeMerInfoRemark" required="{{true}}" autosize border="{{ false }}" />
+        </van-panel>
+        <view class="" wx:if="{{applyData.id==0}}">
+            <van-button loading="{{saveButtonLoading}}" loading-text="处理中..." custom-class="but-save" size="large" type="danger" bind:click="saveSubmit">
+                提交
+            </van-button>
+        </view>
+        <view class="" wx:if="{{applyData.id>0&&applyData.status==0}}">
+            <van-button loading="{{saveButtonLoading}}" loading-text="处理中..." custom-class="but-save" size="large" type="danger" bind:click="autorApplySubmit">
+                自助通过审核
+            </van-button>
+        </view>
+        <van-toast id="van-toast" />
+    </view>
+</view>

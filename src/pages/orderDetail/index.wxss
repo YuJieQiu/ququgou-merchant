@@ -86,6 +86,7 @@ Page .o-footer-but {
   display: inline-block;
   float: right;
 }
+
 Page .o-footer-money-block {
   color: #f44;
   font-size: 18px;
@@ -100,6 +101,7 @@ Page .order-info {
   margin-bottom: 20rpx;
   padding: 20rpx;
   background-color: #fff;
+  font-size: 15px;
 }
 
 Page .footer-option-but {
@@ -119,6 +121,7 @@ Page .footer-option-but .option-but {
 Page .footer-option-but .option-but-right {
   float: right;
 }
+
 Page .footer-option-but .option-but-left {
   float: left;
 }

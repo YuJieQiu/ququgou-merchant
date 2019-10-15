@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "upload-img": "../../components/upload-img/index",
+    "van-popup": "../../components/vant-weapp/dist/popup/index",
+    "i-panel": "../../components/iview-weapp/dist/panel/index",
+    "i-grid": "../../components/iview-weapp/dist/grid/index",
+    "i-grid-item": "../../components/iview-weapp/dist/grid-item/index",
+    "i-grid-icon": "../../components/iview-weapp/dist/grid-icon/index",
+    "i-grid-label": "../../components/iview-weapp/dist/grid-label/index"
+  }
+}

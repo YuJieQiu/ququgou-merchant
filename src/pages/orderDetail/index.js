@@ -5,34 +5,28 @@ Page({
     orderNo: '',
     order: {},
     address: {},
-    products: []
+    products: [],
+    userInfo: {}
   },
 
   onShow: function () { },
   getDataInfo: function (orderNo) {
     app.httpGet('order/get/detail', { orderNo: orderNo }).then(res => {
-      console.log(res)
+
       this.setData({
         address: res.data.address,
         products: res.data.products,
         order: res.data
       })
+      this.getOrderUserInfo()
     })
   },
-  onOrderCancel() {
-    let that = this
-    Dialog.confirm({
-      title: '取消订单',
-      message: '是否取消订单'
-    })
-      .then(() => {
-        app
-          .httpPost('order/cancel', { orderNo: that.data.orderNo })
-          .then(res => {
-            console.log(res)
-          })
+  getOrderUserInfo: function () {
+    app.httpGet('order/get/user/info', { orderNo: this.data.order.no }).then(res => {
+      this.setData({
+        userInfo: res.data
       })
-      .catch(() => { })
+    })
   },
   onLoad(options) {
     console.log(options.orderNo)

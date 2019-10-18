@@ -17,7 +17,11 @@
     "pages/orderDetail/index",
     "pages/categoryManage/index",
     "pages/tagManage/index",
-    "pages/applyMerchant/index"
+    "pages/applyMerchant/index",
+    "pages/systemManage/index",
+    "pages/systemManage/banner/index",
+    "pages/systemManage/homeModuleConfig/index",
+    "pages/systemManage/productCategory/index"
   ],
   "permission": {
     "scope.userLocation": {

@@ -1,0 +1,66 @@
+<wxs module="wxs" src="../../common/index.wxs" />
+<view class="container">
+    <view class="basic-info">
+        <!-- 图片 S -->
+        <i-panel title="模块" hide-border="{{true}}">
+            <view class="basic-info-images">
+                <i-grid i-class="basic-info-images-guid">
+                    <i-grid-item i-class="grid-item" wx:for="{{wxs.arraySlice(list,0,5)}}">
+                        <image class="item-images" mode="scaleToFill" src="{{item.images.url}}" />
+                        <van-button size="mini" square type="danger" custom-class="close" data-id="{{item.id}}" data-index="{{index}}" bindtap="deleteImage">
+                            删除{{item.id}}
+                        </van-button>
+                    </i-grid-item>
+                    <i-grid-item i-class="grid-item" wx:if="{{list.length<5}}">
+                        <view class="grid-item-add" bindtap="onImageUpload" data-callback="{{'merImagesLoad'}}">
+                            <view class="add">
+                                <van-icon name="plus" size="50rpx" />
+                            </view>
+                        </view>
+                    </i-grid-item>
+                    <i-grid-item i-class="grid-item" wx:for="{{5-list.length}}">
+                        <view class="grid-item-empty" />
+                    </i-grid-item>
+                </i-grid>
+                <i-grid i-class="basic-info-images-guid" wx:if="{{list.length>4}}">
+                    <i-grid-item i-class="grid-item" wx:for="{{wxs.arraySlice(list,5,0)}}">
+                        <image class="item-images" mode="scaleToFill" src="{{item.images.url}}" />
+                        <van-button size="mini" square type="danger" custom-class="close" data-id="{{item.id}}" data-index="{{index+4}}" bindtap="deleteImage">
+                            删除{{item.id}}
+                        </van-button>
+                    </i-grid-item>
+                    <i-grid-item i-class="grid-item" wx:if="{{list.length<10}}">
+                        <view class="grid-item-add" bindtap="onImageUpload" data-callback="{{'merImagesLoad'}}">
+                            <view class="add">
+                                <van-icon name="plus" size="50rpx" />
+                            </view>
+                        </view>
+                    </i-grid-item>
+                    <i-grid-item i-class="grid-item" wx:for="{{9-list.length}}">
+                        <view class="grid-item-empty" />
+                    </i-grid-item>
+                </i-grid>
+            </view>
+        </i-panel>
+        <!-- 图片 E -->
+        <view class="">
+            <i-panel title="{{'详细信息'+(index+1)}}" hide-border="{{true}}" wx:for="{{list}}" wx:key="{{index}}">
+                <van-field value="{{ item.text }}" data-field="text" data-id="{{item.id}}" data-index="{{index}}" required clearable label="显示文字" icon="question-o" placeholder="" bind:input="onChangeField" />
+                <van-field value="{{ item.name }}" data-field="name" data-id="{{item.id}}" data-index="{{index}}" required clearable label="name" icon="question-o" placeholder="" bind:input="onChangeField" />
+                <van-field value="{{ item.linkType }}" data-field="linkType" data-id="{{item.id}}" data-index="{{index}}" required clearable label="连接类型" icon="question-o" placeholder="" bind:input="onChangeField" />
+                <van-field value="{{ item.linkUrl }}" data-field="linkUrl" data-id="{{item.id}}" data-index="{{index}}" required clearable label="跳转地址" icon="question-o" placeholder="" bind:input="onChangeField" />
+                <van-field value="{{ item.code }}" data-field="code" data-id="{{item.id}}" data-index="{{index}}" required clearable label="自定义Code" icon="question-o" placeholder="" bind:input="onChangeField" />
+                <van-field value="{{ item.categoryId }}" data-field="categoryId" data-id="{{item.id}}" data-index="{{index}}" required clearable label="分类ID" icon="question-o" placeholder="" bind:input="onChangeField" />
+                <van-field value="{{ item.sort }}" data-field="sort" data-id="{{item.id}}" data-index="{{index}}" required clearable label="排序" icon="question-o" placeholder="" bind:input="onChangeFieldInt" />
+                <!-- <van-switch checked="{{ checked }}" bind:change="onChange" /> -->
+            </i-panel>
+            <!-- <i-panel title="新人专享模块" hide-border="{{true}}"></i-panel>
+            <i-panel title="新品推荐模块" hide-border="{{true}}"></i-panel>
+            <i-panel title="首页推荐商品列表" hide-border="{{true}}"></i-panel> -->
+        </view>
+        <van-button loading="{{saveButtonLoading}}" loading-text="处理中..." custom-class="but-save" size="large" type="danger" bind:click="saveSubmit">
+            保存
+        </van-button>
+    </view>
+    <van-toast id="van-toast" />
+</view>

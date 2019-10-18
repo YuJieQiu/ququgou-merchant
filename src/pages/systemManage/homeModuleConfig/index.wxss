@@ -1,0 +1,64 @@
+Page {
+  padding-top: 50rpx;
+  padding-bottom: 1rpx;
+}
+
+.basic-info {
+  z-index: 50;
+}
+
+.basic-info .basic-info-images {
+  margin-bottom: 30rpx;
+}
+
+.basic-info .basic-info-images .basic-info-images-guid {
+  margin-top: 30rpx;
+  border: 0;
+}
+
+.basic-info .basic-info-images .basic-info-images-guid .grid-item {
+  margin: 0;
+  padding: 0;
+  border: none;
+  height: 277rpx;
+}
+
+.basic-info .basic-info-images .basic-info-images-guid .grid-item .item-images {
+  width: 95%;
+  height: 222rpx;
+}
+
+.basic-info .basic-info-images .basic-info-images-guid .grid-item .close {
+  right: 0px;
+  bottom: 0px;
+  width: 95%;
+  height: 50rpx;
+  margin-top: 5rpx;
+}
+
+.basic-info .basic-info-images .basic-info-images-guid .grid-item .grid-item-empty {
+  width: 95%;
+  height: 100%;
+}
+
+.basic-info .basic-info-images .basic-info-images-guid .grid-item .grid-item-add {
+  background-color: #fff;
+  width: 95%;
+  height: 100%;
+  position: relative;
+}
+
+.basic-info .basic-info-images .basic-info-images-guid .grid-item .grid-item-add .add {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 50rpx;
+  width: 50rpx;
+  margin: auto;
+}
+
+.basic-info .basic-info-images .basic-info-images-guid .grid-item .grid-item-add:active {
+  background-color: #f2f3f5;
+}

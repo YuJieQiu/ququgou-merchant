@@ -320,7 +320,8 @@ Page({
   onChangeProInfoCurrentPrice(e) {
     const that = this
     this.setData({
-      'productInfo.currentPrice': that.setValueParseFloat(e.detail)
+      'productInfo.currentPrice': that.setValueParseFloat(e.detail),
+      'productInfo.sku[0].price': that.setValueParseFloat(e.detail)
     })
   },
   onChangeMuchSkuAtt(e) {

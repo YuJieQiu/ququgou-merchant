@@ -8,7 +8,7 @@
 										<i-grid-item i-class="grid-item" wx:for="{{wxs.arraySlice(productInfo.resources,0,3)}}">
 												<image class="item-images" mode="scaleToFill" src="{{item.resource.url}}" />
 												<van-button size="mini" square type="danger" custom-class="close" data-id="{{item.resourceId}}" data-index="{{index}}" bindtap="deleteImage">
-														删除{{item.resourceId}}
+														删除
 												</van-button>
 										</i-grid-item>
 										<i-grid-item i-class="grid-item" wx:if="{{productInfo.resources.length<3}}">
@@ -26,7 +26,7 @@
 										<i-grid-item i-class="grid-item" wx:for="{{wxs.arraySlice(productInfo.resources,3,0)}}">
 												<image class="item-images" mode="scaleToFill" src="{{item.resource.url}}" />
 												<van-button size="mini" square type="danger" custom-class="close" data-id="{{item.resourceId}}" data-index="{{index+3}}" bindtap="deleteImage">
-														删除{{item.resourceId}}
+														删除
 												</van-button>
 										</i-grid-item>
 										<i-grid-item i-class="grid-item" wx:if="{{productInfo.resources.length<6}}">

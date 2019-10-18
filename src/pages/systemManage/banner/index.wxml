@@ -1,0 +1,43 @@
+<view class="container">
+    <view class="basic-info">
+        <!-- 图片 S -->
+        <view class="basic-info-images">
+            <i-grid i-class="basic-info-images-guid" wx:for="{{list}}" wx:key="{{index}}">
+                <i-grid-item i-class="grid-item">
+                    <image class="item-images" mode="aspectFill" src="{{item.images.url}}" />
+                    <van-field value="{{ item.linkUrl }}" data-field="linkUrl" data-index="{{index}}" label="跳转连接" data-id="{{item.id}}" bind:input="onChangeText" placeholder="" />
+                    <van-field value="{{ item.backgroundColor }}" data-field="backgroundColor" data-index="{{index}}" label="背景颜色" data-id="{{item.id}}" bind:input="onChangeText" placeholder="" />
+                    <van-field value="{{ item.fontColor }}" data-field="fontColor" data-index="{{index}}" label="字体颜色" data-id="{{item.id}}" bind:input="onChangeText" placeholder="" />
+                    <van-field value="{{ item.sort }}" data-field="sort" data-type="int" data-index="{{index}}" label="排序" data-id="{{item.id}}" bind:input="onChangeText" placeholder="" />
+                    <van-button size="mini" square type="danger" custom-class="close" data-id="{{item.id}}" bindtap="deleteImage">
+                        删除
+                    </van-button>
+                </i-grid-item>
+                <!-- <i-grid-item i-class="grid-item" wx:if="{{list.length<3}}">
+                    <view class="grid-item-add" bindtap="merImageUpload">
+                        <view class="add">
+                            <van-icon name="plus" size="50rpx" />
+                        </view>
+                    </view>
+                </i-grid-item> -->
+                <!-- <i-grid-item i-class="grid-item" wx:for="{{1-list.length}}">
+                    <view class="grid-item-empty" />
+                </i-grid-item> -->
+            </i-grid>
+            <i-grid i-class="basic-info-images-guid" wx:if="{{list.length<3}}">
+                <i-grid-item i-class="grid-item">
+                    <view class="grid-item-add" bindtap="merImageUpload">
+                        <view class="add">
+                            <van-icon name="plus" size="50rpx" />
+                        </view>
+                    </view>
+                </i-grid-item>
+            </i-grid>
+        </view>
+        <!-- 图片 E -->
+        <van-button loading="{{saveButtonLoading}}" loading-text="处理中..." custom-class="but-save" size="large" type="danger" bind:click="saveSubmit">
+            保存
+        </van-button>
+    </view>
+    <van-toast id="van-toast" />
+</view>

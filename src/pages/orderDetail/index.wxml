@@ -3,47 +3,67 @@
   <!-- 收货地址 S -->
   <view class="order-address" wx:if="{{order.deliveryType==5}}">
     <van-panel title="用户收货地址">
-      <van-cell custom-class="address-cell" clickable="{{true}}" is-link title="{{address.city}}{{address.region}}{{address.town}}{{address.address}}" label="{{address.username}}{{address.phone}}" icon="location-o" center="{{true}}" size="large" border="{{true}}">
+      <van-cell custom-class="address-cell" data-latitude="{{address.latitude}}" data-longitude="{{address.longitude}}" clickable="{{true}}" is-link title="{{address.city}}{{address.region}}{{address.town}}{{address.address}}" label="{{address.username}}{{address.phone}}" icon="location-o" center="{{true}}" size="large" border="{{true}}">
         <view slot="title"></view>
       </van-cell>
+    </van-panel>
+  </view>
+  <view class="order-info">
+    <van-panel title="收货人地址信息">
+      <van-row>
+        <van-col span="10">姓名</van-col>
+        <van-col span="">{{address.username}}</van-col>
+      </van-row>
+      <van-row>
+        <van-col span="6">手机号:</van-col>
+        <van-col span="">
+          <van-cell icon="phone-o" title="{{address.phone}}" clickable="{{true}}" data-phone="{{address.phone}}" bind:click="onPhoneClick" />
+        </van-col>
+      </van-row>
+      <van-row>
+        <van-col span="6">详细地址:</van-col>
+        <van-col span="">
+          {{address.city}}{{address.region}}{{address.town}}{{address.address}}
+        </van-col>
+      </van-row>
     </van-panel>
   </view>
   <!-- 收货地址 E -->
   <!-- 订单信息 S -->
   <view class="order-info">
     <van-row>
-      <van-col span="10">
+      <van-col span="">
         <van-icon name="pending-payment" />
         {{order.statusText}}
       </van-col>
     </van-row>
     <van-row>
       <van-col span="6">订单编号:</van-col>
-      <van-col span="10">{{order.no}}</van-col>
+      <van-col span="">{{order.no}}</van-col>
     </van-row>
     <van-row>
       <van-col span="6">下单时间:</van-col>
-      <van-col span="10">{{order.createdTime}}</van-col>
+      <van-col span="">{{order.createdTime}}</van-col>
     </van-row>
     <van-row wx:if="{{order.payTypeText!=''}}">
       <van-col span="6">支付方式</van-col>
-      <van-col span="10">{{order.payTypeText}}</van-col>
+      <van-col span="">{{order.payTypeText}}</van-col>
     </van-row>
     <van-row wx:if="{{order.paymentTime!=''}}">
       <van-col span="6">支付时间:</van-col>
-      <van-col span="10">{{order.paymentTime}}</van-col>
+      <van-col span="">{{order.paymentTime}}</van-col>
     </van-row>
     <van-row wx:if="{{order.cancelTime!=''}}">
       <van-col span="6">取消时间:</van-col>
-      <van-col span="10">{{order.cancelTime}}</van-col>
+      <van-col span="">{{order.cancelTime}}</van-col>
     </van-row>
     <van-row>
       <van-col span="6">配送方式:</van-col>
-      <van-col span="10">{{order.deliveryType==10?'自提':'送货上门'}}</van-col>
+      <van-col span="">{{order.deliveryType==10?'自提':'送货上门'}}</van-col>
     </van-row>
     <van-row wx:if="{{order.remark!=''}}">
       <van-col span="6">备注:</van-col>
-      <van-col span="10">{{order.remark}}</van-col>
+      <van-col span="">{{order.remark}}</van-col>
     </van-row>
   </view>
   <!-- 订单信息 E -->

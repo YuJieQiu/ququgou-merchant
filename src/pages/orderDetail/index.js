@@ -8,7 +8,23 @@ Page({
     products: [],
     userInfo: {}
   },
-
+  onAddressClick(e) {
+    const latitude = e.currentTarget.dataset.latitude
+    const longitude = e.currentTarget.dataset.longitude
+    console.log(latitude)
+    console.log(longitude)
+    wx.openLocation({
+      latitude,
+      longitude,
+      scale: 18
+    })
+  },
+  onPhoneClick(e) {
+    const phone = e.currentTarget.dataset.phone
+    wx.makePhoneCall({
+      phoneNumber: phone
+    })
+  },
   onShow: function () { },
   getDataInfo: function (orderNo) {
     app.httpGet('order/get/detail', { orderNo: orderNo }).then(res => {

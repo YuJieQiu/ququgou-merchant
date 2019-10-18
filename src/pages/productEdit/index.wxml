@@ -40,43 +40,14 @@
 												<view class="grid-item-empty" />
 										</i-grid-item>
 								</i-grid>
-								<!-- <block wx:for="{{productInfo.resources}}">
-										<i-grid i-class="basic-info-images-guid">
-												<i-grid-item i-class="grid-item" wx:for="{{productInfo.resources}}">
-														<image class="item-images" mode="scaleToFill" src="{{item.resource.url}}" />
-														<van-button size="mini" square type="danger" custom-class="close" data-id="{{item.resourceId}}" bindtap="deleteImage">
-																删除
-														</van-button>
-												</i-grid-item>
-												<i-grid-item i-class="grid-item" wx:if="{{productInfo.resources.length<6}}">
-														<view class="grid-item-add" bindtap="onImageUpload" data-callback="{{'merImagesLoad'}}">
-																<view class="add">
-																		<van-icon name="plus" size="50rpx" />
-																</view>
-														</view>
-												</i-grid-item>
-												<i-grid-item i-class="grid-item" wx:for="{{5-productInfo.resources.length}}">
-														<view class="grid-item-empty" />
-												</i-grid-item>
-										</i-grid>
-								</block> -->
-								<!-- <i-grid-item i-class="grid-item">
-										<view class="item-images-block" wx:for="{{productInfo.resources}}">
-												<image class="item-images" mode="scaleToFill" src="{{item.resource.url}}" />
-												<van-button size="mini" square type="danger" custom-class="close" data-id="{{item.resourceId}}" bindtap="deleteImage">
-														删除
-												</van-button>
-										</view>
-										<view wx:if="{{productInfo.resources.length<6}}" class="item-images-block item-images-block-add" bindtap="onImageUpload" data-callback="{{'merImagesLoad'}}">
-												<view class="add">
-														<van-icon name="plus" size="50rpx" />
-												</view>
-										</view>
-								</i-grid-item> -->
 						</view>
 						<!-- 店铺图片 E -->
 						<!-- 商品类目选择 -->
-						<van-cell title="商品类目" is-link value="{{categoryInfo.name==''?'请选择':categoryInfo.name}}" link-type="navigateTo" url="/pages/categoryManage/index" />
+						<van-cell title="商品类目" is-link link-type="navigateTo" url="{{'/pages/categoryManage/index?id='+categoryInfo.id}}">
+								<view>
+										<block wx:for="{{categoryInfos}}">{{item.categoryName}}</block>
+								</view>
+						</van-cell>
 						<i-panel title="基本信息" hide-border="{{true}}">
 								<!-- 商品名称 -->
 								<van-field value="{{ productInfo.name }}" label="商品名称" required type="textarea" placeholder="请输入商品名称" autosize border="{{ false }}" bind:input="onChangeProInfoName" />

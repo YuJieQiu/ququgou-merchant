@@ -4,10 +4,7 @@ Page({
   data: {
     saveButtonLoading: false,
     readOnly: false,
-    categoryInfo: {
-      id: 0,
-      name: ""
-    },
+    categoryInfos: [],
     productInfo: {
       id: 0,
       brandId: 0,
@@ -358,7 +355,6 @@ Page({
     })
   },
   getProductInfo() {
-    console.log('getProductInfo')
     const that = this
     app
       .httpGet('product/get', {
@@ -367,7 +363,8 @@ Page({
       .then(res => {
         const data = res.data
         this.setData({
-          productInfo: data
+          productInfo: data,
+          categoryInfos: data.categoryInfos
         })
         console.log(data)
       })
@@ -376,12 +373,15 @@ Page({
   saveSubmit() {
     var that = this
     that.setData({ 'saveButtonLoading': true })
-    if (that.data.categoryInfo.id > 0) {
+    if (that.data.categoryInfos.length > 0) {
+      let categoryIds = []
+      that.data.categoryInfos.forEach(element => {
+        categoryIds.push(parseInt(element.categoryId))
+      });
       this.setData({
-        'productId.categoryIds': [that.data.categoryInfo.id]
+        'productInfo.categoryIds': categoryIds
       })
     }
-
     let url = 'product/create'
     if (this.data.saveType == 1) {
       url = 'product/update'
@@ -398,6 +398,9 @@ Page({
       }
 
     })
+  },
+  onShow() {
+
   },
   onLoad: function (options) {
     this.data.id = options.id

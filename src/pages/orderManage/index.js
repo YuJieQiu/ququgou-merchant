@@ -27,7 +27,7 @@ Page({
 
     app.httpGet('order/get/list', data).then(res => {
       wx.stopPullDownRefresh()
-      if (res.data.length <= 0) {
+      if (res.data == null || res.data.length <= 0 || res.data.length < 10) {
         that.setData({ pageEnd: true })
         return
       }

@@ -18,7 +18,6 @@
             </view>
             <view class="view-inline-block view-margin-left-5 vertical-align-top">首页分类设置</view>
             <view class="view-inline-block view-margin-left-5 vertical-align-top">
-                present
                 <!-- <van-tag type="danger">标签</van-tag> -->
             </view>
         </view>
@@ -60,7 +59,7 @@
         </view>
         <van-icon slot="right-icon" name="arrow" class="" />
     </van-cell>
-    <van-cell url="/pages/merInfo/index">
+    <van-cell url="">
         <view slot="title">
             <view class="view-inline-block view-margin-left-5 ">
                 <van-icon name="setting-o" />
@@ -72,7 +71,7 @@
         </view>
         <van-icon slot="right-icon" name="arrow" class="" />
     </van-cell>
-    <van-cell url="/pages/merInfo/index">
+    <van-cell url="">
         <view slot="title">
             <view class="view-inline-block view-margin-left-5 ">
                 <van-icon name="setting-o" />
@@ -84,48 +83,12 @@
         </view>
         <van-icon slot="right-icon" name="arrow" class="" />
     </van-cell>
-    <van-cell url="/pages/merInfo/index">
+    <van-cell url="">
         <view slot="title">
             <view class="view-inline-block view-margin-left-5 ">
                 <van-icon name="setting-o" />
             </view>
             <view class="view-inline-block view-margin-left-5 vertical-align-top">商户管理</view>
-            <view class="view-inline-block view-margin-left-5 vertical-align-top">
-                <!-- <van-tag type="danger">标签</van-tag> -->
-            </view>
-        </view>
-        <van-icon slot="right-icon" name="arrow" class="" />
-    </van-cell>
-    <van-cell url="/pages/merInfo/index">
-        <view slot="title">
-            <view class="view-inline-block view-margin-left-5 ">
-                <van-icon name="setting-o" />
-            </view>
-            <view class="view-inline-block view-margin-left-5 vertical-align-top">新品推荐管理</view>
-            <view class="view-inline-block view-margin-left-5 vertical-align-top">
-                <!-- <van-tag type="danger">标签</van-tag> -->
-            </view>
-        </view>
-        <van-icon slot="right-icon" name="arrow" class="" />
-    </van-cell>
-    <van-cell url="/pages/merInfo/index">
-        <view slot="title">
-            <view class="view-inline-block view-margin-left-5 ">
-                <van-icon name="setting-o" />
-            </view>
-            <view class="view-inline-block view-margin-left-5 vertical-align-top">热门推荐管理</view>
-            <view class="view-inline-block view-margin-left-5 vertical-align-top">
-                <!-- <van-tag type="danger">标签</van-tag> -->
-            </view>
-        </view>
-        <van-icon slot="right-icon" name="arrow" class="" />
-    </van-cell>
-    <van-cell url="/pages/merInfo/index">
-        <view slot="title">
-            <view class="view-inline-block view-margin-left-5 ">
-                <van-icon name="setting-o" />
-            </view>
-            <view class="view-inline-block view-margin-left-5 vertical-align-top">新人专享管理</view>
             <view class="view-inline-block view-margin-left-5 vertical-align-top">
                 <!-- <van-tag type="danger">标签</van-tag> -->
             </view>

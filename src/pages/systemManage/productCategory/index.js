@@ -24,26 +24,22 @@ Page({
     const id = e.currentTarget.dataset.id
     const index = e.currentTarget.dataset.index
     var list = this.data.list
-    console.log(e)
-    if (id > 0) {
-      list.forEach(element => {
-        if (element.id == id) {
-          element.child.push({
-            id: 0,
-            name: "分类",
-            pid: id
-          })
-        }
-      });
-    } else if (index > 0) {
-      list[index].child.push({
-        id: 0,
-        name: "分类"
-      })
-    } else {
+
+    if (index == -1) {
       list.push({
         id: 0,
-        name: "分类",
+        name: '',
+        child: []
+      })
+    }
+    else {
+      if (list[index].child == null || list[index].child.length <= 0) {
+        list[index].child = []
+      }
+
+      list[index].child.push({
+        id: 0,
+        name: list[index].name,
         child: []
       })
     }
@@ -55,16 +51,11 @@ Page({
     const id = e.currentTarget.dataset.id
     const item = e.currentTarget.dataset.item
     const index = e.currentTarget.dataset.index
-
+    const childindex = e.currentTarget.dataset.cindex
     var list = this.data.list
-    if (item.pid > 0) {
-      list.forEach(element => {
-        if (element.id == item.pid) {
-          element.child.splice(index, 1)
-        }
-      });
+    if (childindex >= 0) {
+      list[index].child.splice(childindex, 1)
     } else {
-
       list.splice(index, 1)
     }
     this.setData({
@@ -106,19 +97,34 @@ Page({
     const id = e.currentTarget.dataset.id
     const item = e.currentTarget.dataset.item
     const index = e.currentTarget.dataset.index
-
+    const childindex = e.currentTarget.dataset.cindex
     var list = this.data.list
-    if (item.pid > 0) {
-      list.forEach(element => {
-        if (element.id == item.pid) {
-          element.child[index].images = { url: data.url }
-          element.child[index].resourceId = data.id
-        }
-      });
+
+    if (childindex >= 0) {
+      list[index].child[childindex].images = { url: data.url }
+      list[index].child[childindex].resourceId = data.id
     } else {
       list[index].images = { url: data.url }
       list[index].resourceId = data.id
     }
+
+    // if (item.pid > 0) {
+    //   list.forEach(element => {
+    //     if (element.id == item.pid) {
+    //       element.child[index].images = { url: data.url }
+    //       element.child[index].resourceId = data.id
+    //     }
+    //   });
+    // } else {
+    //   if (childindex >= 0) {
+    //     list[index].child[childindex].images = { url: data.url }
+    //     list[index].child[childindex].resourceId = data.id
+    //   } else {
+    //     list[index].images = { url: data.url }
+    //     list[index].resourceId = data.id
+    //   }
+    // }
+
     this.setData({
       list: list
     })
@@ -127,19 +133,28 @@ Page({
     const id = e.currentTarget.dataset.id
     const item = e.currentTarget.dataset.item
     const index = e.currentTarget.dataset.index
+    const childindex = e.currentTarget.dataset.cindex
 
     var list = this.data.list
-    if (item.pid > 0) {
-      list.forEach(element => {
-        if (element.id == item.pid) {
-          element.child[index].images = {}
-          element.child[index].resourceId = 0
-        }
-      });
+
+    if (childindex >= 0) {
+      list[index].child[childindex].images = {}
+      list[index].child[childindex].resourceId = 0
     } else {
       list[index].images = {}
       list[index].resourceId = 0
     }
+
+    // if (item.pid > 0) {
+    //   list.forEach(element => {
+    //     if (element.id == item.pid) {
+    //       element.child[index].images = {}
+    //       element.child[index].resourceId = 0
+    //     }
+    //   });
+    // } else {
+
+    // }
     this.setData({
       list: list
     })
@@ -159,14 +174,18 @@ Page({
   onChangeText(e) {
     var that = this
     const id = e.currentTarget.dataset.id
-    var resources = that.data.list
-    resources.forEach(currentItem => {
-      if (currentItem.id == id) {
-        currentItem.linkUrl = e.detail
-      }
-    })
+    const index = e.currentTarget.dataset.index
+    const childindex = e.currentTarget.dataset.cindex
+    var list = that.data.list
+    if (childindex >= 0) {
+      list[index].child[childindex].name = e.detail
+
+    } else {
+      list[index].name = e.detail
+    }
+
     this.setData({
-      'list': resources
+      'list': list
     })
   },
   //图片上传

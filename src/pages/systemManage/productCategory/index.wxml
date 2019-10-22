@@ -1,7 +1,7 @@
 <view class="container">
     <view class="basic-info">
         <view class="ca-vi" wx:for="{{list}}">
-            <van-field value="{{ item.name }}" center clearable label="" placeholder="" border="{{ false }}" use-button-slot>
+            <van-field value="{{ item.name }}" center clearable label="" placeholder="" border="{{ false }}" data-index="{{index}}" bind:change="onChangeText" use-button-slot>
                 <view slot="label">
                     <view class="sku-image-row">
                         <view class="sku-upload-image">
@@ -23,18 +23,18 @@
                     删除
                 </van-button>
             </van-field>
-            <view class="ca-ch-vi" wx:for="{{item.child}}" wx:key="{{index}}">
-                <van-field value="{{ item.name }}" center clearable label="" placeholder="" border="{{ false }}" use-button-slot>
+            <view class="ca-ch-vi" wx:for="{{item.child}}" wx:key="{{cindex}}" wx:for-index="cindex">
+                <van-field value="{{ item.name }}" center clearable label="" placeholder="" border="{{ false }}" data-index="{{index}}" data-cindex="{{cindex}}" bind:change="onChangeText" use-button-slot>
                     <view slot="label">
                         <view class="sku-image-row">
                             <view class="sku-upload-image">
                                 <view class="v-block" wx:if="{{item.resourceId>0}}">
                                     <image class="v-block-image" mode="scaleToFill" src="{{item.images.url}}" />
-                                    <view class="close" data-item="{{item}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="skuImagesDelete">
+                                    <view class="close" data-item="{{item}}" data-id="{{item.id}}" data-cindex="{{cindex}}" data-index="{{index}}" bindtap="skuImagesDelete">
                                         x
                                     </view>
                                 </view>
-                                <view wx:else class="add-but" data-item="{{item}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="onImageUpload" data-callback="{{'skuImagesLoad'}}">
+                                <view wx:else class="add-but" data-item="{{item}}" data-id="{{item.id}}" data-cindex="{{cindex}}" data-index="{{index}}" bindtap="onImageUpload" data-callback="{{'skuImagesLoad'}}">
                                     <view>
                                         <van-icon name="plus" size="50rpx" />
                                     </view>
@@ -42,7 +42,7 @@
                             </view>
                         </view>
                     </view>
-                    <van-button slot="button" size="small" type="default" data-item="{{item}}" data-id="{{item.id}}" data-index="{{index}}" bind:click="deleteItem">
+                    <van-button slot="button" size="small" type="default" data-item="{{item}}" data-id="{{item.id}}" data-cindex="{{cindex}}" data-index="{{index}}" bind:click="deleteItem">
                         删除
                     </van-button>
                 </van-field>
@@ -87,7 +87,7 @@
                       </van-collapse-item>
             </block>
         </van-collapse> -->
-        <van-button type="default" size="small" data-id="{{0}}" data-index="{{0}}" bind:click="addItem">
+        <van-button type="default" size="small" data-id="{{0}}" data-index="{{-1}}" bind:click="addItem">
             添加
         </van-button>
         <van-button loading="{{saveButtonLoading}}" loading-text="处理中..." custom-class="but-save" size="large" type="danger" bind:click="saveSubmit">

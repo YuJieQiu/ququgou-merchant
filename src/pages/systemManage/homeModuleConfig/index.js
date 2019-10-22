@@ -109,14 +109,28 @@ Page({
     })
   },
   //删除图片
-  deleteImage(event) {
-    var that = this
-    const id = event.currentTarget.dataset.id
-    var resources = this.data.list
-    resources.splice(resources.findIndex(item => item.id === id), 1)
-    that.setData({
-      'list': resources
+  deleteImage(e) {
+    // const id = e.currentTarget.dataset.id
+    // const item = e.currentTarget.dataset.item
+    const index = e.currentTarget.dataset.index
+    // const childindex = e.currentTarget.dataset.cindex
+    var list = this.data.list
+    console.log(list)
+    list.splice(index, 1)
+    // if (childindex >= 0) {
+    //   list[index].child.splice(childindex, 1)
+    // } else {
+    //   list.splice(index, 1)
+    // }
+    this.setData({
+      list: list
     })
+
+    // var resources = this.data.list
+    // resources.splice(resources.findIndex(item => item.id === id), 1)
+    // that.setData({
+    //   'list': resources
+    // })
   },
   //保存更新数据
   saveSubmit() {

@@ -1,6 +1,6 @@
 <view class="container">
     <view class="basic-info">
-        <view class="ca-vi" wx:for="{{list}}">
+        <view class="ca-vi" wx:for="{{list}}" wx:key="{{index}}">
             <van-field value="{{ item.name }}" center clearable label="" placeholder="" border="{{ false }}" data-index="{{index}}" bind:change="onChangeText" use-button-slot>
                 <view slot="label">
                     <view class="sku-image-row">

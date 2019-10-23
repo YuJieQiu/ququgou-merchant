@@ -5,7 +5,7 @@
 						<!-- 店铺图片 S -->
 						<view class="basic-info-images">
 								<i-grid i-class="basic-info-images-guid">
-										<i-grid-item i-class="grid-item" wx:for="{{merInfo.resources}}">
+										<i-grid-item i-class="grid-item" wx:for="{{merInfo.resources}}" wx:key="{{index}}">
 												<image class="item-images" mode="aspectFill" src="{{item.url}}" />
 												<van-button size="mini" square type="danger" custom-class="close" data-id="{{item.id}}" bindtap="deleteImage">
 														删除
@@ -18,7 +18,7 @@
 														</view>
 												</view>
 										</i-grid-item>
-										<i-grid-item i-class="grid-item" wx:for="{{2-merInfo.resources.length}}">
+										<i-grid-item i-class="grid-item" wx:for="{{2-merInfo.resources.length}}" wx:key="{{index}}">
 												<view class="grid-item-empty" />
 										</i-grid-item>
 								</i-grid>
@@ -51,7 +51,7 @@
 								<view class="tag-info">
 										<van-cell title="标签" is-link value="选择标签(可选)" is-link link-type="navigateTo" url="/pages/tagManage/index" />
 										<view class="popup-tag-list">
-												<block wx:for='{{merInfo.label}}' wx:for-index='key'>
+												<block wx:for='{{merInfo.label}}' wx:key="{{index}}" wx:for-index='key'>
 														<van-tag custom-class="custom-van-tag" round>{{item}}</van-tag>
 												</block>
 										</view>

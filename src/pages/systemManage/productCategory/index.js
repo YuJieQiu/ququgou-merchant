@@ -163,7 +163,6 @@ Page({
     const that = this
     app.httpGet('product/category/get', {}).then(res => {
       wx.stopPullDownRefresh()
-      console.log(res)
       if (res.data != null && res.data.length > 0) {
         that.setData({
           list: res.data
@@ -208,7 +207,6 @@ Page({
             const resources = JSON.parse(res.data).data[0]
             //var resources = that.data.list 
             //resources.push(...data)
-            console.log(resources)
             let list = that.data.list
             list.push({
               description: "",
@@ -227,7 +225,6 @@ Page({
             that.setData({
               'list': list
             })
-            console.log(list)
           },
           fail(err) {
             Toast.fail('上传失败' + err);

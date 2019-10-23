@@ -1,4 +1,3 @@
 {
-  "navigationBarTitleText": "editor",
-  "van-button": "path/to/vant-weapp/dist/button/index"
+  "navigationBarTitleText": "editor"
 }

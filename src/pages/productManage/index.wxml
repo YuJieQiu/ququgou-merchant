@@ -8,7 +8,7 @@
         </van-tabs>
     </view>
     <view class="product-list">
-        <view class="product-list-item" wx:for="{{list}}" wx:for-item="product">
+        <view class="product-list-item" wx:for="{{list}}" wx:key="{{index}}" wx:for-item="product">
             <van-panel use-footer-slot footer-class="o-footer">
                 <view slot="header"></view>
                 <view class="order-list-item-card">

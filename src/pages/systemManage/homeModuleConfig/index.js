@@ -9,7 +9,6 @@ Page({
     const that = this
     app.httpGet('app/module/get', { type: that.data.type }).then(res => {
       wx.stopPullDownRefresh()
-      console.log(res)
       if (res.data != null && res.data.length > 0) {
         that.setData({
           list: res.data
@@ -73,7 +72,6 @@ Page({
     that.setData({
       'list': list
     })
-    console.log(list)
   },
   //图片上传
   onImageUpload(e) {
@@ -115,7 +113,6 @@ Page({
     const index = e.currentTarget.dataset.index
     // const childindex = e.currentTarget.dataset.cindex
     var list = this.data.list
-    console.log(list)
     list.splice(index, 1)
     // if (childindex >= 0) {
     //   list[index].child.splice(childindex, 1)
@@ -158,7 +155,6 @@ Page({
       })
     }
 
-    console.log(options)
     if (options.title == null || options.title == '') {
       wx.setNavigationBarTitle({
         title: "分类设置"

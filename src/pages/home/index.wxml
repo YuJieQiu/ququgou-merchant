@@ -2,6 +2,12 @@
 <view class="main">
   <view class="grid-content">
     <van-grid column-num="2">
+      <van-grid-item icon="todo-list-o" text="扫一扫" info="{{homeData.orderWaitCount}}" is-link url="/pages/orderManage/index?active=1" />
+      <van-grid-item icon="orders-o" text="订单查询" dot="{{false}}" is-link url="{{'/pages/orderManage/index'}}" />
+    </van-grid>
+  </view>
+  <view class="grid-content">
+    <van-grid column-num="2">
       <van-grid-item icon="todo-list-o" text="待处理订单" info="{{homeData.orderWaitCount}}" is-link url="/pages/orderManage/index?active=1" />
       <van-grid-item icon="orders-o" text="全部订单" dot="{{false}}" is-link url="{{'/pages/orderManage/index'}}" />
     </van-grid>

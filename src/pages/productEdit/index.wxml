@@ -5,7 +5,7 @@
 						<!-- 产品图片 S -->
 						<view class="basic-info-images">
 								<i-grid i-class="basic-info-images-guid">
-										<i-grid-item i-class="grid-item" wx:for="{{wxs.arraySlice(productInfo.resources,0,3)}}">
+										<i-grid-item i-class="grid-item" wx:for="{{wxs.arraySlice(productInfo.resources,0,3)}}" wx:key="{{index}}">
 												<image class="item-images" mode="scaleToFill" src="{{item.resource.url}}" />
 												<van-button size="mini" square type="danger" custom-class="close" data-id="{{item.resourceId}}" data-index="{{index}}" bindtap="deleteImage">
 														删除
@@ -18,12 +18,12 @@
 														</view>
 												</view>
 										</i-grid-item>
-										<i-grid-item i-class="grid-item" wx:for="{{2-productInfo.resources.length}}">
+										<i-grid-item i-class="grid-item" wx:for="{{2-productInfo.resources.length}}" wx:key="{{index}}">
 												<view class="grid-item-empty" />
 										</i-grid-item>
 								</i-grid>
 								<i-grid i-class="basic-info-images-guid" wx:if="{{productInfo.resources.length>2}}">
-										<i-grid-item i-class="grid-item" wx:for="{{wxs.arraySlice(productInfo.resources,3,0)}}">
+										<i-grid-item i-class="grid-item" wx:for="{{wxs.arraySlice(productInfo.resources,3,0)}}" wx:key="{{index}}">
 												<image class="item-images" mode="scaleToFill" src="{{item.resource.url}}" />
 												<van-button size="mini" square type="danger" custom-class="close" data-id="{{item.resourceId}}" data-index="{{index+3}}" bindtap="deleteImage">
 														删除
@@ -36,7 +36,7 @@
 														</view>
 												</view>
 										</i-grid-item>
-										<i-grid-item i-class="grid-item" wx:for="{{5-productInfo.resources.length}}">
+										<i-grid-item i-class="grid-item" wx:for="{{5-productInfo.resources.length}}" wx:key="{{index}}">
 												<view class="grid-item-empty" />
 										</i-grid-item>
 								</i-grid>
@@ -45,7 +45,7 @@
 						<!-- 商品类目选择 -->
 						<van-cell title="商品类目" is-link link-type="navigateTo" url="{{'/pages/categoryManage/index?id='+categoryInfo.id}}">
 								<view>
-										<block wx:for="{{categoryInfos}}">{{item.categoryName}}</block>
+										<block wx:for="{{categoryInfos}}" wx:key="{{index}}">{{item.categoryName}}</block>
 								</view>
 						</van-cell>
 						<i-panel title="基本信息" hide-border="{{true}}">
@@ -79,7 +79,7 @@
 												<van-field value="{{ productInfo.sku[0].stock }}" type="number" label="库存" bind:input="onChangeMuchSkuStock" data-index="{{0}}" placeholder="请输入库存(最低 1)" />
 										</view>
 										<view class="much-sku" wx:else>
-												<block wx:for="{{productInfo.sku}}">
+												<block wx:for="{{productInfo.sku}}" wx:key="{{index}}">
 														<i-swipeout i-class="i-swipeout-demo-item" actions="{{actions}}" bind:change="handleCancel2" data-id="{{item.id}}">
 																<view slot="content" operate-width="83">
 																		<view slot="title">

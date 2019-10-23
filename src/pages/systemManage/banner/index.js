@@ -8,7 +8,6 @@ Page({
     const that = this
     app.httpGet('banner/get', {}).then(res => {
       wx.stopPullDownRefresh()
-      console.log(res)
       if (res.data != null && res.data.length > 0) {
         that.setData({
           list: res.data

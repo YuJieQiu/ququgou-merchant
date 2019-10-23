@@ -366,7 +366,6 @@ Page({
           productInfo: data,
           categoryInfos: data.categoryInfos
         })
-        console.log(data)
       })
   },
   //保存信息

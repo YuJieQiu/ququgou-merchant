@@ -5,7 +5,7 @@
         <i-panel title="模块" hide-border="{{true}}">
             <view class="basic-info-images">
                 <i-grid i-class="basic-info-images-guid">
-                    <i-grid-item i-class="grid-item" wx:for="{{wxs.arraySlice(list,0,5)}}">
+                    <i-grid-item i-class="grid-item" wx:for="{{wxs.arraySlice(list,0,5)}}" wx:key="{{index}}">
                         <image class="item-images" mode="scaleToFill" src="{{item.images.url}}" />
                         <van-button size="mini" square type="danger" custom-class="close" data-id="{{item.id}}" data-index="{{index}}" bindtap="deleteImage">
                             删除{{item.id}}
@@ -18,12 +18,12 @@
                             </view>
                         </view>
                     </i-grid-item>
-                    <i-grid-item i-class="grid-item" wx:for="{{5-list.length}}">
+                    <i-grid-item i-class="grid-item" wx:for="{{5-list.length}}" wx:key="{{index}}">
                         <view class="grid-item-empty" />
                     </i-grid-item>
                 </i-grid>
                 <i-grid i-class="basic-info-images-guid" wx:if="{{list.length>4}}">
-                    <i-grid-item i-class="grid-item" wx:for="{{wxs.arraySlice(list,5,0)}}">
+                    <i-grid-item i-class="grid-item" wx:for="{{wxs.arraySlice(list,5,0)}}" wx:key="{{index}}">
                         <image class="item-images" mode="scaleToFill" src="{{item.images.url}}" />
                         <van-button size="mini" square type="danger" custom-class="close" data-id="{{item.id}}" data-index="{{index+5}}" bindtap="deleteImage">
                             删除{{item.id}}
@@ -36,7 +36,7 @@
                             </view>
                         </view>
                     </i-grid-item>
-                    <i-grid-item i-class="grid-item" wx:for="{{9-list.length}}">
+                    <i-grid-item i-class="grid-item" wx:for="{{9-list.length}}" wx:key="{{index}}">
                         <view class="grid-item-empty" />
                     </i-grid-item>
                 </i-grid>

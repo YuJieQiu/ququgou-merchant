@@ -53,7 +53,6 @@ Page({
     })
   },
   onClickItem({ detail = {} }) {
-    console.log(detail)
     let selectInfos = []
     let items = this.data.items
     let mainActiveIndex = this.data.mainActiveIndex

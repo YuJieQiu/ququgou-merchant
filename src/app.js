@@ -50,23 +50,32 @@ App({
 
           //返回授权前页面
           let arrPages = getCurrentPages()
-          arrPages[arrPages.length - 2].setData({
-            refresh: true
-          })
-          wx.navigateBack({
-            delta: arrPages.length - (arrPages.length - 1),
-            success: res => {
-            },
-            fail: function (res) { },
-            complete: function (res) { }
-          })
+
+          if (arrPages.length > 1) {
+            arrPages[arrPages.length - 2].setData({
+              refresh: true
+            })
+            wx.navigateBack({
+              delta: arrPages.length - (arrPages.length - 1),
+              success: res => {
+              },
+              fail: function (res) { },
+              complete: function (res) { }
+            })
+          } else {
+            arrPages[arrPages.length - 1].setData({
+              refresh: true
+            })
+            wx.startPullDownRefresh()
+            wx.stopPullDownRefresh()
+          }
         })
       }
     })
   },
   mapKey: 'DLVBZ-EMGWW-NEBRY-OZHQA-ZZNKZ-BFFIJ',
-  //baseUrl: 'http://127.0.0.1:7080/merchant/api/v1/',
-  baseUrl: 'https://ququgo.club/merchant/api/v1/',
+  baseUrl: 'http://127.0.0.1:7000/merchant/api/v1/',
+  //baseUrl: 'https://ququgo.club/merchant/api/v1/',
   getLocationInfo: function () {//获取位置信息方法
     let _this = this
     const qqmapsdk = new QQMapWX({ key: _this.mapKey })

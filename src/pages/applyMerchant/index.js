@@ -65,7 +65,7 @@ Page({
             const data = JSON.parse(res.data).data
             var resources = that.data.applyData.resources
             resources.push(...data)
-            that.setData({ 
+            that.setData({
               'applyData.resources': resources
             })
           },
@@ -80,23 +80,18 @@ Page({
   deleteImage(event) {
     var that = this
     const id = event.currentTarget.dataset.id
-    console.log(id)
     var resources = this.data.applyData.resources
     resources.splice(resources.findIndex(item => item.id === id), 1)
-    console.log(resources)
     that.setData({
       'applyData.resources': resources
     })
-    console.log(this.data.applyData.resources)
   },
   //选择地区
   onChangeRegion(e) {
-    console.log(e)
     if (e.detail.code.length != 3) {
       return
     }
     this.setData({ region: e.detail.value })
-    console.log(this.data.region)
   },
   onChangeMerInfoRemark(e) {
     this.setData({

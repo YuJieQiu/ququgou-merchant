@@ -5,7 +5,7 @@
                 <!-- 店铺图片 S -->
                 <view class="basic-info-images">
                     <i-grid i-class="basic-info-images-guid">
-                        <i-grid-item i-class="grid-item" wx:for="{{applyData.resources}}">
+                        <i-grid-item i-class="grid-item" wx:for="{{applyData.resources}}" wx:key="{{index}}">
                             <image class="item-images" mode="aspectFill" src="{{item.url}}" />
                             <van-button size="mini" square type="danger" custom-class="close" data-id="{{item.id}}" bindtap="deleteImage">
                                 删除
@@ -18,7 +18,7 @@
                                 </view>
                             </view>
                         </i-grid-item>
-                        <i-grid-item i-class="grid-item" wx:for="{{2-applyData.resources.length}}">
+                        <i-grid-item i-class="grid-item" wx:for="{{2-applyData.resources.length}}" wx:key="{{index}}">
                             <view class="grid-item-empty" />
                         </i-grid-item>
                     </i-grid>
@@ -34,7 +34,7 @@
             </van-cell>
             <van-field value="{{applyData.address}}" label="详细地址" type="textarea" placeholder="请输入详细地址" bind:input="onChangeMerInfoAddress" required="{{true}}" autosize border="{{ false }}" />
             <van-field value="{{ applyData.phone }}" label="联系电话" placeholder="请输入手机号" bind:input="onChangeMerInfoPhone" border="{{ false }}" required="{{true}}" maxlength="{{11}}" />
-            <van-field value="{{applyData.remark}}" label="备注信息" type="textarea" placeholder="请输入详细地址" bind:input="onChangeMerInfoRemark" required="{{true}}" autosize border="{{ false }}" />
+            <van-field value="{{applyData.remark}}" label="备注信息" type="textarea" placeholder="请输入备注信息" bind:input="onChangeMerInfoRemark" required="{{true}}" autosize border="{{ false }}" />
         </van-panel>
         <view class="" wx:if="{{applyData.id==0}}">
             <van-button loading="{{saveButtonLoading}}" loading-text="处理中..." custom-class="but-save" size="large" type="danger" bind:click="saveSubmit">

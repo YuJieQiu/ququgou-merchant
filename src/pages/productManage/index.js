@@ -19,7 +19,7 @@ Page({
     }
     app.httpGet('product/get/list', data).then(res => {
       wx.stopPullDownRefresh()
-      if (res.data.length <= 0) {
+      if (res.data == null || res.data.length <= 0) {
         this.setData({ pageEnd: true })
         return
       }

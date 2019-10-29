@@ -110,6 +110,10 @@
     </view>
   </van-panel>
   <!-- 操作按钮 S -->
-  <!-- <view class="footer-option-but"></view> -->
+  <view class="footer-option-but">
+    <view class="option-but option-but-right" wx:if="{{order.status==wxs.orderStatus.WaitProcess}}">
+      <van-button type="danger" square="{{true}}" bindtap="onOrderSuccess">确认完成</van-button>
+    </view>
+  </view>
   <van-dialog id="van-dialog" />
 </view>

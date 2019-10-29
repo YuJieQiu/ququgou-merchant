@@ -11,8 +11,6 @@ Page({
   onAddressClick(e) {
     const latitude = e.currentTarget.dataset.latitude
     const longitude = e.currentTarget.dataset.longitude
-    console.log(latitude)
-    console.log(longitude)
     wx.openLocation({
       latitude,
       longitude,
@@ -39,10 +37,28 @@ Page({
   },
   getOrderUserInfo: function () {
     app.httpGet('order/get/user/info', { orderNo: this.data.order.no }).then(res => {
+      wx.stopPullDownRefresh()
       this.setData({
         userInfo: res.data
       })
     })
+  },
+  //订单确认完成
+  onOrderSuccess(e) {
+    const that = this
+    Dialog.confirm({
+      title: '确认完成',
+      message: '是否完成订单'
+    }).then(() => {
+      app.httpPost('order/user/success', { orderNo: that.data.order.no }).then(res => {
+        if (res.code == 200) {
+          wx.startPullDownRefresh()
+          wx.stopPullDownRefresh()
+        }
+      })
+    }).catch(() => {
+      // on cancel
+    });
   },
   onLoad(options) {
     console.log(options.orderNo)

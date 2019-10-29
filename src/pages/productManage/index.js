@@ -11,6 +11,7 @@ Page({
     pageEnd: false
   },
   getProductList: function () {
+    const that = this
     let data = {
       page: this.data.page,
       limit: this.data.limit,
@@ -20,21 +21,23 @@ Page({
     app.httpGet('product/get/list', data).then(res => {
       wx.stopPullDownRefresh()
       if (res.data == null || res.data.length <= 0) {
-        this.setData({ pageEnd: true })
+        that.setData({ pageEnd: true })
         return
       }
       for (let index = 0; index < res.data.length; index++) {
         let element = res.data[index].createdTime
         res.data[index].createdTime = element.substring(0, 10)
       }
-      let list = this.data.list
-      if (this.data.page > 1) {
+      let list = that.data.list
+      if (that.data.page > 1) {
         list.push(...res.data)
       } else {
         list = res.data
       }
-
-      this.setData({
+      if (res.data.length < 10) {
+        that.setData({ pageEnd: true })
+      }
+      that.setData({
         list: list
       })
     })
@@ -49,9 +52,8 @@ Page({
       status: parseInt(updateStatus)
     }
 
-    app.httpPost("product/update/status", data).then(res => {
+    app.httpPost("product/update/status", data, true).then(res => {
       let data = res.data
-      console.log(data)
       that.setData({ page: 1, pageEnd: false, list: [] })
       that.getProductList()
     })

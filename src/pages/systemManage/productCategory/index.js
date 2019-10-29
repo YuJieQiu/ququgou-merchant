@@ -247,7 +247,7 @@ Page({
   saveSubmit() {
     var that = this
     that.setData({ 'saveButtonLoading': true })
-    app.httpPost('product/category/save', { categoryList: that.data.list }).then(res => {
+    app.httpPost('product/category/save', { categoryList: that.data.list }, true).then(res => {
       that.setData({ 'saveButtonLoading': false })
       if (res.code == 200) {
         Toast.success('更新成功');
@@ -256,7 +256,6 @@ Page({
         Toast.fail('更新失败' + res.message);
       }
     })
-
   },
   onLoad() {
     this.getDataInfo()

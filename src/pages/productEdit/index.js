@@ -108,9 +108,14 @@ Page({
     const callback = e.currentTarget.dataset.callback
     const that = this
     let token = wx.getStorageSync('token')
+
     wx.chooseImage({
       success(res) {
         const tempFilePaths = res.tempFilePaths
+        wx.showLoading({
+          title: '上传中...',
+          mask: true
+        })
         wx.uploadFile({
           url: app.baseUrl + 'file/uploadFiles', //上传图片接口
           filePath: tempFilePaths[0],
@@ -121,6 +126,7 @@ Page({
           },
           formData: {},
           success(res) {
+            wx.hideLoading()
             const data = JSON.parse(res.data).data[0]
             if (callback === 'merImagesLoad') {
               that.merImagesLoad(data)
@@ -130,6 +136,7 @@ Page({
             }
           },
           fail(err) {
+            wx.hideLoading()
             $Toast({
               content: '上传失败' + err,
               type: 'error'
@@ -199,7 +206,6 @@ Page({
 
     skus.push({
       id: skus.length,
-      isSingleAttribute: true,
       stock: null,
       price: null,
       attributeInfo: [
@@ -278,22 +284,22 @@ Page({
   },
   onChangeProInfoWidth(e) {
     this.setData({
-      'productInfo.width': e.detail
+      'productInfo.width': parseFloat(e.detail)
     })
   },
   onChangeProInfoHeight(e) {
     this.setData({
-      'productInfo.height': e.detail
+      'productInfo.height': parseFloat(e.detail)
     })
   },
   onChangeProInfoDepth(e) {
     this.setData({
-      'productInfo.depth': e.detail
+      'productInfo.depth': parseFloat(e.detail)
     })
   },
   onChangeProInfoWeight(e) {
     this.setData({
-      'productInfo.weight': e.detail
+      'productInfo.weight': parseFloat(e.detail)
     })
   },
   onChangeProInfoOriginalPrice(e) {
@@ -371,23 +377,28 @@ Page({
   //保存信息
   saveSubmit() {
     var that = this
-    that.setData({ 'saveButtonLoading': true })
-    if (that.data.categoryInfos.length > 0) {
+    //that.setData({ 'saveButtonLoading': true })
+    if (that.data.categoryInfos != null && that.data.categoryInfos.length > 0) {
       let categoryIds = []
+
       that.data.categoryInfos.forEach(element => {
         categoryIds.push(parseInt(element.categoryId))
       });
       this.setData({
         'productInfo.categoryIds': categoryIds
       })
+    } else {
+      this.setData({
+        'productInfo.categoryIds': [parseInt(0)]
+      })
     }
     let url = 'product/create'
     if (this.data.saveType == 1) {
       url = 'product/update'
     }
-    app.httpPost(url, that.data.productInfo).then(res => {
+    app.httpPost(url, that.data.productInfo, true).then(res => {
       let data = res.data
-      that.setData({ 'saveButtonLoading': true })
+      //that.setData({ 'saveButtonLoading': true })
       if (res.code == 200) {
         wx.navigateTo({
           url: '/pages/productManage/index'
@@ -395,7 +406,6 @@ Page({
       } else {
         Toast.fail('失败' + res.message);
       }
-
     })
   },
   onShow() {

@@ -11,18 +11,23 @@ Page({
     pageEnd: false,
     active: 0,
     tabIndex: 0,
-    tabsList: [
-    ]
+    tabsList: [],
+    orderNo: ""
   },
 
   onShow: function () { },
-  getOrderListInfo: function () {
+  onCancel() {
+    wx.switchTab({
+      url: "/pages/home/index"
+    })
+  },
+  onSearch: function () {
     const that = this
     let data = {
       page: this.data.page,
       limit: this.data.limit,
-      all: this.data.all,
-      status: this.data.status
+      all: true,
+      orderNo: this.data.orderNo
     }
 
     app.httpGet('order/get/list', data).then(res => {
@@ -45,42 +50,6 @@ Page({
         list: list
       })
     })
-  },
-  onClickTab(e) {
-    let data = e.detail
-    switch (parseInt(data.name)) {
-      case 0: //全部
-        this.setData({ all: true, list: [], page: 1, pageEnd: false })
-        break
-      case 1://待处理
-        this.setData({
-          all: false,
-          status: "0001",
-          list: [],
-          page: 1,
-          pageEnd: false
-        })
-        break
-      case 2://已取消
-        this.setData({
-          all: false,
-          status: "-1000",
-          list: [],
-          page: 1,
-          pageEnd: false
-        })
-        break
-      case 3://已完成
-        this.setData({
-          all: false,
-          status: "9990",
-          list: [],
-          page: 1,
-          pageEnd: false
-        })
-        break
-    }
-    this.getOrderListInfo()
   },
   // onScrollTab(e){
   //     console.log(e)
@@ -113,38 +82,6 @@ Page({
   },
   onLoad(options) {
     const that = this
-    const tab = [
-      {
-        title: "全部",
-        name: 0,
-        statusText: ""
-      },
-      {
-        title: "待处理",
-        name: 1,
-        statusText: "待处理"
-      },
-      {
-        title: "已取消",
-        name: 2,
-        statusText: "已取消"
-      },
-      {
-        title: "已完成",
-        name: 3,
-        statusText: "已完成"
-      }]
 
-    if (typeof (options.active) != "undefined") {
-      this.setData({ tabsList: tab, active: parseInt(options.active) })
-    } else {
-      this.setData({ tabsList: tab, active: 0 })
-    }
-
-    this.onClickTab({
-      detail: {
-        name: that.data.active
-      }
-    })
   }
 })

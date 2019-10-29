@@ -50,7 +50,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 15,
 			"list": [
 				{
 					"id": -1,
@@ -154,6 +154,13 @@
 					"id": -1,
 					"name": "pages/systemManage/productCategory/index",
 					"pathName": "pages/systemManage/productCategory/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/orderSearch/index",
+					"pathName": "pages/orderSearch/index",
 					"scene": null
 				}
 			]

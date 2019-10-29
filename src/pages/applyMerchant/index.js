@@ -49,9 +49,14 @@ Page({
   merImageUpload() {
     var that = this
     let token = wx.getStorageSync('token')
+
     wx.chooseImage({
       success(res) {
         const tempFilePaths = res.tempFilePaths
+        wx.showLoading({
+          title: '上传中...',
+          mask: true
+        })
         wx.uploadFile({
           url: app.baseUrl + 'file/uploadFiles', //上传图片接口
           filePath: tempFilePaths[0],
@@ -62,6 +67,7 @@ Page({
           },
           formData: {},
           success(res) {
+            wx.hideLoading()
             const data = JSON.parse(res.data).data
             var resources = that.data.applyData.resources
             resources.push(...data)
@@ -70,6 +76,7 @@ Page({
             })
           },
           fail(err) {
+            wx.hideLoading()
             Toast.fail('上传失败' + err);
           }
         })
@@ -116,11 +123,9 @@ Page({
   //保存更新数据
   saveSubmit() {
     var that = this
-    that.setData({ 'saveButtonLoading': true })
-    app.httpPost('mer/apply/create', that.data.applyData).then(res => {
-      that.setData({
-        'saveButtonLoading': false
-      })
+
+    app.httpPost('mer/apply/create', that.data.applyData, true).then(res => {
+
       if (res.code == 200) {
         Toast.success('已提交');
         // that.getMerInfo()
@@ -133,11 +138,7 @@ Page({
   //自助通过审核
   autorApplySubmit() {
     var that = this
-    that.setData({ 'saveButtonLoading': true })
-    app.httpPost('mer/apply/auto/verified', { id: that.data.applyData.id }).then(res => {
-      that.setData({
-        'saveButtonLoading': false
-      })
+    app.httpPost('mer/apply/auto/verified', { id: that.data.applyData.id }, true).then(res => {
       if (res.code == 200) {
         Toast.success('成功');
         wx.switchTab({ url: '/pages/home/index' })

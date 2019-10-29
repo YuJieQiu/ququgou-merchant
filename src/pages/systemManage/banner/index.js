@@ -95,7 +95,7 @@ Page({
   saveSubmit() {
     var that = this
     that.setData({ 'saveButtonLoading': true })
-    app.httpPost('banner/save', { banners: that.data.list }).then(res => {
+    app.httpPost('banner/save', { banners: that.data.list }, true).then(res => {
       that.setData({ 'saveButtonLoading': false })
       if (res.code == 200) {
         Toast.success('更新成功');

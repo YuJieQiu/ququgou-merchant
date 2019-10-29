@@ -20,8 +20,8 @@ Page({
         remark: ''
       },
       businessTime: {
-        startTime: '',
-        endTime: ''
+        startTime: '06:00',
+        endTime: '21:00',
       },
       label: {},
       resources: [],
@@ -92,9 +92,14 @@ Page({
   merImageUpload() {
     var that = this
     let token = wx.getStorageSync('token')
+
     wx.chooseImage({
       success(res) {
         const tempFilePaths = res.tempFilePaths
+        wx.showLoading({
+          title: '上传中...',
+          mask: true
+        })
         wx.uploadFile({
           url: app.baseUrl + 'file/uploadFiles', //上传图片接口
           filePath: tempFilePaths[0],
@@ -105,6 +110,7 @@ Page({
           },
           formData: {},
           success(res) {
+            wx.hideLoading()
             const data = JSON.parse(res.data).data
             var resources = that.data.merInfo.resources
             resources.push(...data)
@@ -113,6 +119,7 @@ Page({
             })
           },
           fail(err) {
+            wx.hideLoading()
             Toast.fail('上传失败' + err);
           }
         })
@@ -123,14 +130,13 @@ Page({
   deleteImage(event) {
     var that = this
     const id = event.currentTarget.dataset.id
-    console.log(id)
+
     var resources = this.data.merInfo.resources
     resources.splice(resources.findIndex(item => item.id === id), 1)
-    console.log(resources)
+
     that.setData({
       'merInfo.resources': resources
     })
-    console.log(this.data.merInfo.resources)
   },
   //选择地区
   onChangeRegion(e) {
@@ -144,15 +150,16 @@ Page({
   //保存更新数据
   saveSubmit() {
     var that = this
-    that.setData({ 'saveButtonLoading': true })
-    app.httpPost('mer/info/update', that.data.merInfo).then(res => {
+    //that.setData({ 'saveButtonLoading': true })
+    console.log(that.data.merInfo)
+    app.httpPost('mer/info/update', that.data.merInfo, true).then(res => {
       if (res.code == 200) {
         Toast.success('更新成功');
         that.getMerInfo()
       } else {
         Toast.fail('更新失败' + res.message);
       }
-      that.setData({ 'saveButtonLoading': false })
+      //that.setData({ 'saveButtonLoading': false })
     })
 
   },

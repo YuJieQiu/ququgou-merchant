@@ -2,8 +2,8 @@
 <view class="main">
   <view class="grid-content">
     <van-grid column-num="2">
-      <van-grid-item icon="scan" text="扫一扫" is-link />
-      <van-grid-item icon="search" text="订单查询" dot="{{false}}" is-link />
+      <van-grid-item icon="scan" text="扫一扫" is-link bind:click="onClickScan" />
+      <van-grid-item icon="search" text="订单查询" dot="{{false}}" is-link url="/pages/orderSearch/index" />
     </van-grid>
   </view>
   <view class="grid-content">

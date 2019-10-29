@@ -1,4 +1,3 @@
-//index.js
 //获取应用实例
 const app = getApp()
 
@@ -30,5 +29,20 @@ Page({
   onLoad: function () {
     //this.getHomeInfo()
   },
-  getUserInfo: function (e) { }
+  getUserInfo: function (e) { },
+  //扫一扫
+  onClickScan(e) {
+    //允许从相机和相册扫码
+    wx.scanCode({
+      success(res) {
+        if (res != null && res.result != null) {
+          let data = JSON.parse(res.result)
+          if (data.type == "order") {
+            wx.navigateTo({ url: '/pages/orderDetail/index?orderNo=' + data.code })
+          }
+        }
+      }
+    })
+
+  }
 })

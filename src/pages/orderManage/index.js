@@ -12,10 +12,16 @@ Page({
     active: 0,
     tabIndex: 0,
     tabsList: [
-    ]
+    ],
+    refresh: false
   },
 
-  onShow: function () { },
+  onShow: function () {
+    if (this.data.refresh) {
+      this.setData({ page: 1, pageEnd: false, list: [], refresh: false })
+      this.getOrderListInfo()
+    }
+  },
   getOrderListInfo: function () {
     const that = this
     let data = {

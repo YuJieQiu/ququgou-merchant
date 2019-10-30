@@ -51,17 +51,26 @@ Page({
       message: '是否完成订单'
     }).then(() => {
       app.httpPost('order/user/success', { orderNo: that.data.order.no }).then(res => {
-        if (res.code == 200) {
+        if (res.code == '200') {
           wx.startPullDownRefresh()
           wx.stopPullDownRefresh()
+          let arrPages = getCurrentPages()
+          if (arrPages.length > 1) {
+            arrPages[arrPages.length - 2].setData({
+              refresh: true
+            })
+          }
         }
       })
     }).catch(() => {
       // on cancel
     });
   },
+  //上拉刷新
+  onPullDownRefresh() {
+    this.getDataInfo(this.data.orderNo)
+  },
   onLoad(options) {
-    console.log(options.orderNo)
     let orderNo = options.orderNo
     if (orderNo == null || orderNo == '') {
       wx.redirectTo({ url: '/pages/orderList/index' })

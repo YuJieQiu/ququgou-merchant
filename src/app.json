@@ -18,11 +18,15 @@
     "pages/orderDetail/index",
     "pages/categoryManage/index",
     "pages/tagManage/index",
+    "pages/maps/maps",
+    "pages/location/location",
     "pages/applyMerchant/index",
     "pages/systemManage/index",
     "pages/systemManage/banner/index",
     "pages/systemManage/homeModuleConfig/index",
-    "pages/systemManage/productCategory/index"
+    "pages/systemManage/productCategory/index",
+    "pages/material/index",
+    "pages/materialDetail/index"
   ],
   "permission": {
     "scope.userLocation": {

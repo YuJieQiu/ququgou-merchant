@@ -3,7 +3,7 @@
   <!-- 收货地址 S -->
   <view class="order-address" wx:if="{{order.deliveryType==5}}">
     <van-panel title="用户收货地址">
-      <van-cell custom-class="address-cell" data-latitude="{{address.latitude}}" data-longitude="{{address.longitude}}" clickable="{{true}}" is-link title="{{address.city}}{{address.region}}{{address.town}}{{address.address}}" label="{{address.username}}{{address.phone}}" icon="location-o" center="{{true}}" size="large" border="{{true}}">
+      <van-cell custom-class="address-cell" data-latitude="{{address.latitude}}" data-longitude="{{address.longitude}}" clickable="{{true}}" is-link title="{{address.city}}{{address.region}}{{address.town}}{{address.address}}" label="{{address.name}}{{address.phone}}" icon="location-o" center="{{true}}" size="large" border="{{true}}">
         <view slot="title"></view>
       </van-cell>
     </van-panel>
@@ -12,7 +12,7 @@
     <van-panel title="收货人地址信息">
       <van-row>
         <van-col span="10">姓名</van-col>
-        <van-col span="">{{address.username}}</van-col>
+        <van-col span="">{{address.name}}</van-col>
       </van-row>
       <van-row>
         <van-col span="6">手机号:</van-col>

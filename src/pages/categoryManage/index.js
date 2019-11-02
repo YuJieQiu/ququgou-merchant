@@ -2,6 +2,7 @@ var app = getApp();
 
 Page({
   data: {
+    menuHeight: "", //菜单高度
     activeId: 0,
     selectInfos: [{
       categoryId: 0,
@@ -97,6 +98,13 @@ Page({
     //     'selectInfo.categoryId': options.id
     //   })
     // }
+    wx.getSystemInfo({
+      success: (res) => {
+        this.setData({
+          menuHeight: res.windowHeight - res.windowWidth / 750 * 92,
+        });
+      }
+    });
     this.getDataInfo()
   }
 })

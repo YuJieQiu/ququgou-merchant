@@ -1,6 +1,6 @@
 const app = getApp();
 const QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
-const qqmapsdk = new QQMapWX({key: app.mapKey});
+const qqmapsdk = new QQMapWX({ key: app.mapKey });
 
 Page({
     data: {
@@ -18,14 +18,15 @@ Page({
             qqmapsdk.getSuggestion({
                 keyword: keywords,
                 region: this.data.city,
-                success: function(res) {
+                success: function (res) {
+                    console.log(res);
                     if (res && res.status === 0 && res.data) {
                         that.setData({
                             listData: res.data
                         });
                     }
                 },
-                fail: function(res) {
+                fail: function (res) {
                     console.log(res);
                 }
             });
@@ -45,8 +46,8 @@ Page({
             keyword: dotData.title,
             location: dotData.location.lat + ',' + dotData.location.lng,
             success: function (res) { //搜索成功后的回调
-                if(res && res.status === 0) {
-                    if(res.data && res.data.length > 0) {
+                if (res && res.status === 0) {
+                    if (res.data && res.data.length > 0) {
                         let pages = getCurrentPages();
                         let prevPage = pages[pages.length - 2];
                         if (prevPage) {

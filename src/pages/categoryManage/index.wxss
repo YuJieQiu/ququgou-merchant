@@ -45,3 +45,7 @@
   margin-top: 20rpx;
   font-size: 30rpx;
 }
+
+.van-tree-select {
+  height: 100% !important;
+}

@@ -1,215 +1,169 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": false,
-		"es6": true,
-		"postcss": true,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": true,
-		"autoAudits": false,
-		"uglifyFileName": true,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		}
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.9.1",
-	"appid": "wx331193dfb8cd1166",
-	"projectname": "%E5%8C%BA%E5%8C%BA%E8%B4%AD%E5%95%86%E6%88%B7%E7%AB%AF",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": 15,
-			"list": [
-				{
-					"id": -1,
-					"name": "个人中心",
-					"pathName": "pages/profile/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "infoManage",
-					"pathName": "pages/merInfo/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "product",
-					"pathName": "pages/productManage/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 3,
-					"name": "product Edit",
-					"pathName": "pages/productEdit/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "editor",
-					"pathName": "pages/editor/editor",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "productManage",
-					"pathName": "pages/productManage/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "order",
-					"pathName": "pages/orderManage/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "categoryManage",
-					"pathName": "pages/categoryManage/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "tagManage",
-					"pathName": "pages/tagManage/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/applyMerchant/index",
-					"pathName": "pages/home/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/applyMerchant/index",
-					"pathName": "pages/applyMerchant/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/systemManage/index",
-					"pathName": "pages/systemManage/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/systemManage/banner/index",
-					"pathName": "pages/systemManage/banner/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/systemManage/homeModuleConfig/index",
-					"pathName": "pages/systemManage/homeModuleConfig/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/systemManage/productCategory/index",
-					"pathName": "pages/systemManage/productCategory/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/orderSearch/index",
-					"pathName": "pages/orderSearch/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/maps/maps",
-					"pathName": "pages/maps/maps",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/location/location",
-					"pathName": "pages/location/location",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/dotAdd/index",
-					"pathName": "pages/dotAdd/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/material/index",
-					"pathName": "pages/material/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/productCollection/index",
-					"pathName": "pages/productCollection/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/systemManage/hotSearch/index",
-					"pathName": "pages/systemManage/hotSearch/index",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "uglifyFileName": true,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.8.3",
+  "appid": "wxd3f1f862f22ae9e1",
+  "projectname": "%E5%8C%BA%E5%8C%BA%E8%B4%AD%E5%95%86%E6%88%B7%E7%AB%AF",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "plugin": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": 15,
+      "list": [
+        {
+          "id": -1,
+          "name": "个人中心",
+          "pathName": "pages/profile/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "infoManage",
+          "pathName": "pages/merInfo/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "product",
+          "pathName": "pages/productManage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 3,
+          "name": "product Edit",
+          "pathName": "pages/productEdit/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "editor",
+          "pathName": "pages/editor/editor",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "productManage",
+          "pathName": "pages/productManage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "order",
+          "pathName": "pages/orderManage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "categoryManage",
+          "pathName": "pages/categoryManage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "tagManage",
+          "pathName": "pages/tagManage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/applyMerchant/index",
+          "pathName": "pages/home/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/applyMerchant/index",
+          "pathName": "pages/applyMerchant/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/systemManage/index",
+          "pathName": "pages/systemManage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/systemManage/banner/index",
+          "pathName": "pages/systemManage/banner/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/systemManage/homeModuleConfig/index",
+          "pathName": "pages/systemManage/homeModuleConfig/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/systemManage/productCategory/index",
+          "pathName": "pages/systemManage/productCategory/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/orderSearch/index",
+          "pathName": "pages/orderSearch/index",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

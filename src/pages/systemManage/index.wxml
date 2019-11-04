@@ -64,6 +64,18 @@
             <view class="view-inline-block view-margin-left-5 ">
                 <van-icon name="setting-o" />
             </view>
+            <view class="view-inline-block view-margin-left-5 vertical-align-top">热搜管理</view>
+            <view class="view-inline-block view-margin-left-5 vertical-align-top">
+                <!-- <van-tag type="danger">标签</van-tag> -->
+            </view>
+        </view>
+        <van-icon slot="right-icon" name="arrow" class="" />
+    </van-cell>
+    <van-cell url="">
+        <view slot="title">
+            <view class="view-inline-block view-margin-left-5 ">
+                <van-icon name="setting-o" />
+            </view>
             <view class="view-inline-block view-margin-left-5 vertical-align-top">清理所有缓存</view>
             <view class="view-inline-block view-margin-left-5 vertical-align-top">
                 <!-- <van-tag type="danger">标签</van-tag> -->

@@ -200,6 +200,13 @@
 					"id": -1,
 					"name": "pages/productCollection/index",
 					"pathName": "pages/productCollection/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/systemManage/hotSearch/index",
+					"pathName": "pages/systemManage/hotSearch/index",
 					"scene": null
 				}
 			]

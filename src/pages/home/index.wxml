@@ -43,6 +43,18 @@
       </view>
       <van-icon slot="right-icon" name="setting-o" class="" />
     </van-cell>
+    <van-cell url="/pages/material/index">
+      <view slot="title">
+        <view class="view-inline-block view-margin-left-5 ">
+          <van-icon name="shop-o" />
+        </view>
+        <view class="view-inline-block view-margin-left-5 vertical-align-top">素材获取</view>
+        <view class="view-inline-block view-margin-left-5 vertical-align-top">
+          <!-- <van-tag type="danger">标签</van-tag> -->
+        </view>
+      </view>
+      <van-icon slot="right-icon" name="setting-o" class="" />
+    </van-cell>
     <!-- <van-cell title="商品添加" is-link url="/pages/productEdit/index" />
     <van-cell title="商品管理" is-link url="/pages/productManage/index" />
     <van-cell title="订单管理" is-link url="/pages/orderManage/index" /> -->

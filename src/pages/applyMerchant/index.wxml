@@ -32,9 +32,9 @@
                     <view class="address-region-value">{{applyData.town}}</view>
                 </view>
             </van-cell>
-            <van-field value="{{applyData.address}}" label="详细地址" type="textarea" placeholder="请输入详细地址" bind:input="onChangeMerInfoAddress" required="{{true}}" autosize border="{{ false }}" />
+            <van-field value="{{applyData.address}}" label="详细地址" type="textarea" autosize="{{true}}" placeholder="请输入详细地址" bind:input="onChangeMerInfoAddress" required="{{true}}" autosize border="{{ false }}" />
             <van-field value="{{ applyData.phone }}" label="联系电话" placeholder="请输入手机号" bind:input="onChangeMerInfoPhone" border="{{ false }}" required="{{true}}" maxlength="{{11}}" />
-            <van-field value="{{applyData.remark}}" label="备注信息" type="textarea" placeholder="请输入备注信息" bind:input="onChangeMerInfoRemark" required="{{true}}" autosize border="{{ false }}" />
+            <van-field value="{{applyData.remark}}" label="备注信息" type="textarea" autosize="{{true}}" placeholder="请输入备注信息" bind:input="onChangeMerInfoRemark" required="{{true}}" autosize border="{{ false }}" />
         </van-panel>
         <view class="" wx:if="{{applyData.id==0}}">
             <van-button loading="{{saveButtonLoading}}" loading-text="处理中..." custom-class="but-save" size="large" type="danger" bind:click="saveSubmit">

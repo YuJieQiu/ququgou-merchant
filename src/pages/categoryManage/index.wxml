@@ -12,8 +12,10 @@
             <view class="popup-tag-close" bindtap="onClickPopupTagClose">取消</view>
             <view class="popup-tag-ok" bindtap="onClickPopupTagOk">确认</view>
         </view>
-        <!-- 商品类目选择 S -->
-        <van-tree-select items="{{ items }}" main-active-index="{{ mainActiveIndex }}" active-id="{{ activeId }}" bind:click-nav="onClickNav" bind:click-item="onClickItem" />
-        <!-- 商品分类选择 E -->
     </view>
+    <!-- 商品类目选择 S -->
+    <view style="height:{{menuHeight}}px">
+        <van-tree-select class="tree-select-main-item" items="{{ items }}" main-active-index="{{ mainActiveIndex }}" active-id="{{ activeId }}" bind:click-nav="onClickNav" bind:click-item="onClickItem" />
+    </view>
+    <!-- 商品分类选择 E -->
 </view>

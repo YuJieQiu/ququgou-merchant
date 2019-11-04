@@ -31,7 +31,7 @@ Page({
   },
   onAddressClick() {
     wx.navigateTo({
-      url: '/pages/dotAdd/index'
+      url: '/pages/maps/maps'
     })
   },
   //地址选择回调

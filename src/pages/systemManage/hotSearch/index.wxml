@@ -1,0 +1,17 @@
+<view class="container">
+    <view class="basic-info">
+        <view wx:for="{{list}}" wx:key="{{index}}">
+            <van-field value="{{ item.text }}" data-field="text" data-index="{{index}}" label="热搜词" data-id="{{item.id}}" data-index="{{index}}" bind:input="onChangeText" placeholder="" />
+            <van-button slot="button" size="small" type="default" data-item="{{item}}" data-id="{{item.id}}" data-index="{{index}}" bind:click="deleteItem">
+                删除
+            </van-button>
+        </view>
+        <van-button type="default" size="small" data-id="{{item.id}}" data-index="{{index}}" bind:click="addItem">
+            添加
+        </van-button>
+        <van-button loading="{{saveButtonLoading}}" loading-text="处理中..." custom-class="but-save" size="large" type="danger" bind:click="saveSubmit">
+            保存
+        </van-button>
+    </view>
+    <van-toast id="van-toast" />
+</view>

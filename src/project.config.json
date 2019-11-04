@@ -23,8 +23,8 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.8.3",
-	"appid": "wxd3f1f862f22ae9e1",
+	"libVersion": "2.9.1",
+	"appid": "wx331193dfb8cd1166",
 	"projectname": "%E5%8C%BA%E5%8C%BA%E8%B4%AD%E5%95%86%E6%88%B7%E7%AB%AF",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -47,6 +47,10 @@
 		},
 		"game": {
 			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
 			"list": []
 		},
 		"miniprogram": {
@@ -161,6 +165,48 @@
 					"id": -1,
 					"name": "pages/orderSearch/index",
 					"pathName": "pages/orderSearch/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/maps/maps",
+					"pathName": "pages/maps/maps",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/location/location",
+					"pathName": "pages/location/location",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/dotAdd/index",
+					"pathName": "pages/dotAdd/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/material/index",
+					"pathName": "pages/material/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/productCollection/index",
+					"pathName": "pages/productCollection/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/systemManage/hotSearch/index",
+					"pathName": "pages/systemManage/hotSearch/index",
 					"scene": null
 				}
 			]

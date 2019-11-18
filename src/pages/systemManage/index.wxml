@@ -59,7 +59,7 @@
         </view>
         <van-icon slot="right-icon" name="arrow" class="" />
     </van-cell>
-    <van-cell url="">
+    <van-cell url="/pages/systemManage/hotSearch/index">
         <view slot="title">
             <view class="view-inline-block view-margin-left-5 ">
                 <van-icon name="setting-o" />

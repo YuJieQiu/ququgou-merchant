@@ -19,7 +19,6 @@ var filter = {
     } else {
       return arr.slice(start)
     }
-
   },
   enum: {
     orderStatus: {

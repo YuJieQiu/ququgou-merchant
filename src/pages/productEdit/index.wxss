@@ -260,3 +260,7 @@
 .content-edit {
   margin-top: 20rpx;
 }
+
+.value-class {
+  flex: none !important;
+}

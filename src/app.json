@@ -84,7 +84,9 @@
     "van-tree-select": "components/vant-weapp/dist/tree-select/index",
     "van-tabbar": "components/vant-weapp/dist/tabbar/index",
     "van-tabbar-item": "components/vant-weapp/dist/tabbar-item/index",
-    "van-search": "components/vant-weapp/dist/search/index"
+    "van-search": "components/vant-weapp/dist/search/index",
+    "van-checkbox": "components/vant-weapp/dist/checkbox/index",
+    "van-checkbox-group": "components/vant-weapp/dist/checkbox-group/index"
   },
   "sitemapLocation": "sitemap.json"
 }

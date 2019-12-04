@@ -2,6 +2,7 @@ const app = getApp()
 import Toast from '../../components/vant-weapp/dist/toast/toast';
 Page({
   data: {
+    paymentTypeList: [],
     saveButtonLoading: false,
     readOnly: false,
     categoryInfos: [],
@@ -16,6 +17,7 @@ Page({
         content: '',
         contentRemark: ''
       },
+      paymentTypeIds: [],
       description: '',
       keywords: [],
       tags: [],
@@ -242,9 +244,11 @@ Page({
     let v = value
 
     if (value.indexOf('.') != -1) {
-      if (value.substr(value.indexOf('.') + 1).length == 1) {
+      let subStr = value.substr(value.indexOf('.') + 1)
+      console.log(subStr)
+      if (subStr.length == 1 && subStr != "0") {
         v = parseFloat(parseFloat(value).toFixed(1))
-      } else if (value.substr(value.indexOf('.') + 1).length > 1) {
+      } else if (subStr.length > 1) {
         v = parseFloat(parseFloat(value).toFixed(2))
       }
     } else {
@@ -392,6 +396,15 @@ Page({
         'productInfo.categoryIds': [parseInt(0)]
       })
     }
+
+    let newList = []
+    that.data.productInfo.paymentTypeIds.forEach(element => {
+      newList.push(parseInt(element))
+    });
+    this.setData({
+      'productInfo.paymentTypeIds': newList
+    })
+
     let url = 'product/create'
     if (this.data.saveType == 1) {
       url = 'product/update'
@@ -400,13 +413,42 @@ Page({
       let data = res.data
       //that.setData({ 'saveButtonLoading': true })
       if (res.code == 200) {
-        wx.navigateTo({
+        wx.reLaunch({
           url: '/pages/productManage/index'
         })
       } else {
         Toast.fail('失败' + res.message);
       }
     })
+  },
+  //支付方式选择
+  onPayTypeChange(event) {
+    let list = event.detail
+
+    this.setData({
+      'productInfo.paymentTypeIds': list
+    });
+  }
+  ,
+  PayTypeToggle(event) {
+    const { index } = event.currentTarget.dataset;
+    const checkbox = this.selectComponent(`.checkboxes-${index}`);
+    checkbox.toggle();
+  },
+  PayTypeNoop() { },
+  getPaymentTypeList: function (func) {
+    const that = this
+    app
+      .httpGet('get/product/pay/type/list', {})
+      .then(res => {
+        const data = res.data
+        if (data != null) {
+          this.setData({
+            paymentTypeList: data
+          })
+        }
+        func()
+      })
   },
   onShow() {
 
@@ -418,9 +460,10 @@ Page({
         'productInfo.id': options.id,
         saveType: 1
       })
-      this.getProductInfo()
+      this.getPaymentTypeList(this.getProductInfo())
+    } else {
+      this.getPaymentTypeList()
     }
-
     // wx.showToast({
     //   title: '成功',
     //   icon: 'success',

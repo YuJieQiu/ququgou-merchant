@@ -126,6 +126,17 @@
 								</view>
 						</view>
 						<!-- 商品详情 E -->
+						<!-- 支付方式 S -->
+						<i-panel title="支付方式" hide-border="{{true}}">
+								<van-checkbox-group value="{{productInfo.paymentTypeIds}}" bind:change="onPayTypeChange">
+										<van-cell-group>
+												<van-cell wx:for="{{ paymentTypeList }}" wx:key="index" title=" {{ item.name }}" value-class="value-class" clickable data-index="{{ index }}" bind:click="PayTypeToggle">
+														<van-checkbox catch:tap="PayTypeNoop" class="checkboxes-{{ index }}" name="{{ item.id }}" />
+												</van-cell>
+										</van-cell-group>
+								</van-checkbox-group>
+						</i-panel>
+						<!-- 支付方式 E -->
 				</van-cell-group>
 		</view>
 		<van-button loading="{{saveButtonLoading}}" loading-text="处理中..." type="default" custom-class="save-but" bind:click="saveSubmit">

@@ -43,7 +43,7 @@ Page({
       text: this.data.text,
       type: parseInt(0)
     }
-    app.httpGet('product/material/search', data).then(res => {
+    app.httpGet('product/material/search', data, true).then(res => {
       console.log(res)
       wx.stopPullDownRefresh()
       // if (res.data == null || res.data.length <= 0) {
@@ -77,11 +77,11 @@ Page({
     this.getOrderListInfo()
   },
   onReachBottom() {
-    if (!this.data.pageEnd) {
-      this.setData({ page: this.data.page + 1 })
-      console.log('onReachBottom')
-      this.getOrderListInfo()
-    }
+    // if (!this.data.pageEnd) {
+    //   this.setData({ page: this.data.page + 1 })
+    //   console.log('onReachBottom')
+    //   this.getOrderListInfo()
+    // }
     // Do something when page reach bottom.
   },
   onInputRemark(e) {

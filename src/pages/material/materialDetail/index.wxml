@@ -1,4 +1,4 @@
-<wxs module="wxs" src="../common/index.wxs" />
+<wxs module="wxs" src="../../common/index.wxs" />
 <view class="main">
   <!-- <van-search value="{{ text }}" placeholder="请输入 名称" show-action bind:search="onSearch" bind:change="onChange" bind:cancel="onCancel" /> -->
   <view class="tui-product-list">

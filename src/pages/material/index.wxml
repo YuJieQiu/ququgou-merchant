@@ -32,4 +32,5 @@
     </view>
   </view>
   <van-dialog id="van-dialog" />
+  <!-- <view wx:if="{{list.length<=0}}">暂无数据～</view> -->
 </view>

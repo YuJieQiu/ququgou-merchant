@@ -27,7 +27,7 @@
     "pages/systemManage/productCategory/index",
     "pages/systemManage/hotSearch/index",
     "pages/material/index",
-    "pages/materialDetail/index"
+    "pages/material/materialDetail/index"
   ],
   "permission": {
     "scope.userLocation": {

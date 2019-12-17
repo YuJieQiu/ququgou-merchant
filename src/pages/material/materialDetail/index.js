@@ -1,5 +1,5 @@
 const app = getApp()
-const { appUtils, appValidate } = require('../../utils/util.js')
+const { appUtils, appValidate } = require('../../../utils/util.js')
 const pageStart = 1
 Page({
   data: {
@@ -74,11 +74,11 @@ Page({
     this.getOrderListInfo()
   },
   onReachBottom() {
-    if (!this.data.pageEnd) {
-      this.setData({ page: this.data.page + 1 })
-      console.log('onReachBottom')
-      this.getOrderListInfo()
-    }
+    // if (!this.data.pageEnd) {
+    //   this.setData({ page: this.data.page + 1 })
+    //   console.log('onReachBottom')
+    //   this.getOrderListInfo()
+    // }
     // Do something when page reach bottom.
   },
   onInputRemark(e) {

@@ -67,7 +67,16 @@ Page({
           pageEnd: false
         })
         break
-      case 2://已取消
+      case 2://待发货(已支付的订单)
+        this.setData({
+          all: false,
+          status: "0910",
+          list: [],
+          page: 1,
+          pageEnd: false
+        })
+        break
+      case 3://已取消
         this.setData({
           all: false,
           status: "-1000",
@@ -76,7 +85,7 @@ Page({
           pageEnd: false
         })
         break
-      case 3://已完成
+      case 4://已完成
         this.setData({
           all: false,
           status: "9990",
@@ -131,15 +140,26 @@ Page({
         statusText: "待处理"
       },
       {
-        title: "已取消",
+        title: "待发货",
         name: 2,
+        statusText: "待发货"
+      },
+      {
+        title: "已取消",
+        name: 3,
         statusText: "已取消"
       },
       {
         title: "已完成",
-        name: 3,
+        name: 4,
         statusText: "已完成"
-      }]
+      },
+      {
+        title: "退款申请",
+        name: 5,
+        statusText: "退款申请"
+      }
+    ]
 
     if (typeof (options.active) != "undefined") {
       this.setData({ tabsList: tab, active: parseInt(options.active) })

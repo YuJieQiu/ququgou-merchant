@@ -43,7 +43,13 @@
 						</view>
 						<!-- 店铺图片 E -->
 						<!-- 商品类目选择 -->
-						<van-cell title="商品类目" is-link link-type="navigateTo" url="{{'/pages/categoryManage/index?id='+categoryInfo.id}}">
+						<van-cell title="商品类目" is-link link-type="navigateTo" url="{{'/pages/categoryManage/index?id='+categoryInfo.id+'&type=0'}}">
+								<view>
+										<block wx:for="{{categoryInfos}}" wx:key="{{index}}">{{item.categoryName}}</block>
+								</view>
+						</van-cell>
+						<!-- 店铺商品分类选择 -->
+						<van-cell title="店铺商品分类" is-link link-type="navigateTo" url="{{'/pages/categoryManage/index?&type=1'}}">
 								<view>
 										<block wx:for="{{categoryInfos}}" wx:key="{{index}}">{{item.categoryName}}</block>
 								</view>

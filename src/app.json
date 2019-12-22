@@ -21,6 +21,7 @@
     "pages/maps/maps",
     "pages/location/location",
     "pages/applyMerchant/index",
+    "pages/productCategory/index",
     "pages/systemManage/index",
     "pages/systemManage/banner/index",
     "pages/systemManage/homeModuleConfig/index",
@@ -86,7 +87,8 @@
     "van-tabbar-item": "components/vant-weapp/dist/tabbar-item/index",
     "van-search": "components/vant-weapp/dist/search/index",
     "van-checkbox": "components/vant-weapp/dist/checkbox/index",
-    "van-checkbox-group": "components/vant-weapp/dist/checkbox-group/index"
+    "van-checkbox-group": "components/vant-weapp/dist/checkbox-group/index",
+    "van-uploader": "components/vant-weapp/dist/uploader/index"
   },
   "sitemapLocation": "sitemap.json"
 }

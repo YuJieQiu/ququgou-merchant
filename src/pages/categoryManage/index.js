@@ -10,11 +10,13 @@ Page({
     }],
     mainActiveIndex: 0,
     list: [],
-    items: []
+    items: [],
+    isProductCategory: true,
+    url: ''//'mer/product/category/get'
   },
   getDataInfo() {
     const that = this
-    app.httpGet('product/category/get', {}).then(res => {
+    app.httpGet(that.data.url, {}).then(res => {
       wx.stopPullDownRefresh()
       if (res.data != null && res.data.length > 0) {
         let list = res.data
@@ -49,22 +51,33 @@ Page({
     })
   },
   onClickNav({ detail = {} }) {
+    let mainActiveIndex = detail.index
     this.setData({
-      mainActiveIndex: detail.index || 0
+      mainActiveIndex: mainActiveIndex || 0
+    })
+
+    let selectInfos = []
+    let items = this.data.items
+    selectInfos[0] = {
+      categoryId: items[mainActiveIndex].id,
+      categoryName: items[mainActiveIndex].text
+    }
+    this.setData({
+      selectInfos: selectInfos
     })
   },
   onClickItem({ detail = {} }) {
-    let selectInfos = []
+    let selectInfos = this.data.selectInfos
     let items = this.data.items
     let mainActiveIndex = this.data.mainActiveIndex
-    selectInfos.push({
-      categoryId: items[mainActiveIndex].id,
-      categoryName: items[mainActiveIndex].text
-    })
-    selectInfos.push({
+    // selectInfos.push({
+    //   categoryId: items[mainActiveIndex].id,
+    //   categoryName: items[mainActiveIndex].text
+    // })
+    selectInfos[1] = {
       categoryId: detail.id,
       categoryName: detail.text
-    })
+    }
 
     this.setData({
       activeId: detail.id,
@@ -98,6 +111,16 @@ Page({
     //     'selectInfo.categoryId': options.id
     //   })
     // }
+
+    if (options == null || options.type == 0) {
+      this.setData({ url: 'product/category/get' }) //系统分类
+    } else {
+      this.setData({ url: 'mer/product/category/get' }) //商家商品分类
+    }
+
+    //'mer/product/category/get'
+    //'mer/product/category/get'
+
     wx.getSystemInfo({
       success: (res) => {
         this.setData({

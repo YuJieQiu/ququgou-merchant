@@ -96,7 +96,7 @@ Page({
   detail(e) {
     console.log(e)
     let url = e.currentTarget.dataset.url
-    wx.navigateTo({ url: '/pages/materialDetail/index?url=' + url })
+    wx.navigateTo({ url: '/pages/material/materialDetail/index?url=' + url })
   },
   onLoad(options) {
     const that = this

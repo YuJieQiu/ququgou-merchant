@@ -436,7 +436,7 @@ Page({
     checkbox.toggle();
   },
   PayTypeNoop() { },
-  getPaymentTypeList: function (func) {
+  getPaymentTypeList: function () {
     const that = this
     app
       .httpGet('get/product/pay/type/list', {})
@@ -447,7 +447,6 @@ Page({
             paymentTypeList: data
           })
         }
-        func()
       })
   },
   onShow() {

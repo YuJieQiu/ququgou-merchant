@@ -31,6 +31,18 @@
       </view>
       <van-icon slot="right-icon" name="setting-o" class="" />
     </van-cell>
+    <van-cell url="/pages/productCategory/index">
+      <view slot="title">
+        <view class="view-inline-block view-margin-left-5 ">
+          <van-icon name="shop-o" />
+        </view>
+        <view class="view-inline-block view-margin-left-5 vertical-align-top">商品分类设置</view>
+        <view class="view-inline-block view-margin-left-5 vertical-align-top">
+          <!-- <van-tag type="danger">标签</van-tag> -->
+        </view>
+      </view>
+      <van-icon slot="right-icon" name="setting-o" class="" />
+    </van-cell>
     <van-cell url="/pages/systemManage/index">
       <view slot="title">
         <view class="view-inline-block view-margin-left-5 ">

@@ -39,7 +39,7 @@ Page({
 
       list[index].child.push({
         id: 0,
-        name: list[index].name,
+        name: '',
         child: []
       })
     }

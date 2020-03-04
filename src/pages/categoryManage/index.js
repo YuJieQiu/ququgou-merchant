@@ -65,11 +65,19 @@ Page({
     this.setData({
       selectInfos: selectInfos
     })
+    console.log(this.data.selectInfos)
   },
   onClickItem({ detail = {} }) {
     let selectInfos = this.data.selectInfos
     let items = this.data.items
     let mainActiveIndex = this.data.mainActiveIndex
+
+    if (mainActiveIndex == 0) {
+      selectInfos[0] = {
+        categoryId: items[mainActiveIndex].id,
+        categoryName: items[mainActiveIndex].text
+      }
+    }
     // selectInfos.push({
     //   categoryId: items[mainActiveIndex].id,
     //   categoryName: items[mainActiveIndex].text
@@ -83,6 +91,7 @@ Page({
       activeId: detail.id,
       selectInfos: selectInfos
     })
+    console.log(this.data.selectInfos)
   },
   onClickPopupTagClose() {
     this.backBeforePage()
@@ -112,14 +121,13 @@ Page({
     //   })
     // }
 
-    if (options == null || options.type == 0) {
-      this.setData({ url: 'product/category/get' }) //系统分类
-    } else {
-      this.setData({ url: 'mer/product/category/get' }) //商家商品分类
-    }
+    // if (options == null || options.type == 0) {
+    //   this.setData({ url: 'product/category/get' }) //系统分类
+    // } else {
+    //   this.setData({ url: 'mer/product/category/get' }) //商家商品分类
+    // }
 
-    //'mer/product/category/get'
-    //'mer/product/category/get'
+    this.setData({ url: 'product/category/get' }) //系统分类
 
     wx.getSystemInfo({
       success: (res) => {

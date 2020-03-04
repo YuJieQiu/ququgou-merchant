@@ -74,7 +74,8 @@ App({
     })
   },
   mapKey: 'DLVBZ-EMGWW-NEBRY-OZHQA-ZZNKZ-BFFIJ',
-  baseUrl: 'http://127.0.0.1:7000/merchant/main/api/v1/',
+  //baseUrl: 'http://127.0.0.1:7000/merchant/main/api/v1/',
+  baseUrl: 'http://127.0.0.1:9000/merchant/main/api/test/v1/',
   //baseUrl: 'https://main.ququgo.club/merchant/main/api/v1/',
   getLocationInfo: function () {//获取位置信息方法
     let _this = this
@@ -146,14 +147,14 @@ App({
                 icon: 'none'
               })
             }
-            reject(res)
+            resolve(res)
           } else if (res && res.code == 401) {
             wx.removeStorageSync('token')
             _this.beforeLogin()
-            reject(res)
+            resolve(res)
           } else if (res && res.code == 403) {
             wx.redirectTo({ url: '/pages/applyMerchant/index' })
-            reject(res)
+            resolve(res)
           } else {
             reject(res)
           }

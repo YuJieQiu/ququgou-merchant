@@ -14,9 +14,11 @@ Page({
   getHomeInfo() {
     app.httpGet('get/home/info', {}).then(res => {
       wx.stopPullDownRefresh()
-      this.setData({
-        homeData: res.data
-      })
+      if (!res && !res.data) {
+        this.setData({
+          homeData: res.data
+        })
+      }
     })
   },
   //上拉刷新
@@ -43,6 +45,8 @@ Page({
         }
       }
     })
-
-  }
+  },
+  onClickGetQRCode() {//获取店铺二维码
+    console.log("onClickGetQRCode")
+  },
 })

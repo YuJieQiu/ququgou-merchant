@@ -48,12 +48,7 @@
 										<block wx:for="{{categoryInfos}}" wx:key="{{index}}">{{item.categoryName}}</block>
 								</view>
 						</van-cell>
-						<!-- 店铺商品分类选择 -->
-						<van-cell title="店铺商品分类" is-link link-type="navigateTo" url="{{'/pages/categoryManage/index?&type=1'}}">
-								<view>
-										<block wx:for="{{categoryInfos}}" wx:key="{{index}}">{{item.categoryName}}</block>
-								</view>
-						</van-cell>
+						<!-- TODO:店铺商品分类选择 -->
 						<i-panel title="基本信息" hide-border="{{true}}">
 								<!-- 商品名称 -->
 								<van-field value="{{ productInfo.name }}" label="商品名称" required type="textarea" placeholder="请输入商品名称" autosize border="{{ false }}" bind:input="onChangeProInfoName" />

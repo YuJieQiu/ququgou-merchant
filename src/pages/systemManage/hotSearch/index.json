@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "首页热搜管理",
   "usingComponents": {
-    "upload-img": "../../components/upload-img/index",
     "van-popup": "../../components/vant-weapp/dist/popup/index",
     "i-panel": "../../components/iview-weapp/dist/panel/index",
     "i-grid": "../../components/iview-weapp/dist/grid/index",

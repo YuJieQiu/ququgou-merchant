@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "商品分类管理",
   "usingComponents": {
-    "upload-img": "../../components/upload-img/index",
     "van-popup": "../../components/vant-weapp/dist/popup/index",
     "i-swipeout": "../../components/iview-weapp/dist/swipeout/index",
     "i-panel": "../../components/iview-weapp/dist/panel/index",

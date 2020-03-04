@@ -19,6 +19,11 @@
     </van-grid>
   </view>
   <view class="grid-content">
+    <van-grid column-num="1">
+      <van-grid-item icon="shop-o" text="店铺二维码" bind:click="onClickGetQRCode" dot="{{false}}" is-link url="" />
+    </van-grid>
+  </view>
+  <view class="grid-content">
     <van-cell url="/pages/merInfo/index">
       <view slot="title">
         <view class="view-inline-block view-margin-left-5 ">
@@ -31,18 +36,17 @@
       </view>
       <van-icon slot="right-icon" name="setting-o" class="" />
     </van-cell>
-    <van-cell url="/pages/productCategory/index">
+    <!-- <van-cell url="/pages/productCategory/index">
       <view slot="title">
         <view class="view-inline-block view-margin-left-5 ">
           <van-icon name="shop-o" />
         </view>
         <view class="view-inline-block view-margin-left-5 vertical-align-top">商品分类设置</view>
         <view class="view-inline-block view-margin-left-5 vertical-align-top">
-          <!-- <van-tag type="danger">标签</van-tag> -->
         </view>
       </view>
       <van-icon slot="right-icon" name="setting-o" class="" />
-    </van-cell>
+    </van-cell> -->
     <van-cell url="/pages/systemManage/index">
       <view slot="title">
         <view class="view-inline-block view-margin-left-5 ">
